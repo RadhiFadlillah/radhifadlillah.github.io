@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	{{$docTitle := printf "%s - %s" .ContentTitle .WebsiteTitle}}
+	<title>{{$docTitle}}</title>
+	<meta name="twitter:title" content="{{$docTitle}}">
+	<meta property="og:title" content="{{$docTitle}}"> 
+	{{template "head" .}}
+</head>
+
+<body>
+	{{template "header" .}}
+	<div id="body">
+		<div class="content" id="content-page">
+			<p id="page-title">{{.ContentTitle}}</p>
+			<div id="page-html" class="content-html">{{.HTML}}</div>
+		</div>
+	</div>
+	{{template "footer" .}}
+	{{template "analytic" .}}
+</body>
+
+</html>

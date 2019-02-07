@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	{{$docTitle := printf "%s - %s" .ContentTitle .WebsiteTitle}}
+	<title>{{$docTitle}}</title>
+	<meta name="twitter:title" content="{{$docTitle}}">
+	<meta property="og:title" content="{{$docTitle}}"> 
+	{{template "head" .}}
+</head>
+
+<body>
+	{{template "header" .}}
+	<div id="body">
+		<div class="content" id="content-post">
+            <div id="post-metadata">
+				<a id="post-category" href="{{.Category.Path}}">
+					{{if eq .Category.Name ""}}Uncategorized{{else}}{{.Category.Name}}{{end}}
+				</a>
+			    <p id="post-title">{{.ContentTitle}}</p>
+                <div id="post-time">
+                    <p id="post-author">{{.ContentAuthor}}</p>
+                    <p id="post-created">{{formatTime .CreatedAt "2006-01-02 15:04"}}</p>
+                    {{if ne .CreatedAt .UpdatedAt}}
+                    <p id="post-updated"><i>Last updated {{formatTime .UpdatedAt "2006-01-02 15:04"}}</i></p>
+                    {{end}}
+                </div>
+            </div>
+			<div id="post-html" class="content-html">{{.HTML}}</div>
+			{{if gt (len .Tags) 0}}
+			<div id="post-tags">
+				{{range $tag := .Tags}}
+				<a href="{{$tag.Path}}"># {{$tag.Name}}</a>
+				{{end}}
+			</div>
+			{{end}}
+		</div>
+	</div>
+	{{template "footer" .}}
+	{{template "analytic" .}}
+</body>
+
+</html>
