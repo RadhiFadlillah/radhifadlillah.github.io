@@ -3,3 +3,4 @@ Description = ""
 Owner = "Radhi Fadlillah"
 Pagination = 10
 Theme = "basic-theme"
+PublishDir = "docs"
