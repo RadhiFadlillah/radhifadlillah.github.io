@@ -1,0 +1,112 @@
+<!doctype html><html>
+<head>
+<title>Limiting Number of Goroutine - Radhi Fadlillah</title>
+<meta name=twitter:title content="Limiting Number of Goroutine - Radhi Fadlillah">
+<meta property=og:title content="Limiting Number of Goroutine - Radhi Fadlillah">
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta http-equiv=x-ua-compatible content="ie=edge">
+<meta name=description content="While scraping some data from website, I found out that some websites will deny your request if there are too many concurrent requests. To fix this, we need to limit number of goroutine that run at a time.">
+<meta name=twitter:description content="While scraping some data from website, I found out that some websites will deny your request if there are too many concurrent requests. To fix this, we need to limit number of goroutine that run at a time.">
+<meta property=og:description content="While scraping some data from website, I found out that some websites will deny your request if there are too many concurrent requests. To fix this, we need to limit number of goroutine that run at a time.">
+<link rel=stylesheet href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700">
+<link rel=stylesheet href="https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700">
+<link rel=stylesheet href=/css/stylesheet.css>
+<link rel=stylesheet href=/css/dracula.css>
+</head>
+<body>
+<div id=header>
+<div class=content>
+<a id=text-logo href=/>Radhi Fadlillah</a>
+<div class=spacer></div>
+<a href=/page/about class=header-link>About</a>
+</div>
+</div>
+<div id=body>
+<div class=content id=content-post>
+<div id=post-metadata>
+<a id=post-category href=/category/programming>
+programming
+</a>
+<p id=post-title>Limiting Number of Goroutine</p>
+<div id=post-time>
+<p id=post-author>Radhi Fadlillah</p>
+<p id=post-created>2018-10-08 18:58</p>
+</div>
+</div>
+<div id=post-html class=content-html><html><head></head><body><p>Several days ago, I’m scraping some data from a public website. It’s simple enough to do in Go, just concurrently fetch the pages via <code>goroutine</code>, parse it with <code>goquery</code>, then save it to database. Unfortunately, the scraping is failed because the website detects that there are too many concurrent requests from my IP.</p>
+<p>To work around this, I limit the number of goroutines to max 10 at a time. Fortunately, this is really easy thanks to channels and <code>sync</code> package :</p>
+<pre><code class=language-go><pre class=chroma><span class=kn>package</span> <span class=nx>main</span>
+
+<span class=kn>import</span> <span class=p>(</span>
+	<span class=s>&#34;sync&#34;</span>
+<span class=p>)</span>
+
+<span class=kd>func</span> <span class=nx>main</span><span class=p>()</span> <span class=p>{</span>
+	<span class=c1>// urls is list of URL that will be downloaded
+</span><span class=c1></span>	<span class=nx>urls</span> <span class=o>:=</span> <span class=p>[]</span><span class=kt>string</span><span class=p>{</span>
+		<span class=s>&#34;http://example-site.com/about&#34;</span><span class=p>,</span>
+        <span class=s>&#34;http://example-site.com/contact&#34;</span><span class=p>,</span>
+        <span class=o>...</span>
+	<span class=p>}</span>
+
+	<span class=c1>// waitGroup is used to make sure app doesn&#39;t finish prematurely
+</span><span class=c1></span>	<span class=c1>// until all goroutines finished
+</span><span class=c1></span>	<span class=nx>waitGroup</span> <span class=o>:=</span> <span class=nx>sync</span><span class=p>.</span><span class=nx>WaitGroup</span><span class=p>{}</span>
+	<span class=nx>waitGroup</span><span class=p>.</span><span class=nx>Add</span><span class=p>(</span><span class=nb>len</span><span class=p>(</span><span class=nx>urls</span><span class=p>))</span>
+
+	<span class=c1>// guard is a channel that used to make sure that only N=10
+</span><span class=c1></span>	<span class=c1>// goroutines will run at a time
+</span><span class=c1></span>	<span class=nx>guard</span> <span class=o>:=</span> <span class=nb>make</span><span class=p>(</span><span class=kd>chan</span> <span class=kd>struct</span><span class=p>{},</span> <span class=mi>10</span><span class=p>)</span>
+
+	<span class=k>for</span> <span class=nx>_</span><span class=p>,</span> <span class=nx>url</span> <span class=o>:=</span> <span class=k>range</span> <span class=nx>urls</span> <span class=p>{</span>
+		<span class=c1>// as we loop through URLs, first we put an empty struct to channel guard.
+</span><span class=c1></span>		<span class=c1>// If the channel is still empty, the process will continue to the next line.
+</span><span class=c1></span>		<span class=c1>// Else, the process will be blocked until there are rooms in the channel to put the empty struct.
+</span><span class=c1></span>		<span class=nx>guard</span> <span class=o>&lt;-</span> <span class=kd>struct</span><span class=p>{}{}</span>
+
+		<span class=k>go</span> <span class=kd>func</span><span class=p>(</span><span class=nx>url</span> <span class=kt>string</span><span class=p>)</span> <span class=p>{</span>
+			<span class=c1>// when this goroutine finished, make sure to :
+</span><span class=c1></span>			<span class=c1>// - mark the waitGroup for this goroutine as finished; and
+</span><span class=c1></span>			<span class=c1>// - release the guard, so the next goroutine can be run.
+</span><span class=c1></span>			<span class=k>defer</span> <span class=kd>func</span><span class=p>()</span> <span class=p>{</span>
+				<span class=nx>waitGroup</span><span class=p>.</span><span class=nx>Done</span><span class=p>()</span>
+				<span class=o>&lt;-</span><span class=nx>guard</span>
+			<span class=p>}()</span>
+
+			<span class=c1>// download and process the URL
+</span><span class=c1></span>			<span class=nx>scrapWebPage</span><span class=p>(</span><span class=nx>url</span><span class=p>)</span>
+		<span class=p>}(</span><span class=nx>url</span><span class=p>)</span>
+	<span class=p>}</span>
+
+	<span class=c1>// wait until all goroutine finished
+</span><span class=c1></span>	<span class=nx>waitGroup</span><span class=p>.</span><span class=nx>Wait</span><span class=p>()</span>
+<span class=p>}</span></pre></code></pre>
+<p>As you can see, the code itself is really simple. For <code>guard</code>, I use channel of empty struct instead of other types like boolean or integer. This is because empty structs occupies zero bytes of storage, which means we can put as many guard as we want without worrying about memory usage. For more details about empty structs, do check out the <a href=https://dave.cheney.net/2014/03/25/the-empty-struct>article</a> by Dave Cheney which thoroughly explains about empty structs.</p>
+</body></html></div>
+<div id=post-tags>
+<a href=/tag/go># go</a>
+<a href=/tag/golang># golang</a>
+</div>
+</div>
+</div>
+<div id=footer>
+<div class=content>
+<p>© 2018 Radhi Fadlillah. Made with <a href=https://github.com/go-spook/spook>Spook</a>
+using the <a href=https://github.com/go-spook/basic-theme>Basic</a> theme.</p>
+</div>
+</div>
+<script>
+(function(f, a, t, h, o, m){
+	a[h]=a[h]||function(){
+		(a[h].q=a[h].q||[]).push(arguments)
+	};
+	o=f.createElement('script'),
+	m=f.getElementsByTagName('script')[0];
+	o.async=1; o.src=t; o.id='fathom-script';
+	m.parentNode.insertBefore(o,m)
+})(document, window, '//stats.acrophobic.me/tracker.js', 'fathom');
+fathom('trackPageview');
+</script>
+</body>
+</html>

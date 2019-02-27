@@ -1,0 +1,83 @@
+<!doctype html><html>
+<head>
+<title>Profiling Go Apps - Radhi Fadlillah</title>
+<meta name=twitter:title content="Profiling Go Apps - Radhi Fadlillah">
+<meta property=og:title content="Profiling Go Apps - Radhi Fadlillah">
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta http-equiv=x-ua-compatible content="ie=edge">
+<meta name=description content="There are several ways for profiling a Go application, but the easiest one that I’ve found is by using github.com/pkg/profile.">
+<meta name=twitter:description content="There are several ways for profiling a Go application, but the easiest one that I’ve found is by using github.com/pkg/profile.">
+<meta property=og:description content="There are several ways for profiling a Go application, but the easiest one that I’ve found is by using github.com/pkg/profile.">
+<link rel=stylesheet href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700">
+<link rel=stylesheet href="https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700">
+<link rel=stylesheet href=/css/stylesheet.css>
+<link rel=stylesheet href=/css/dracula.css>
+</head>
+<body>
+<div id=header>
+<div class=content>
+<a id=text-logo href=/>Radhi Fadlillah</a>
+<div class=spacer></div>
+<a href=/page/about class=header-link>About</a>
+</div>
+</div>
+<div id=body>
+<div class=content id=content-post>
+<div id=post-metadata>
+<a id=post-category href=/category/programming>
+programming
+</a>
+<p id=post-title>Profiling Go Apps</p>
+<div id=post-time>
+<p id=post-author>Radhi Fadlillah</p>
+<p id=post-created>2018-10-14 21:34</p>
+</div>
+</div>
+<div id=post-html class=content-html><html><head></head><body><p>There are several ways for profiling a Go application, but the easiest one that I’ve found is by using <code>github.com/pkg/profile</code>.</p>
+<p>To use it, first install it by running :</p>
+<pre><code class=language-bash><pre class=chroma>go get github.com/pkg/profile</pre></code></pre>
+<p>Once installed, enable the profiler by starting it in the main function of your app :</p>
+<pre><code class=language-go><pre class=chroma><span class=kn>package</span> <span class=nx>main</span>
+
+<span class=kn>import</span> <span class=s>&#34;github.com/pkg/profile&#34;</span>
+
+<span class=kd>func</span> <span class=nx>main</span><span class=p>()</span> <span class=p>{</span>
+    <span class=c1>// Use this line for profiling CPU
+</span><span class=c1></span>    <span class=k>defer</span> <span class=nx>profile</span><span class=p>.</span><span class=nx>Start</span><span class=p>().</span><span class=nx>Stop</span><span class=p>()</span>
+    
+    <span class=c1>// Use this line for profiling memory
+</span><span class=c1></span>    <span class=k>defer</span> <span class=nx>profile</span><span class=p>.</span><span class=nx>Start</span><span class=p>(</span><span class=nx>profile</span><span class=p>.</span><span class=nx>MemProfile</span><span class=p>).</span><span class=nx>Stop</span><span class=p>()</span>
+<span class=p>}</span></pre></code></pre>
+<p>Next, build and run your app like usual. Once finished, the app will generate a <code>pprof</code> file in a temporary folder, and it will tell you where it’s located, for example :</p>
+<pre><code class=language-bash><pre class=chroma>2018/10/1414:26:28 profile: cpu profiling enabled, /var/...../cpu.pprof</pre></code></pre>
+<p>If you use memory profiler, the output will be <code>mem.pprof</code> instead of <code>cpu.pprof</code>.</p>
+<p>To analyze the <code>pprof</code> file, we can convert it to PDF file by using standard Go tool :</p>
+<pre><code class=language-bash><pre class=chroma>go tool pprof --pdf ~/go/bin/yourbinary /path/to/cpu.pprof &gt; file.pdf</pre></code></pre>
+</body></html></div>
+<div id=post-tags>
+<a href=/tag/go># go</a>
+<a href=/tag/golang># golang</a>
+</div>
+</div>
+</div>
+<div id=footer>
+<div class=content>
+<p>© 2018 Radhi Fadlillah. Made with <a href=https://github.com/go-spook/spook>Spook</a>
+using the <a href=https://github.com/go-spook/basic-theme>Basic</a> theme.</p>
+</div>
+</div>
+<script>
+(function(f, a, t, h, o, m){
+	a[h]=a[h]||function(){
+		(a[h].q=a[h].q||[]).push(arguments)
+	};
+	o=f.createElement('script'),
+	m=f.getElementsByTagName('script')[0];
+	o.async=1; o.src=t; o.id='fathom-script';
+	m.parentNode.insertBefore(o,m)
+})(document, window, '//stats.acrophobic.me/tracker.js', 'fathom');
+fathom('trackPageview');
+</script>
+</body>
+</html>
