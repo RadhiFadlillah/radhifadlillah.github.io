@@ -4,7 +4,7 @@ Excerpt = ""
 CreatedAt = "2018-09-29 16:36:33 +0700"
 UpdatedAt = "2018-09-29 16:36:33 +0700"
 Category = "programming"
-Tags = ["linux", "go", "fathom", "analytic"]
+Tags = ["linux", "go", "golang", "fathom", "analytic"]
 Author = "Radhi Fadlillah"
 +++
 
