@@ -1,0 +1,252 @@
+<!doctype html><html>
+<head>
+<title>Step by Step: Setting Up a New VPS - Radhi Fadlillah</title>
+<meta name=twitter:title content="Step by Step: Setting Up a New VPS - Radhi Fadlillah">
+<meta property=og:title content="Step by Step: Setting Up a New VPS - Radhi Fadlillah">
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta http-equiv=x-ua-compatible content="ie=edge">
+<meta name=description content="I’ve bought a new VPS from Vultr for my own data server. This post is documentation of the steps that I took on setting up my new VPS. The OS that used in VPS is Ubuntu 18.04 64-bit, while OS in my local machine is Manjaro 64-bit.">
+<meta name=twitter:description content="I’ve bought a new VPS from Vultr for my own data server. This post is documentation of the steps that I took on setting up my new VPS. The OS that used in VPS is Ubuntu 18.04 64-bit, while OS in my local machine is Manjaro 64-bit.">
+<meta property=og:description content="I’ve bought a new VPS from Vultr for my own data server. This post is documentation of the steps that I took on setting up my new VPS. The OS that used in VPS is Ubuntu 18.04 64-bit, while OS in my local machine is Manjaro 64-bit.">
+<link rel=stylesheet href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700">
+<link rel=stylesheet href="https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700">
+<link rel=stylesheet href=/css/stylesheet.css>
+<link rel=stylesheet href=/css/dracula.css>
+<link rel=apple-touch-icon-precomposed sizes=144x144 href=/res/apple-touch-icon-144x144.png>
+<link rel=apple-touch-icon-precomposed sizes=152x152 href=/res/apple-touch-icon-152x152.png>
+<link rel=icon type=image/png href=/res/favicon-32x32.png sizes=32x32>
+<link rel=icon type=image/png href=/res/favicon-16x16.png sizes=16x16>
+<link rel="shortcut icon" href=/res/favicon.ico>
+</head>
+<body>
+<div id=header>
+<div class=content>
+<a id=text-logo href=/>Radhi Fadlillah</a>
+<div class=spacer></div>
+<a href=/page/about class=header-link>About</a>
+</div>
+</div>
+<div id=body>
+<div class=content id=content-post>
+<div id=post-metadata>
+<a id=post-category href=/category/tutorial>
+tutorial
+</a>
+<p id=post-title>Step by Step: Setting Up a New VPS</p>
+<div id=post-time>
+<p id=post-author>Radhi Fadlillah</p>
+<p id=post-created>2018-08-18 14:51</p>
+</div>
+</div>
+<div id=post-html class=content-html><html><head></head><body><p>I’ve bought a new VPS from <a href=https://www.vultr.com/>Vultr</a> for my own data server. This post is documentation of the steps that I took on setting up my new VPS. The OS that used in VPS is Ubuntu 18.04 64-bit, while OS in my local machine is Manjaro 64-bit.</p>
+<h3 id=table-of-contents>Table of Contents</h3>
+<ol>
+<li><a href=#setup-ssh-in-local-machine>Setup SSH in local machine</a></li>
+<li><a href=#login-to-the-vps-via-ssh-as-root>Login to the VPS via SSH as root</a></li>
+<li><a href=#change-root-password>Change root password</a></li>
+<li><a href=#create-a-new-user>Create a new user</a></li>
+<li><a href=#enable-public-key-authentication>Enable Public Key Authentication</a></li>
+<li><a href=#disable-password-authentication-and-log-in-as-root>Disable Password Authentication and log in as root</a></li>
+<li><a href=#set-up-firewall>Set up firewall</a></li>
+<li>Bonus: <a href=#install-mariadb>Install MariaDB</a></li>
+</ol>
+<h3 id=setup-ssh-in-local-machine>Setup SSH in local machine</h3>
+<p>Make sure SSH is installed in the local machine. If it’s not, install it by running :</p>
+<pre><code class=language-bash><pre class=chroma>sudo pacman -S openssh</pre></code></pre>
+<p>After installation finished, create a new SSH keys by running :</p>
+<pre><code class=language-bash><pre class=chroma>ssh-keygen</pre></code></pre>
+<p>Suppose the name of user in local machine is <code>localuser</code>. The command above will show message like this :</p>
+<pre><code class=language-bash><pre class=chroma>Generating public/private rsa key pair.
+Enter file in which to save the key (/Users/localuser/.ssh/id_rsa):</pre></code></pre>
+<p>Click enter to save SSH keys in the default location. After that, we will be asked to input a password to secure the generated keys. You are free to submit the password or not, but in this tutorial I don’t use any password. Once the process finished, in <code>$HOME/.ssh</code> directory will be generated private key <code>id_rsa</code> and public key <code>id_rsa.pub</code>.</p>
+<p>SSH keys are important because it’s provide a more secure way of logging into a server with SSH than using a password alone. While a password can eventually be cracked with a brute force attack, SSH keys are nearly impossible to decipher by brute force alone. Not to mention it makes login process easier because you don’t have to input the password every time. If you’re unsure whether you already have an SSH key or not, you can check if directory <code>$HOME/.ssh</code> is exists.</p>
+<h3 id=login-to-the-vps-via-ssh-as-root>Login to the VPS via SSH as root</h3>
+<p>Open the terminal, then input this command :</p>
+<pre><code class=language-bash><pre class=chroma>ssh root@&lt;ip-vps&gt;</pre></code></pre>
+<p>After that, SSH will show a warning message and ask you to confirm the authenticity of the host. Answer <code>yes</code> to the warning message, then input password for the root user. If the password is correct, we will given access to VPS as root user.</p>
+<p>Once in, update the system by running <code>apt update</code> followed by <code>apt upgrade</code>. If necessary, reboot the VPS by running <code>reboot</code>.</p>
+<h3 id=change-root-password>Change root password</h3>
+<p>When we buy a new VPS on Vultr, we will given a default SSH password to access VPS as root. For safety reason, you should change the default password to a new one. You can do it by running <code>passwd</code>, then input your new password.</p>
+<h3 id=create-a-new-user>Create a new user</h3>
+<p>For the next steps, we need to create a new user. For example, here we create a new user with the name <code>radhi</code> :</p>
+<pre><code class=language-bash><pre class=chroma>adduser radhi</pre></code></pre>
+<p>After that, system wil ask us to input data and password for new user :</p>
+<pre><code class=language-bash><pre class=chroma>Adding user `radhi&#39; ...
+Adding new group `radhi&#39; (1000) ...
+Adding new user `radhi&#39; (1000) with group `radhi&#39; ...
+Creating home directory `/home/radhi&#39; ...
+Copying files from `/etc/skel&#39; ...
+New password: 
+Retype new password: 
+passwd: password updated successfully
+Changing the user information for radhi
+Enter the new value, or press ENTER for the default
+	Full Name []: Radhi Fadlillah
+	Room Number []:  
+	Work Phone []: 
+	Home Phone []: 
+	Other []: 
+Is the information correct? [Y/n] y</pre></code></pre>
+<p>To let the new user performs administrative commands (e.g. installing new application), the new user must be included in <code>sudo</code> group (which is the “administrators” group in Linux). To do that, run :</p>
+<pre><code class=language-bash><pre class=chroma>usermod -aG sudo radhi</pre></code></pre>
+<p>Once it finished, user <code>radhi</code> can run administrative commands by using <code>sudo</code> command.</p>
+<h3 id=enable-public-key-authentication>Enable Public Key Authentication</h3>
+<p>As mentioned before, public key authentication provides SSH users with the convenience of logging in to their VPS without entering their passwords. Not to mention it is a lot more safer than using password.</p>
+<p>To enable it, we have to upload public key in the local machine to the VPS. To do that, log out from VPS, then run :</p>
+<pre><code class=language-bash><pre class=chroma>ssh-copy-id radhi@&lt;ip-vps&gt;</pre></code></pre>
+<p>While sending the public key, we will asked to input the password of user in VPS (in this case is <code>radhi</code>) . Once finished, system will show success message like this :</p>
+<pre><code class=language-bash><pre class=chroma>Number of key(s) added: 1
+
+Now try logging into the machine, with:   &#34;ssh radhi@&lt;ip-vps&gt;&#34;
+and check to make sure that only the key(s) you wanted were added.</pre></code></pre>
+<p>Now log in back to server by running <code>ssh radhi@&lt;ip-vps&gt;</code>, and you should be able to do it without submitting the password.</p>
+<h3 id=disable-password-authentication-and-log-in-as-root>Disable Password Authentication and log in as root</h3>
+<p>To prevent brute force attack, it’s recommended to disable password authentication for log in. For same reason, login as root user should be disabled as well because almost certainly brute force attack will try to use it. To do it, log in to VPS as our new user (in this tutorial is <code>radhi</code>), then edit SSH configuration by running <code>nano</code> (or your preferred text editor) :</p>
+<pre><code class=language-bash><pre class=chroma>sudo nano /etc/ssh/sshd_config</pre></code></pre>
+<p>Find the line for <code>PasswordAuthentication</code>:</p>
+<pre><code class=language-bash><pre class=chroma>#PasswordAuthentication yes</pre></code></pre>
+<p>Remove the hash symbol, then set the value to <code>no</code> :</p>
+<pre><code class=language-bash><pre class=chroma>PasswordAuthentication no</pre></code></pre>
+<p>After that, to make only <code>radhi</code> that can log in to the VPS, add this line to the end of file :</p>
+<pre><code class=language-bash><pre class=chroma>AllowUsers radhi</pre></code></pre>
+<p>Save the file, then reload SSH daemon by running :</p>
+<pre><code class=language-bash><pre class=chroma>sudo service ssh restart</pre></code></pre>
+<p>Now nobody can’t log in to the VPS by using password or as root user. Instead, only <code>radhi</code> using Public Key Authentication that can access the VPS from SSH.</p>
+<h3 id=set-up-firewall>Set up firewall</h3>
+<p>Firewall is a must for a server. There are several firewall available for Linux, e.g. <code>iptables</code>, <code>csf</code> and <code>ufw</code>. I will use <code>ufw</code> because IMO it’s the simplest one between those three.</p>
+<p>UFW (Uncomplicated Firewall) is an interface to <code>iptables</code> that is geared towards simplifying the process of configuring a firewall, which make it suitable for beginner. To use it, install it by running :</p>
+<pre><code class=language-bash><pre class=chroma>sudo apt install ufw</pre></code></pre>
+<p>Since modern VPS supports IPv6, we have to make sure UFW able to support it. To do this, open the UFW configuration using <code>nano</code> (or your preferred editor) :</p>
+<pre><code class=language-bash><pre class=chroma>sudo nano /etc/default/ufw</pre></code></pre>
+<p>Then find line <code>IPV6</code> and set its value to <code>yes</code>:</p>
+<pre><code class=language-bash><pre class=chroma>IPV6=yes</pre></code></pre>
+<p>Save, then close the file. Now, when UFW is enabled, it will protecting all network traffic both from IPv4 and IPv6.</p>
+<p>Next, we need to set default policies for all network traffics. Here, we want the VPS to allow all outgoing connection, but deny all incoming transmission. This way, server can send data to any connection, but doesn’t let any connection to connect to server. To do this, run :</p>
+<pre><code class=language-bash><pre class=chroma>sudo ufw default allow outgoing
+sudo ufw default deny incoming</pre></code></pre>
+<p>Next, we need permission to allow several type of connection to server. Usually, there are three types of connection that must be allowed, i.e. SSH, HTTP and HTTPs :</p>
+<pre><code class=language-bash><pre class=chroma>sudo ufw allow ssh
+sudo ufw allow http
+sudo ufw allow https</pre></code></pre>
+<p>To see all added rules, run :</p>
+<pre><code class=language-bash><pre class=chroma>sudo ufw show added</pre></code></pre>
+<p>To remove one of firewall rules, you can use <code>ufw delete</code>. For example, here we want to revoke permission for HTTP access :</p>
+<pre><code class=language-bash><pre class=chroma>sudo ufw delete allow http</pre></code></pre>
+<p>Before activating UFW, we have to make sure that UFW can be used in our VPS. You might need to install other packages like <code>python</code> or <code>iptables</code>. To check it, you can run :</p>
+<pre><code class=language-bash><pre class=chroma>sudo /usr/share/ufw/check-requirements</pre></code></pre>
+<p>If the check finished successfully, it means we can activate the firewall. Before activating it, make sure you already allow SSH connection in the firewall. If you don’t activate it, you won’t be able to log in to the VPS anymore, so make sure it’s allowed. To activate it, run :</p>
+<pre><code class=language-bash><pre class=chroma>sudo ufw enable</pre></code></pre>
+<p>Now, UFW has been activated. You can check the status of UFW by running :</p>
+<pre><code class=language-bash><pre class=chroma>sudo ufw status verbose</pre></code></pre>
+<p>If you decide you don’t want to use UFW, you can disable it with this command :</p>
+<pre><code class=language-bash><pre class=chroma>sudo ufw disable</pre></code></pre>
+<p>If you want to reset all UFW rules that has been made, run :</p>
+<pre><code class=language-bash><pre class=chroma>sudo ufw reset</pre></code></pre>
+<h3 id=install-mariadb>Install MariaDB</h3>
+<p><a href=https://mariadb.org/>MariaDB</a> is one of the most popular database management system. It’s easy, popular, and used by many application. That’s why I’m including it in this tutorial.</p>
+<p>Ubuntu includes MariaDB 10.1 in its main repositories. However, the lates stable version of MariaDB is 10.3, so I will use that one. To do it, we need to add MariaDB repositories to our system. To do this, open download page of <a href=https://downloads.mariadb.org/mariadb/repositories/>MariaDB</a>, then choose OS, version and your preferred mirror location. For example, here we choose :</p>
+<ul>
+<li>OS: Ubuntu 18.04 LTS</li>
+<li>Version: 10.3</li>
+<li>Mirror: DigitalOcean - Singapore, SG</li>
+</ul>
+<p>To add the MariaDB repositories, run :</p>
+<pre><code class=language-bash><pre class=chroma>sudo apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 0xF1656F24C74CD1D8
+sudo add-apt-repository &#39;deb [arch=amd64,arm64,ppc64el] http://sgp1.mirrors.digitalocean.com/mariadb/repo/10.3/ubuntu bionic main&#39;</pre></code></pre>
+<p>If <code>add-apt-repository</code> is not available in your VPS, install it by running :</p>
+<pre><code class=language-bash><pre class=chroma>sudo apt install software-properties-common</pre></code></pre>
+<p>Once the key is imported and the repository added, you can install MariaDB 10.3 by running :</p>
+<pre><code class=language-bash><pre class=chroma>sudo apt update
+sudo apt install mariadb-server -y</pre></code></pre>
+<p>While installing, we might be asked to input the password for root. If not, root will be given empty password. Once finished, we have to secure MariaDB by running :</p>
+<pre><code class=language-bash><pre class=chroma>sudo mysql_secure_installation</pre></code></pre>
+<p>Here we will be asked about several point, e.g. about root password, etc :</p>
+<pre><code class=language-bash><pre class=chroma>NOTE: RUNNING ALL PARTS OF THIS SCRIPT IS RECOMMENDED FOR ALL MariaDB
+      SERVERS IN PRODUCTION USE!  PLEASE READ EACH STEP CAREFULLY!
+
+In order to log into MariaDB to secure it, we&#39;ll need the current
+password for the root user.  If you&#39;ve just installed MariaDB, and
+you haven&#39;t set the root password yet, the password will be blank,
+so you should just press enter here.
+
+Enter current password for root (enter for none): 
+OK, successfully used password, moving on...
+
+Setting the root password ensures that nobody can log into the MariaDB
+root user without the proper authorisation.
+
+You already have a root password set, so you can safely answer &#39;n&#39;.
+
+Change the root password? [Y/n] n
+ ... skipping.
+
+By default, a MariaDB installation has an anonymous user, allowing anyone
+to log into MariaDB without having to have a user account created for
+them.  This is intended only for testing, and to make the installation
+go a bit smoother.  You should remove them before moving into a
+production environment.
+
+Remove anonymous users? [Y/n] y
+ ... Success!
+
+Normally, root should only be allowed to connect from &#39;localhost&#39;.  This
+ensures that someone cannot guess at the root password from the network.
+
+Disallow root login remotely? [Y/n] y
+ ... Success!
+
+By default, MariaDB comes with a database named &#39;test&#39; that anyone can
+access.  This is also intended only for testing, and should be removed
+before moving into a production environment.
+
+Remove test database and access to it? [Y/n] y
+ - Dropping test database...
+ ... Success!
+ - Removing privileges on test database...
+ ... Success!
+
+Reloading the privilege tables will ensure that all changes made so far
+will take effect immediately.
+
+Reload privilege tables now? [Y/n] y
+ ... Success!
+
+Cleaning up...
+
+All done!  If you&#39;ve completed all of the above steps, your MariaDB
+installation should now be secure.
+
+Thanks for using MariaDB!</pre></code></pre>
+<p>Now we can use MariaDB by running :</p>
+<pre><code class=language-bash><pre class=chroma>sudo mysql -p</pre></code></pre>
+</body></html></div>
+<div id=post-tags>
+<a href=/tag/linux># linux</a>
+<a href=/tag/sysadmin># sysadmin</a>
+<a href=/tag/tutorial># tutorial</a>
+<a href=/tag/ubuntu># ubuntu</a>
+<a href=/tag/vps># vps</a>
+</div>
+</div>
+</div>
+<div id=footer>
+<div class=content>
+<p>© 2018 Radhi Fadlillah. Made with <a href=https://github.com/go-spook/spook>Spook</a>
+using the <a href=https://github.com/go-spook/basic-theme>Basic</a> theme.</p>
+</div>
+</div>
+<script>
+(function(f, a, t, h, o, m){
+	a[h]=a[h]||function(){
+		(a[h].q=a[h].q||[]).push(arguments)
+	};
+	o=f.createElement('script'),
+	m=f.getElementsByTagName('script')[0];
+	o.async=1; o.src=t; o.id='fathom-script';
+	m.parentNode.insertBefore(o,m)
+})(document, window, '//stats.acrophobic.me/tracker.js', 'fathom');
+fathom('trackPageview');
+</script>
+</body>
+</html>

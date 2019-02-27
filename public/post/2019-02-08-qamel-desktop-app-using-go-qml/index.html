@@ -1,0 +1,345 @@
+<!doctype html><html>
+<head>
+<title>Qamel - Build Desktop Application Using Go and QML - Radhi Fadlillah</title>
+<meta name=twitter:title content="Qamel - Build Desktop Application Using Go and QML - Radhi Fadlillah">
+<meta property=og:title content="Qamel - Build Desktop Application Using Go and QML - Radhi Fadlillah">
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta http-equiv=x-ua-compatible content="ie=edge">
+<meta name=description content="Introduction to Qamel, a QML binding for Go which can be used to create modern desktop application.">
+<meta name=twitter:description content="Introduction to Qamel, a QML binding for Go which can be used to create modern desktop application.">
+<meta property=og:description content="Introduction to Qamel, a QML binding for Go which can be used to create modern desktop application.">
+<link rel=stylesheet href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700">
+<link rel=stylesheet href="https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700">
+<link rel=stylesheet href=/css/stylesheet.css>
+<link rel=stylesheet href=/css/dracula.css>
+<link rel=apple-touch-icon-precomposed sizes=144x144 href=/res/apple-touch-icon-144x144.png>
+<link rel=apple-touch-icon-precomposed sizes=152x152 href=/res/apple-touch-icon-152x152.png>
+<link rel=icon type=image/png href=/res/favicon-32x32.png sizes=32x32>
+<link rel=icon type=image/png href=/res/favicon-16x16.png sizes=16x16>
+<link rel="shortcut icon" href=/res/favicon.ico>
+</head>
+<body>
+<div id=header>
+<div class=content>
+<a id=text-logo href=/>Radhi Fadlillah</a>
+<div class=spacer></div>
+<a href=/page/about class=header-link>About</a>
+</div>
+</div>
+<div id=body>
+<div class=content id=content-post>
+<div id=post-metadata>
+<a id=post-category href=/category/programming>
+programming
+</a>
+<p id=post-title>Qamel - Build Desktop Application Using Go and QML</p>
+<div id=post-time>
+<p id=post-author>Radhi Fadlillah</p>
+<p id=post-created>2019-02-08 05:43</p>
+</div>
+</div>
+<div id=post-html class=content-html><html><head></head><body><blockquote>
+<p>This post is an introduction for Qamel, a QML binding for Go that I created. It’s released under MIT license and available <a href=https://github.com/RadhiFadlillah/qamel>here</a>.</p>
+</blockquote>
+<p>When building a modern desktop application, the first thing that come to the mind is <a href=https://electronjs.org/>Electron</a> or <a href=https://nwjs.io/>NW.js</a>. Both of them are based on <a href=https://www.chromium.org/>Chromium</a> and using <a href=https://nodejs.org/>Node.js</a>. Thanks to this, creating desktop app in Electron and NW.js feels really familiar, as if building a normal web app. This means we get all benefits of creating web app in desktop, for example :</p>
+<ul>
+<li>fast GUI prototyping;</li>
+<li>consistent look across platforms;</li>
+<li>easy styling thanks to CSS and JS;</li>
+<li>huge libraries to use and choose.</li>
+</ul>
+<p>In other hand, since both of them are based on Chromium, they are quite heavy to use. It uses lot of memories, even when it’s only running and not used. It might be fine for some apps or games (e.g. <a href=https://code.visualstudio.com/>VS Code</a>, <a href=https://store.steampowered.com/app/368340/CrossCode/>CrossCode</a>), however it might be overkill for the simpler apps.</p>
+<p>After looking around for a while, I learn about <a href=http://doc.qt.io/qt-5/qmlapplications.html>QML</a>. QML (Qt Modeling Language) is a user interface specification and programming language, which allows developer to create a performant and flexible GUI. I believe it’s a good alternative for Electron and NW.js, because :</p>
+<ul>
+<li>its syntax is similar with JSON, which make it feels familiar to web developer;</li>
+<li>it supports JavaScript up to ES7 for dynamic property and expressions. It means we can keep using some JavaScript library for our QML app;</li>
+<li>styling is quite easy with QML and it looks consistent across platforms;</li>
+<li>there are supports for component separation, which make the code more manageable.</li>
+</ul>
+<p>As its name implies, QML is part of <a href=https://www.qt.io/>Qt</a> framework which uses C++ language. Unfortunately, I’m more comfortable using Go language instead of C++, so I need a binding for QML in Go. There are several bindings that already exist, however <a href=https://github.com/go-qml/qml>one</a> of them is not maintained anymore while <a href=https://github.com/therecipe/qt>the</a> others <a href=https://github.com/kitech/qt.go>are</a> released under LGPL license, which doesn’t work for my job.</p>
+<p>With that said, I decided to create my own QML binding named <a href=https://github.com/RadhiFadlillah/qamel><code>qamel</code></a> and released it under MIT license. It’s still work in progress, but it’s stable enough for my job, so I decided to share it here. However, since I only have access to Linux and Windows machine, I’m not sure if it will works in Mac OS. If you don’t mind, go ahead and try it.</p>
+<blockquote>
+<p><code>qamel</code> is still work in progress and hasn’t been tested on Mac OS.</p>
+</blockquote>
+<p>I’m using Qt 5.12.0 and Windows 64-bit for this tutorial. Hopefully it’s easy enough to follow in other operating system.</p>
+<h2 id=installing-qt-and-qamel>Installing Qt and Qamel</h2>
+<blockquote>
+<p>Before we start, make sure Go already installed on your system.</p>
+</blockquote>
+<p>First of all, install <code>qamel</code> to your system by running :</p>
+<pre><code><pre class=chroma>go get -u -v github.com/RadhiFadlillah/qamel/qamel
+go get -u -d -v github.com/RadhiFadlillah/qamel</pre></code></pre>
+<p>Wait until the installation finished. Once finished, you can run <code>qamel --help</code> to check :</p>
+<pre><code><pre class=chroma>$ qamel -h
+qamel is tools and binding for creating GUI app in Go using Qt + QML
+
+Usage:
+  qamel [command]
+
+Available Commands:
+  build       Build QML app
+  docker      Build QML app using Docker image
+  help        Help about any command
+  profile     Manage profiles for QML&#39;s binding
+
+Flags:
+  -h, --help   help for qamel
+
+Use &#34;qamel [command] --help&#34; for more information about a command.</pre></code></pre>
+<blockquote>
+<p>If it’s error with message like “<em>qamel: command not found</em>”, make sure <code>$GOPATH/bin</code> is accessible from your <code>$PATH</code>, because that’s where <code>qamel</code> will be installed.</p>
+</blockquote>
+<p>Next, install Qt on your system. If you are on Linux, make sure the required <a href=http://doc.qt.io/qt-5/linux.html#requirements-for-development-host>dependencies</a> already installed on your system. Download the <a href=https://www.qt.io/offline-installers>official installer</a> and follow along the steps. In this tutorial, I will install it to <code>C:\Qt\Qt5.12.0</code>.</p>
+<p>When asked to choose Qt’s components to install, make sure to choose at least one of Qt5 version. In Windows, I recommend you to install at least these :</p>
+<pre><code><pre class=chroma>Qt
+├── Qt 5.12.0
+|   ├── MinGW 7.3.0 64-bit
+|   ├── Qt Charts
+|   └── Qt Data Visualization
+└── Tools
+    ├── Qt Creator 4.8.0
+    └── MinGW 7.3.0 64-bit</pre></code></pre>
+<p>If you are using Linux, I recommend to install these components :</p>
+<pre><code><pre class=chroma>Qt
+├── Qt 5.12.0
+|   ├── Desktop gcc 64-bit
+|   ├── Qt Charts
+|   └── Qt Data Visualization
+└── Tools
+    └── Qt Creator 4.8.0</pre></code></pre>
+<p>Once Qt installed, we need to set up a profile for <code>qamel</code> to use. Do it by running :</p>
+<pre><code><pre class=chroma>qamel profile setup</pre></code></pre>
+<p>The command above will ask you to submit the information about your OS, build mode, and path to the Qt that you’ve installed before. Once finished, it should look like this :</p>
+<pre><code><pre class=chroma>$ qamel profile setup
+Thanks for using qamel, QML&#39;s binding for Go.
+
+Please specify the target OS for this profile. Possible values are &#34;windows&#34;, &#34;linux&#34; and &#34;darwin&#34;.
+Keep it empty to use your system OS.
+
+Target OS (default windows) : windows
+
+Please specify the target architecture for this profile. Possible values are &#34;386&#34; and &#34;amd64&#34;.
+Keep it empty to use your system architecture.
+
+Target arch (default amd64) : amd64
+
+Please specify whether this profile used to build static or shared app.
+
+Use static mode (y/n, default n) : n
+
+Please specify the *full path* to your Qt&#39;s tools directory.
+This might be different depending on your platform or your target. For example, in Linux with Qt 5.11.1, the tools are located in $HOME/Qt5.11.1/5.11.1/gcc_64/bin/
+
+Qt tools dir : C:\Qt\Qt5.12.0\5.12.0\mingw73_64\bin
+qmake        : found
+moc          : found
+rcc          : found
+
+Please specify the *full path* to your compiler.
+Keep it empty to use the default compiler on your system.
+
+C compiler (default gcc.exe)   : C:\Qt\Qt5.12.0\Tools\mingw730_64\bin\gcc.exe
+C++ compiler (default g++.exe) : C:\Qt\Qt5.12.0\Tools\mingw730_64\bin\g++.exe
+Objdump (default objdump.exe)  : C:\Qt\Qt5.12.0\Tools\mingw730_64\bin\objdump.exe
+
+Since you are targeting Windows, you might want to set icon for your executable file. To do so, please specify the *full path* to windres on your system. It&#39;s usually located in the directory where MinGW is installed.
+
+Path to windres : C:\Qt\Qt5.12.0\Tools\mingw730_64\bin\windres.exe
+
+Generating some code for binding...done
+Saving profile default...done
+
+Setup finished.
+Now you can get started on your own QML app.</pre></code></pre>
+<p>To check your saved profile, run <code>qamel profile print</code> :</p>
+<pre><code><pre class=chroma>$ qamel profile print
+Details of profile default
+OS      : windows
+Arch    : amd64
+Static  : false
+Qmake   : C:\Qt\Qt5.12.0\5.12.0\mingw73_64\bin\qmake.exe
+Moc     : C:\Qt\Qt5.12.0\5.12.0\mingw73_64\bin\moc.exe
+Rcc     : C:\Qt\Qt5.12.0\5.12.0\mingw73_64\bin\rcc.exe
+Gcc     : C:\Qt\Qt5.12.0\Tools\mingw730_64\bin\gcc.exe
+G++     : C:\Qt\Qt5.12.0\Tools\mingw730_64\bin\g++.exe
+Objdump : C:\Qt\Qt5.12.0\Tools\mingw730_64\bin\objdump.exe
+Windres : C:\Qt\Qt5.12.0\Tools\mingw730_64\bin\windres.exe</pre></code></pre>
+<h2 id=creating-hello-world-app>Creating Hello World App</h2>
+<p>Let’s make a simple hello world app to see the basics of writing QML app on Go. First, create a directory in <code>GOPATH</code> for your application. For example, we will create <code>$GOPATH/src/desktop-app</code>. Next, populate the directory so it looks like this :</p>
+<pre><code><pre class=chroma>$GOPATH/src/desktop-app/
+├── main.go
+└── res/
+    └── main.qml</pre></code></pre>
+<ul>
+<li>File <code>main.go</code> is the file for our Go’s main function. This is the main body and where we will declare our app.</li>
+<li>Directory <code>res</code> is used to hold all resources that will be used in your app. It can be anything like QML files, images, fonts, JS scripts, etc.</li>
+<li>File <code>res/main.qml</code> is our main QML file. This is our main view that will be shown when the app is started.</li>
+</ul>
+<p>Next, open <code>res/main.qml</code> then write following codes :</p>
+<pre><code class=language-qml><pre class=chroma>import QtQuick 2.12
+
+Rectangle {
+    color: &#34;cyan&#34;
+
+    Text {
+        anchors.fill: parent
+        text: &#34;Hello World&#34;
+        font.pixelSize: 32
+        font.weight: Font.Bold
+        verticalAlignment: Text.AlignVCenter
+        horizontalAlignment: Text.AlignHCenter
+    }
+}</pre></code></pre>
+<p>The code above will create a <code>Rectangle</code> as the base of the view. Inside that <code>Rectangle</code>, we put a <code>Text</code> with caption “Hello World” that filled its parent.</p>
+<p>Next, open <code>main.go</code> and write following lines :</p>
+<pre><code class=language-go><pre class=chroma><span class=kn>package</span> <span class=nx>main</span>
+
+<span class=kn>import</span> <span class=p>(</span>
+	<span class=s>&#34;go/build&#34;</span>
+	<span class=s>&#34;os&#34;</span>
+	<span class=nx>fp</span> <span class=s>&#34;path/filepath&#34;</span>
+
+	<span class=s>&#34;github.com/RadhiFadlillah/qamel&#34;</span>
+<span class=p>)</span>
+
+<span class=kd>func</span> <span class=nx>main</span><span class=p>()</span> <span class=p>{</span>
+	<span class=c1>// Create QT app
+</span><span class=c1></span>	<span class=nx>app</span> <span class=o>:=</span> <span class=nx>qamel</span><span class=p>.</span><span class=nx>NewApplication</span><span class=p>(</span><span class=nb>len</span><span class=p>(</span><span class=nx>os</span><span class=p>.</span><span class=nx>Args</span><span class=p>),</span> <span class=nx>os</span><span class=p>.</span><span class=nx>Args</span><span class=p>)</span>
+	<span class=nx>app</span><span class=p>.</span><span class=nx>SetApplicationDisplayName</span><span class=p>(</span><span class=s>&#34;Desktop App&#34;</span><span class=p>)</span>
+
+	<span class=c1>// Define path to resource directory
+</span><span class=c1></span>	<span class=nx>gopath</span> <span class=o>:=</span> <span class=nx>build</span><span class=p>.</span><span class=nx>Default</span><span class=p>.</span><span class=nx>GOPATH</span>
+	<span class=nx>resDir</span> <span class=o>:=</span> <span class=nx>fp</span><span class=p>.</span><span class=nx>Join</span><span class=p>(</span><span class=nx>gopath</span><span class=p>,</span> <span class=s>&#34;src&#34;</span><span class=p>,</span> <span class=s>&#34;desktop-app&#34;</span><span class=p>,</span> <span class=s>&#34;res&#34;</span><span class=p>)</span>
+
+	<span class=c1>// Create viewer
+</span><span class=c1></span>	<span class=nx>view</span> <span class=o>:=</span> <span class=nx>qamel</span><span class=p>.</span><span class=nx>NewViewer</span><span class=p>()</span>
+	<span class=nx>view</span><span class=p>.</span><span class=nx>SetSource</span><span class=p>(</span><span class=nx>fp</span><span class=p>.</span><span class=nx>Join</span><span class=p>(</span><span class=nx>resDir</span><span class=p>,</span> <span class=s>&#34;main.qml&#34;</span><span class=p>))</span>
+	<span class=nx>view</span><span class=p>.</span><span class=nx>SetResizeMode</span><span class=p>(</span><span class=nx>qamel</span><span class=p>.</span><span class=nx>SizeRootObjectToView</span><span class=p>)</span>
+	<span class=nx>view</span><span class=p>.</span><span class=nx>SetHeight</span><span class=p>(</span><span class=mi>300</span><span class=p>)</span>
+	<span class=nx>view</span><span class=p>.</span><span class=nx>SetWidth</span><span class=p>(</span><span class=mi>400</span><span class=p>)</span>
+	<span class=nx>view</span><span class=p>.</span><span class=nx>ShowNormal</span><span class=p>()</span>
+
+	<span class=c1>// Watch change in resource dir
+</span><span class=c1></span>	<span class=k>go</span> <span class=nx>view</span><span class=p>.</span><span class=nx>WatchResourceDir</span><span class=p>(</span><span class=nx>resDir</span><span class=p>)</span>
+
+	<span class=c1>// Exec app
+</span><span class=c1></span>	<span class=nx>app</span><span class=p>.</span><span class=nx>Exec</span><span class=p>()</span>
+<span class=p>}</span></pre></code></pre>
+<p>So, from these lines, the application will do several things :</p>
+<ul>
+<li>First it will make the application and set its title to “Desktop App”.</li>
+<li>Then it will create the viewer with size 400x300 pixels, and set its source to <code>res/main.qml</code> that we created before. The viewer will keeping watch on any change inside the resource directory. When a new files is added or changed, the viewer will reload itself to show the new changes.</li>
+<li>At last, once all ready, it will execute, and our app will be run.</li>
+</ul>
+<p>Now, since the codes are ready, we will build the app. To do that, open terminal inside your project directory, then run :</p>
+<pre><code><pre class=chroma>qamel build -o output/desktop-app.exe --copy-deps</pre></code></pre>
+<p>Command above will build the app and save it as <code>output/desktop-app.exe</code>. The <code>--copy-deps</code> flag means all of Qt’s libraries that our app use will be included to the same directory as the output path. So, it’s recommended to set output path to its own directory, or else your project directory will be filled with its dependencies.</p>
+<p>If all goes well, the build process should be finished with output like this :</p>
+<pre><code><pre class=chroma>$ qamel build -o output/desktop-app.exe --copy-deps
+Starting build process.
+
+Load config file...done
+Removing old build files...done
+Generating binding files...done
+Generating Qt resource file...done
+Generating syso file...icon file doesn&#39;t exist
+Generating code for QML objects...done
+Building app...done
+Copying dependencies...done
+
+Build finished succesfully.</pre></code></pre>
+<p>Now, run the app and it should look like this :</p>
+<p><img src=hello-world.png alt="Screenshot for hello world"></p>
+<p>While the app still running, try to make some change in the <code>res/main.qml</code> and save it. For example, change the <code>color</code> to <code>red</code>. The app’s UI should be updated automatically after you save the change.</p>
+<p><img src=screencast.gif alt="Screencast for live change"></p>
+<p>The screencast above is recorded in Linux because my Windows VM is too slow to handle screen recording. It should be similar though.</p>
+<h2 id=deploying-the-application>Deploying the Application</h2>
+<p>Say you’ve finished creating a QML application and want to deploy it to public. Before releasing it, you have to modify some codes in <code>main.go</code> file, to make sure it’s ready for deployment.</p>
+<p>First, set the source for your <code>QamelViewer</code> to use <a href=https://doc.qt.io/qt-5/resources.html><code>qrc</code></a> path. This is done to make sure your app uses QML file that embedded on your executable binary. This way, no matter where you put it, your app will keep on displaying the correct QML view. To do it replace this line :</p>
+<pre><code class=language-go><pre class=chroma>view.SetSource(fp.Join(resDir, &#34;main.qml&#34;))</pre></code></pre>
+<p>and change it into :</p>
+<pre><code class=language-go><pre class=chroma>view.SetSource(&#34;qrc:/res/main.qml&#34;)</pre></code></pre>
+<p>Second, you have to disable file watcher for your viewer. To do so, you need to remove this line :</p>
+<pre><code class=language-go><pre class=chroma>go view.WatchResourceDir(resDir)</pre></code></pre>
+<p>Now, the final code for <code>main.go</code> should look like this :</p>
+<pre><code class=language-go><pre class=chroma><span class=kn>package</span> <span class=nx>main</span>
+
+<span class=kn>import</span> <span class=p>(</span>
+	<span class=s>&#34;os&#34;</span>
+
+	<span class=s>&#34;github.com/RadhiFadlillah/qamel&#34;</span>
+<span class=p>)</span>
+
+<span class=kd>func</span> <span class=nx>main</span><span class=p>()</span> <span class=p>{</span>
+	<span class=c1>// Create QT app
+</span><span class=c1></span>	<span class=nx>app</span> <span class=o>:=</span> <span class=nx>qamel</span><span class=p>.</span><span class=nx>NewApplication</span><span class=p>(</span><span class=nb>len</span><span class=p>(</span><span class=nx>os</span><span class=p>.</span><span class=nx>Args</span><span class=p>),</span> <span class=nx>os</span><span class=p>.</span><span class=nx>Args</span><span class=p>)</span>
+	<span class=nx>app</span><span class=p>.</span><span class=nx>SetApplicationDisplayName</span><span class=p>(</span><span class=s>&#34;Desktop App&#34;</span><span class=p>)</span>
+
+	<span class=c1>// Create viewer
+</span><span class=c1></span>	<span class=nx>view</span> <span class=o>:=</span> <span class=nx>qamel</span><span class=p>.</span><span class=nx>NewViewer</span><span class=p>()</span>
+	<span class=nx>view</span><span class=p>.</span><span class=nx>SetSource</span><span class=p>(</span><span class=s>&#34;qrc:/res/main.qml&#34;</span><span class=p>)</span>
+	<span class=nx>view</span><span class=p>.</span><span class=nx>SetResizeMode</span><span class=p>(</span><span class=nx>qamel</span><span class=p>.</span><span class=nx>SizeRootObjectToView</span><span class=p>)</span>
+	<span class=nx>view</span><span class=p>.</span><span class=nx>SetHeight</span><span class=p>(</span><span class=mi>300</span><span class=p>)</span>
+	<span class=nx>view</span><span class=p>.</span><span class=nx>SetWidth</span><span class=p>(</span><span class=mi>400</span><span class=p>)</span>
+	<span class=nx>view</span><span class=p>.</span><span class=nx>ShowNormal</span><span class=p>()</span>
+
+	<span class=c1>// Exec app
+</span><span class=c1></span>	<span class=nx>app</span><span class=p>.</span><span class=nx>Exec</span><span class=p>()</span>
+<span class=p>}</span></pre></code></pre>
+<p>Now you can build your app like usual, and share it to other people.</p>
+<h2 id=cross-compiling-application>Cross Compiling Application</h2>
+<p>Sometimes we need to deploy our application statically or to other platform. Unfortunately, Qt that installed from official installer only supports building app for the same platform as where the Qt is installed. So, if you are using Windows and want to compile a Linux binary, you need to run a virtual machine and run Qt from there, which is quite annoying to do.</p>
+<p>The official installer also only supports dynamic linking, so if you want to build a static app, you need to build Qt manually. And, since Qt is a huge library, it take a really long time to build it. In my case, it took almost three hours to build static Qt in Linux.</p>
+<p>To avoid this issue, <code>qamel</code> supports cross compiling application using <a href=https://www.docker.com/>Docker</a> image. All you need to do is to install Docker to your system, then build your app using <code>qamel docker</code>.</p>
+<p>For example, if you are in Linux and want to build your app for Windows 64-bit, you need to open your project’s directory from terminal, then run :</p>
+<pre><code><pre class=chroma>qamel docker win64 -o output/win64/desktop-app.exe --copy-deps</pre></code></pre>
+<p>Or, if you want to build it statically, you can run :</p>
+<pre><code><pre class=chroma>qamel docker win64-static -o output/win64/desktop-app-static.exe</pre></code></pre>
+<p>There are several Docker <a href=https://hub.docker.com/r/radhifadlillah/qamel/tags>targets</a> available, which can be seen by running <code>qamel docker -h</code> :</p>
+<pre><code><pre class=chroma>Build QML app using Docker image.
+Possible values are &#34;linux&#34;, &#34;linux-static&#34;, &#34;win32&#34;, &#34;win32-static&#34;, &#34;win64&#34; and &#34;win64-static&#34;.
+
+Usage:
+  qamel docker [target] [flags]
+
+Flags:
+      --copy-deps       copy dependencies for app with dynamic linking
+  -h, --help            help for docker
+  -o, --output string   location for executable file
+  -t, --tags strings    space-separated list of build tags to satisfied during the build</pre></code></pre>
+<h2 id=what-next>What Next</h2>
+<p>For more detailed documentation about <code>qamel</code>, you can check <a href=https://godoc.org/github.com/RadhiFadlillah/qamel>godoc</a> and <a href=https://github.com/RadhiFadlillah/qamel/wiki>wiki</a>. For a more advanced demo, I’ve made a simple HackerNews reader built using Qamel, which available <a href=https://github.com/RadhiFadlillah/qamel-hn>here</a>.</p>
+<p><img src=qamel-hn.png alt="Screenshot for Qamel-HN"></p>
+<h2 id=conclusions>Conclusions</h2>
+<p>Right now Electron and NW.js almost become the standard for building a desktop application. Sure there are some cons from using them, like heavy memory usage and battery drain. However, the fact that it’s easy to use, flexible to style, consistent across platform, and has huge JS ecosystem make the pros outweight the cons.</p>
+<p>Unfortunately, in my job I asked to built a desktop app for retail, and the PC that used by company is quite old and has low specs (it uses Celeron processor and 2 GB RAM, which is quite small for modern standard). Sure Electron still works there, but not as snappy as I and the boss hoped. So, I decided to make this binding.</p>
+<p>If you are constrained with low spec device like me, or you only need to built a simple app, I hope <code>qamel</code> can be an alternative for you.</p>
+</body></html></div>
+<div id=post-tags>
+<a href=/tag/go># go</a>
+<a href=/tag/golang># golang</a>
+<a href=/tag/qml># qml</a>
+</div>
+</div>
+</div>
+<div id=footer>
+<div class=content>
+<p>© 2018 Radhi Fadlillah. Made with <a href=https://github.com/go-spook/spook>Spook</a>
+using the <a href=https://github.com/go-spook/basic-theme>Basic</a> theme.</p>
+</div>
+</div>
+<script>
+(function(f, a, t, h, o, m){
+	a[h]=a[h]||function(){
+		(a[h].q=a[h].q||[]).push(arguments)
+	};
+	o=f.createElement('script'),
+	m=f.getElementsByTagName('script')[0];
+	o.async=1; o.src=t; o.id='fathom-script';
+	m.parentNode.insertBefore(o,m)
+})(document, window, '//stats.acrophobic.me/tracker.js', 'fathom');
+fathom('trackPageview');
+</script>
+</body>
+</html>
