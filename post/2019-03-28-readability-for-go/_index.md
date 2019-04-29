@@ -8,6 +8,8 @@ Tags = ["go", "golang"]
 Author = "Radhi Fadlillah"
 +++
 
+> This post is an introduction for `go-readability`, a library for fetching the readable content from a web page. It's released under MIT license and available [here](https://github.com/go-shiori/go-readability).
+
 I've been working on a simple bookmark manager called [Shiori](https://github.com/RadhiFadlillah/shiori) on and off for the last few months. It's main feature is the ability to save the main content of a web page as text which can be easily searched later. To do so, it depends on my own package called [`go-readability`](https://github.com/go-shiori/go-readability).
 
 The problem is, `go-readability` was based on old project by [`ying32`](https://github.com/ying32/readability) which hasn't been updated for almost a year. The parse result from it was good, but still not comparable to result from reader mode in Firefox. So, I decided to rewrite everything to make sure it follows the code in [Readability.js](https://github.com/mozilla/readability) that used by Firefox.
