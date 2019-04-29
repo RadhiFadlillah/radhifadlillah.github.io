@@ -12,7 +12,7 @@ I've been working on a simple bookmark manager called [Shiori](https://github.co
 
 The problem is, `go-readability` was based on old project by [`ying32`](https://github.com/ying32/readability) which hasn't been updated for almost a year. The parse result from it was good, but still not comparable to result from reader mode in Firefox. So, I decided to rewrite everything to make sure it follows the code in [Readability.js](https://github.com/mozilla/readability) that used by Firefox.
 
-After almost a month, I finished the rewrite. The rewrite was done carefully line by line to make sure it looks and works as similar as possible with Readability.js. This way, hopefully all web page that can be parsed by Readability.js are parse-able by go-readability as well. And, if there are new improvements in Readability.js, it should be easy enough to implement it.
+After almost a month, I finished the rewrite. The rewrite was done carefully line by line to make sure it looks and works as similar as possible with Readability.js. This way, hopefully all web page that can be parsed by Readability.js are parse-able by `go-readability` as well. And, if there are new improvements in Readability.js, it should be easy enough to implement it.
 
 As usual, `go-readability` is published in [Github](https://github.com/go-shiori/go-readability) under MIT license. To install this package, assuming you already installed Go, you can just run :
 
