@@ -17,7 +17,7 @@
 				<a id="post-category" href="{{.Category.Path}}">
 					{{if eq .Category.Name ""}}Uncategorized{{else}}{{.Category.Name}}{{end}}
 				</a>
-			    <p id="post-title">{{.ContentTitle}}</p>
+				<p id="post-title">{{.ContentTitle}}</p>
                 <div id="post-time">
                     <p id="post-author">{{.ContentAuthor}}</p>
                     <p id="post-created">{{formatTime .CreatedAt "2006-01-02 15:04"}}</p>
@@ -37,7 +37,6 @@
 		</div>
 	</div>
 	{{template "footer" .}}
-	{{template "analytic" .}}
 </body>
 
 </html>
