@@ -2,7 +2,7 @@
 Title = "Use Fathom for Analytic"
 Excerpt = ""
 CreatedAt = "2018-09-29 16:36:33 +0700"
-UpdatedAt = "2019-09-29 16:36:33 +0700"
+UpdatedAt = "2019-04-25 15:30:10 +0700"
 Category = "programming"
 Tags = ["linux", "go", "golang", "fathom", "analytic"]
 Author = "Radhi Fadlillah"
