@@ -8,7 +8,7 @@ Tags = ["tutorial", "linux", "qt"]
 Author = "Radhi Fadlillah"
 +++
 
-While working on Qamel, I want it to support compiling static app for Linux and Windows. When targetting Windows, this is simple enough thanks to project like [MXE](https://mxe.cc/) and [MSYS2](https://www.msys2.org/) which already provided static Qt libraries. However, when targeting Linux platform, there are no choice except building static Qt libraries by ourself.
+While working on [Qamel](https://github.com/RadhiFadlillah/qamel), I want it to support compiling static app for Linux and Windows. When targetting Windows, this is simple enough thanks to project like [MXE](https://mxe.cc/) and [MSYS2](https://www.msys2.org/) which already provided static Qt libraries. However, when targeting Linux platform, there are no choice except building static Qt libraries by ourself.
 
 In this tutorial, I will use Ubuntu 16.04 and the static Qt will be build into `/home/radhi/Qt.5.13.0.Static`.
 
