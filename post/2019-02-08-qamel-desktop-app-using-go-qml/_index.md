@@ -3,7 +3,7 @@ Title = "Qamel - Build Desktop Application Using Go and QML"
 Excerpt = "Introduction to Qamel, a QML binding for Go which can be used to create modern desktop application."
 CreatedAt = "2019-02-08 05:43:49 +0700"
 UpdatedAt = "2019-02-08 05:43:49 +0700"
-Category = "programming"
+Category = "qamel"
 Tags = ["go", "golang", "qml"]
 Author = "Radhi Fadlillah"
 +++
