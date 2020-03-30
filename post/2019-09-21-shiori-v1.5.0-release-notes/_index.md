@@ -3,7 +3,7 @@ Title = "Shiori v1.5.0 Release Notes"
 Excerpt = ""
 CreatedAt = "2019-09-21 20:25:04 +0700"
 UpdatedAt = "2019-09-21 20:25:04 +0700"
-Category = "shiori"
+Category = "side-project"
 Tags = ["shiori", "news"]
 Author = "Radhi Fadlillah"
 +++

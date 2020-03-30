@@ -3,7 +3,7 @@ Title = "Qamel Development News: July 2019"
 Excerpt = ""
 CreatedAt = "2019-07-23 22:14:21 +0700"
 UpdatedAt = "2019-07-23 22:14:21 +0700"
-Category = "qamel"
+Category = "side-project"
 Tags = ["qamel", "news", "gui", "go", "golang"]
 Author = "Radhi Fadlillah"
 +++

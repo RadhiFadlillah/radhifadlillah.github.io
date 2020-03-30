@@ -3,7 +3,7 @@ Title = "Duit, Simple Money Manager Built with Go and Mithril"
 Excerpt = ""
 CreatedAt = "2020-03-22 06:52:25 +0700"
 UpdatedAt = "2020-03-22 06:52:25 +0700"
-Category = "programming"
+Category = "side-project"
 Tags = ["go", "golang", "js", "mithril"]
 Author = "Radhi Fadlillah"
 +++

@@ -3,7 +3,7 @@ Title = "Readability for Go"
 Excerpt = ""
 CreatedAt = "2019-03-28 22:29:10 +0700"
 UpdatedAt = "2019-03-28 22:29:10 +0700"
-Category = "programming"
+Category = "side-project"
 Tags = ["go", "golang"]
 Author = "Radhi Fadlillah"
 +++
