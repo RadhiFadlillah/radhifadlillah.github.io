@@ -1,3 +1,5 @@
+/* Main font contender. Condensed. Looks similar with Geos.
+Good, but some word spacing could be better */
 @font-face {
 	font-family : 'Atari';
 	src         : url('fonts/AtariST8x16SystemFont.woff2') format('woff2'), url('fonts/AtariST8x16SystemFont.woff') format('woff');
@@ -6,22 +8,7 @@
 	font-display: swap;
 }
 
-@font-face {
-	font-family : 'Runescape';
-	src         : url('fonts/RuneScape-UF.woff2') format('woff2'), url('fonts/RuneScape-UF.woff') format('woff');
-	font-weight : normal;
-	font-style  : normal;
-	font-display: swap;
-}
-
-@font-face {
-	font-family : 'Chicago';
-	src         : url('fonts/Chicago.woff2') format('woff2'), url('fonts/Chicago.woff') format('woff');
-	font-weight : normal;
-	font-style  : normal;
-	font-display: swap;
-}
-
+/* Cursive. Might be good for title. Optimal 19px */
 @font-face {
 	font-family : 'Venice Classic';
 	src         : url('fonts/VeniceClassic.woff2') format('woff2'), url('fonts/VeniceClassic.woff') format('woff');
@@ -30,22 +17,7 @@
 	font-display: swap;
 }
 
-@font-face {
-	font-family : 'C64 Pro Mono';
-	src         : url('fonts/C64ProMono.woff2') format('woff2'), url('fonts/C64ProMono.woff') format('woff');
-	font-weight : normal;
-	font-style  : normal;
-	font-display: swap;
-}
-
-@font-face {
-	font-family : 'C64 Pro';
-	src         : url('fonts/C64Pro.woff2') format('woff2'), url('fonts/C64Pro.woff') format('woff');
-	font-weight : normal;
-	font-style  : normal;
-	font-display: swap;
-}
-
+/* Skinny, but might be good for code */
 @font-face {
 	font-family : 'Monogram';
 	src         : url('fonts/monogramextended.woff2') format('woff2'), url('fonts/monogramextended.woff') format('woff');
@@ -54,33 +26,8 @@
 	font-display: swap;
 }
 
-@font-face {
-	font-family: 'Hellovetica';
-	src        : url('fonts/HelloveticaReg.woff2') format('woff2'),
-		url('fonts/HelloveticaReg.woff') format('woff');
-	font-weight : normal;
-	font-style  : normal;
-	font-display: swap;
-}
-
-@font-face {
-	font-family: 'ProggyClean';
-	src        : url('fonts/ProggyCleanTT.woff2') format('woff2'),
-		url('fonts/ProggyCleanTT.woff') format('woff');
-	font-weight : normal;
-	font-style  : normal;
-	font-display: swap;
-}
-
-@font-face {
-	font-family: 'Monaco';
-	src        : url('fonts/Monaco.woff2') format('woff2'),
-		url('fonts/Monaco.woff') format('woff');
-	font-weight : normal;
-	font-style  : normal;
-	font-display: swap;
-}
-
+/* Really crisp and easy to read, but too thin.
+Might be used as article font */
 @font-face {
 	font-family: 'Terminus';
 	src        : url('fonts/TerminusTTF.woff2') format('woff2'),
@@ -114,5 +61,113 @@
 		url('fonts/TerminusTTF-Italic.woff') format('woff');
 	font-weight : 500;
 	font-style  : italic;
+	font-display: swap;
+}
+
+/* It's really nice, give Atari good run. If there is something
+to nitpick, its M is a bit ugly for my taste. Contender for main
+font. Optimal 22px*/
+@font-face {
+	font-family: 'Athens Classic';
+	src        : url('fonts/AthensClassic.woff2') format('woff2'),
+		url('fonts/AthensClassic.woff') format('woff');
+	font-weight : 500;
+	font-style  : normal;
+	font-display: swap;
+}
+
+/*
+////////////////////////////////////////////////////////////
+/ BELOW THIS POINT IS FONT THAT DESERVE HONORABLE MENTIONS /
+////////////////////////////////////////////////////////////
+*/
+
+/* Crisp, but too wide. Considering for headings */
+@font-face {
+	font-family : 'C64 Pro Mono';
+	src         : url('fonts/C64ProMono.woff2') format('woff2'), url('fonts/C64ProMono.woff') format('woff');
+	font-weight : normal;
+	font-style  : normal;
+	font-display: swap;
+}
+
+/* Same as above */
+@font-face {
+	font-family : 'C64 Pro';
+	src         : url('fonts/C64Pro.woff2') format('woff2'), url('fonts/C64Pro.woff') format('woff');
+	font-weight : normal;
+	font-style  : normal;
+	font-display: swap;
+}
+
+
+/* Thicc, might be good for title and heading.
+But it kinda destroys web styles. */
+@font-face {
+	font-family: 'Newsgeek';
+	src        : url('fonts/Newsgeek.woff2') format('woff2'),
+		url('fonts/Newsgeek.woff') format('woff');
+	font-weight : 500;
+	font-style  : normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'NewsgeekSerif';
+	src        : url('fonts/NewsgeekSerif.woff2') format('woff2'),
+		url('fonts/NewsgeekSerif.woff') format('woff');
+	font-weight : 500;
+	font-style  : normal;
+	font-display: swap;
+}
+
+/*
+/////////////////////////////////////////////////////////////////////
+/ BELOW THIS POINT IS FONT THAT DEEMED UNWORTHY FOR VARIOUS REASONS /
+/////////////////////////////////////////////////////////////////////
+*/
+
+/* Too gamey */
+@font-face {
+	font-family : 'Runescape';
+	src         : url('fonts/RuneScape-UF.woff2') format('woff2'), url('fonts/RuneScape-UF.woff') format('woff');
+	font-weight : normal;
+	font-style  : normal;
+	font-display: swap;
+}
+
+/* Some character rendered weird */
+@font-face {
+	font-family : 'Chicago';
+	src         : url('fonts/Chicago.woff2') format('woff2'), url('fonts/Chicago.woff') format('woff');
+	font-weight : normal;
+	font-style  : normal;
+	font-display: swap;
+}
+
+/* Only alphabet, so no number and symbols */
+@font-face {
+	font-family : 'Hellovetica';
+	src         : url('fonts/HelloveticaReg.woff2') format('woff2'), url('fonts/HelloveticaReg.woff') format('woff');
+	font-weight : normal;
+	font-style  : normal;
+	font-display: swap;
+}
+
+/* Badly rendered */
+@font-face {
+	font-family : 'ProggyClean';
+	src         : url('fonts/ProggyCleanTT.woff2') format('woff2'), url('fonts/ProggyCleanTT.woff') format('woff');
+	font-weight : normal;
+	font-style  : normal;
+	font-display: swap;
+}
+
+/* Its comma is really weird */
+@font-face {
+	font-family : 'Monaco';
+	src         : url('fonts/Monaco.woff2') format('woff2'), url('fonts/Monaco.woff') format('woff');
+	font-weight : normal;
+	font-style  : normal;
 	font-display: swap;
 }
