@@ -53,3 +53,66 @@
 	font-style  : normal;
 	font-display: swap;
 }
+
+@font-face {
+	font-family: 'Hellovetica';
+	src        : url('fonts/HelloveticaReg.woff2') format('woff2'),
+		url('fonts/HelloveticaReg.woff') format('woff');
+	font-weight : normal;
+	font-style  : normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'ProggyClean';
+	src        : url('fonts/ProggyCleanTT.woff2') format('woff2'),
+		url('fonts/ProggyCleanTT.woff') format('woff');
+	font-weight : normal;
+	font-style  : normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Monaco';
+	src        : url('fonts/Monaco.woff2') format('woff2'),
+		url('fonts/Monaco.woff') format('woff');
+	font-weight : normal;
+	font-style  : normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Terminus';
+	src        : url('fonts/TerminusTTF.woff2') format('woff2'),
+		url('fonts/TerminusTTF.woff') format('woff');
+	font-weight : 500;
+	font-style  : normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Terminus';
+	src        : url('fonts/TerminusTTF-Bold.woff2') format('woff2'),
+		url('fonts/TerminusTTF-Bold.woff') format('woff');
+	font-weight : bold;
+	font-style  : normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Terminus';
+	src        : url('fonts/TerminusTTF-BoldItalic.woff2') format('woff2'),
+		url('fonts/TerminusTTF-BoldItalic.woff') format('woff');
+	font-weight : bold;
+	font-style  : italic;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Terminus';
+	src        : url('fonts/TerminusTTF-Italic.woff2') format('woff2'),
+		url('fonts/TerminusTTF-Italic.woff') format('woff');
+	font-weight : 500;
+	font-style  : italic;
+	font-display: swap;
+}
