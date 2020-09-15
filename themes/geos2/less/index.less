@@ -13,12 +13,37 @@
 body {
 	.checkerboard();
 	display              : grid;
-	grid-template-columns: 1fr;
+	grid-template-columns: minmax(auto, .pixel(120)[]) 1fr;
+	grid-template-rows   : repeat(3, minmax(auto, 1fr));
 	padding              : .pixel(8)[];
 	grid-gap             : .pixel(8)[];
+	width                : 100vw;
+	height               : 100vh;
+	max-width            : 100vw;
+	max-height           : 100vh;
+}
+
+#reader {
+	grid-row-start: 1;
+	grid-row-end  : -1;
+	grid-column   : 2;
+}
+
+@media screen and (max-width:799px) {
+	body {
+		grid-template-columns: 1fr;
+		grid-template-rows   : auto
+	}
+
+	#reader {
+		grid-row-start: 1;
+		grid-row-end  : 1;
+		grid-column   : 1;
+	}
 }
 
 // Component styles
+
 @import "window.less";
 @import "fileman.less";
 @import "taglist.less";
