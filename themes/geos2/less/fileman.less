@@ -3,8 +3,9 @@
 }
 
 .fm__crumbs__item {
-	color  : @fgColor;
-	padding: .pixel(1)[];
+	color      : @fgColor;
+	padding    : 0 .pixel(1)[];
+	line-height: .pixel(8)[];
 
 	&:hover,
 	&:focus {
@@ -44,10 +45,12 @@
 }
 
 .fm__dir {
-	display  : flex;
-	flex-flow: row nowrap;
-	color    : @fgColor;
-	padding  : .pixel(2)[] .pixel(3)[];
+	display    : flex;
+	flex-flow  : row nowrap;
+	color      : @fgColor;
+	padding    : .pixel(1)[] .pixel(3)[];
+	line-height: .pixel(8)[];
+	align-items: baseline;
 
 	&:hover,
 	&:focus {
@@ -102,8 +105,10 @@
 	display     : flex;
 	flex-flow   : row nowrap;
 	color       : @fgColor;
-	padding     : .pixel(2)[] .pixel(3)[];
+	padding     : .pixel(1)[] .pixel(3)[];
 	padding-left: .pixel(12)[];
+	line-height : .pixel(8)[];
+	align-items : baseline;
 
 	&:hover,
 	&:focus {
