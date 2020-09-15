@@ -76,6 +76,45 @@ font. Optimal 22px*/
 	font-display: swap;
 }
 
+
+/* Easy to read. Reader's font contender. */
+@font-face {
+	font-family: 'Epilepsy Sans';
+	src        : url('fonts/EpilepsySansBold.woff2') format('woff2'),
+		url('fonts/EpilepsySansBold.woff') format('woff');
+	font-weight : bold;
+	font-style  : normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Epilepsy Sans';
+	src        : url('fonts/EpilepsySans.woff2') format('woff2'),
+		url('fonts/EpilepsySans.woff') format('woff');
+	font-weight : 500;
+	font-style  : normal;
+	font-display: swap;
+}
+
+/* Easy to read. Reader's font contender as well. */
+@font-face {
+	font-family: 'McMillen';
+	src        : url('fonts/McMillen.woff2') format('woff2'),
+		url('fonts/McMillen.woff') format('woff');
+	font-weight : 500;
+	font-style  : normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'McMillen';
+	src        : url('fonts/McMillenBold.woff2') format('woff2'),
+		url('fonts/McMillenBold.woff') format('woff');
+	font-weight : bold;
+	font-style  : normal;
+	font-display: swap;
+}
+
 /*
 ////////////////////////////////////////////////////////////
 / BELOW THIS POINT IS FONT THAT DESERVE HONORABLE MENTIONS /
@@ -136,6 +175,15 @@ But it kinda destroys web styles. */
 	font-display: swap;
 }
 
+/* Some character failed to render */
+@font-face {
+	font-family : 'Apple II';
+	src         : url('fonts/Apple.woff2') format('woff2'), url('fonts/Apple.woff') format('woff');
+	font-weight : normal;
+	font-style  : normal;
+	font-display: swap;
+}
+
 /* Some character rendered weird */
 @font-face {
 	font-family : 'Chicago';
@@ -168,6 +216,131 @@ But it kinda destroys web styles. */
 	font-family : 'Monaco';
 	src         : url('fonts/Monaco.woff2') format('woff2'), url('fonts/Monaco.woff') format('woff');
 	font-weight : normal;
+	font-style  : normal;
+	font-display: swap;
+}
+
+/* Nice, "C" kinda weird tho.
+Imho it loses against Atari and Athens, so knocked out. */
+@font-face {
+	font-family: 'Chixa';
+	src        : url('fonts/ChixaDemiBold.woff2') format('woff2'),
+		url('fonts/ChixaDemiBold.woff') format('woff');
+	font-weight : 600;
+	font-style  : normal;
+	font-display: swap;
+}
+
+/* Bit hard to read */
+@font-face {
+	font-family: 'Magdalena';
+	src        : url('fonts/MagdalenaBold.woff2') format('woff2'),
+		url('fonts/MagdalenaBold.woff') format('woff');
+	font-weight : bold;
+	font-style  : normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Magdalena';
+	src        : url('fonts/Magdalena.woff2') format('woff2'),
+		url('fonts/Magdalena.woff') format('woff');
+	font-weight : 500;
+	font-style  : normal;
+	font-display: swap;
+}
+
+/* Too thin */
+@font-face {
+	font-family: 'Hippauf';
+	src        : url('fonts/Hippauf.woff2') format('woff2'),
+		url('fonts/Hippauf.woff') format('woff');
+	font-weight : 500;
+	font-style  : normal;
+	font-display: swap;
+}
+
+/* Too square */
+@font-face {
+	font-family: 'Monterey';
+	src        : url('fonts/Monterey.woff2') format('woff2'),
+		url('fonts/Monterey.woff') format('woff');
+	font-weight : 500;
+	font-style  : normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Monterey';
+	src        : url('fonts/MontereyBold.woff2') format('woff2'),
+		url('fonts/MontereyBold.woff') format('woff');
+	font-weight : bold;
+	font-style  : normal;
+	font-display: swap;
+}
+
+/* Crisp, original GEOS. Unfortunately too width. */
+@font-face {
+	font-family: 'Berkelium II HGR';
+	src        : url('fonts/BerkeliumIIHGR.woff2') format('woff2'),
+		url('fonts/BerkeliumIIHGR.woff') format('woff');
+	font-weight : 500;
+	font-style  : normal;
+	font-display: swap;
+}
+
+/* Crisp, original GEOS. Unfortunately too condensed. */
+@font-face {
+	font-family: 'Berkelium II DHR';
+	src        : url('fonts/BerkeliumIIDHR.woff2') format('woff2'),
+		url('fonts/BerkeliumIIDHR.woff') format('woff');
+	font-weight : 500;
+	font-style  : normal;
+	font-display: swap;
+}
+
+/* Unreadable by web browser. It's too big as well (whopping 2 MB for font) */
+@font-face {
+	font-family: 'Fairfax';
+	src        : url('fonts/Fairfax.woff2') format('woff2'),
+		url('fonts/Fairfax.woff') format('woff');
+	font-weight : 500;
+	font-style  : normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Fairfax SM';
+	src        : url('fonts/FairfaxSM.woff2') format('woff2'),
+		url('fonts/FairfaxSM.woff') format('woff');
+	font-weight : 500;
+	font-style  : normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Fairfax';
+	src        : url('fonts/FairfaxItalic.woff2') format('woff2'),
+		url('fonts/FairfaxItalic.woff') format('woff');
+	font-weight : 500;
+	font-style  : italic;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Fairfax';
+	src        : url('fonts/FairfaxBold.woff2') format('woff2'),
+		url('fonts/FairfaxBold.woff') format('woff');
+	font-weight : bold;
+	font-style  : normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Fairfax SM';
+	src        : url('fonts/FairfaxSMBold.woff2') format('woff2'),
+		url('fonts/FairfaxSMBold.woff') format('woff');
+	font-weight : bold;
 	font-style  : normal;
 	font-display: swap;
 }
