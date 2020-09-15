@@ -1,0 +1,230 @@
+@import "variable.less";
+
+// Global styling
+
+* {
+	border-width   : 0;
+	box-sizing     : border-box;
+	margin         : 0;
+	padding        : 0;
+	text-decoration: none;
+}
+
+body {
+	.checkerboard();
+	display          : grid;
+	grid-auto-columns: minmax(1fr, 300px);
+	flex-flow        : column nowrap;
+	padding          : .pixel(8)[];
+}
+
+// Window styles
+
+.window {
+	background-color: @bgColor;
+	border          : .pixel(1)[] solid @fgColor;
+	display         : flex;
+	flex-flow       : column nowrap;
+}
+
+.window__header {
+	.stripes();
+	display      : flex;
+	flex-flow    : row nowrap;
+	align-items  : center;
+	border-bottom: .pixel(1)[] solid @fgColor;
+	padding      : 0 .pixel(3)[];
+}
+
+.window__header__title {
+	font-family     : "Chicago";
+	color           : @fgColor;
+	font-size       : .pixel(3.5)[];
+	line-height     : .pixel(9)[];
+	align-self      : top;
+	background-color: @bgColor;
+	margin          : 0 auto;
+	padding         : 0 .pixel(3)[];
+}
+
+.window__header__button {
+	display         : flex;
+	flex-flow       : column nowrap;
+	align-items     : center;
+	justify-content : center;
+	height          : .pixel(9)[];
+	width           : .pixel(14)[];
+	background-color: @bgColor;
+	border          : .pixel(1)[] solid @fgColor;
+	border-top      : 0;
+	border-bottom   : 0;
+
+	&::after {
+		content         : "";
+		display         : block;
+		width           : .pixel(4)[];
+		height          : .pixel(2)[];
+		background-color: @fgColor;
+	}
+
+	&:hover,
+	&:focus {
+		background-color: @fgColor;
+
+		&::after {
+			background-color: @bgColor;
+		}
+	}
+}
+
+.window__content {
+	display   : block;
+	min-height: 100px;
+}
+
+.window__status-bar {
+	display      : flex;
+	flex-flow    : row nowrap;
+	color        : @fgColor;
+	font-family  : "Chicago";
+	font-size    : .pixel(3)[];
+	padding      : .pixel(2)[] .pixel(3)[];
+	border-bottom: .pixel(1)[] solid @fgColor;
+}
+
+.window__footer {
+	.stripes();
+	display: block;
+	height : .pixel(3)[];
+}
+
+// File manager
+
+.fm__crumbs {
+	display      : flex;
+	flex-flow    : row wrap;
+	flex         : 1 0;
+	border-right : .pixel(1)[] solid @fgColor;
+	margin-top   : .pixel(-2)[];
+	margin-right : .pixel(3)[];
+	margin-left  : .pixel(-1)[];
+	margin-bottom: .pixel(-2)[];
+	padding      : .pixel(1)[] 0;
+}
+
+.fm__crumbs__item {
+	color  : @fgColor;
+	padding: .pixel(1)[] .pixel(1)[];
+
+	&:hover,
+	&:focus {
+		color           : @bgColor;
+		background-color: @fgColor;
+	}
+
+	&:last-child {
+		pointer-events: none;
+	}
+
+	&:not(:last-child) {
+		position    : relative;
+		margin-right: .pixel(3)[];
+	}
+
+	&:not(:last-child)::after {
+		content         : "/";
+		position        : absolute;
+		left            : 100%;
+		top             : 50%;
+		margin-top      : .pixel(-2)[];
+		width           : .pixel(3)[];
+		line-height     : .pixel(4)[];
+		font-family     : "C64 Pro";
+		color           : @fgColor  !important;
+		background-color: @bgColor  !important;
+	}
+}
+
+.fm__content {
+	display    : flex;
+	flex-flow  : column nowrap;
+	font-family: "Chicago";
+	font-size  : .pixel(3)[];
+	padding    : .pixel(1)[] 0;
+}
+
+.fm__dir {
+	display  : flex;
+	flex-flow: row nowrap;
+	color    : @fgColor;
+	padding  : .pixel(2)[] .pixel(3)[];
+
+	&:hover,
+	&:focus {
+		color           : @bgColor;
+		background-color: @fgColor;
+
+		.fm__dir__icon,
+		.fm__dir__icon::before {
+			background-color: @fgColor;
+			border-color    : @bgColor;
+		}
+	}
+}
+
+.fm__dir__icon {
+	display         : block;
+	height          : .pixel(5)[];
+	width           : .pixel(6)[];
+	position        : relative;
+	background-color: @bgColor;
+	border          : .pixel(1)[] solid @fgColor;
+	margin-right    : .pixel(3)[];
+	flex-shrink     : 0;
+
+	&::before {
+		content         : "";
+		display         : block;
+		height          : .pixel(1)[];
+		width           : .pixel(2)[];
+		margin          : .pixel(-1)[];
+		border          : .pixel(1)[] solid @fgColor;
+		border-top      : 0;
+		border-left     : 0;
+		background-color: @bgColor;
+	}
+}
+
+.fm__dir__name {
+	flex        : 1 0;
+	margin-right: .pixel(3)[];
+}
+
+.fm__dir__info {
+	white-space: nowrap;
+	flex-shrink: 0;
+}
+
+.fm__file {
+	display     : flex;
+	flex-flow   : row nowrap;
+	color       : @fgColor;
+	padding     : .pixel(2)[] .pixel(3)[];
+	padding-left: .pixel(12)[];
+
+	&:hover,
+	&:focus {
+		color           : @bgColor;
+		background-color: @fgColor;
+	}
+}
+
+.fm__file__name {
+	flex        : 1 0;
+	margin-right: .pixel(3)[];
+}
+
+.fm__file__info {
+	white-space: nowrap;
+	flex-shrink: 0;
+}

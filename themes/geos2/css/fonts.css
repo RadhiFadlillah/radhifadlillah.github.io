@@ -1,0 +1,55 @@
+@font-face {
+	font-family : 'Atari';
+	src         : url('fonts/AtariST8x16SystemFont.woff2') format('woff2'), url('fonts/AtariST8x16SystemFont.woff') format('woff');
+	font-weight : 500;
+	font-style  : normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family : 'Runescape';
+	src         : url('fonts/RuneScape-UF.woff2') format('woff2'), url('fonts/RuneScape-UF.woff') format('woff');
+	font-weight : normal;
+	font-style  : normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family : 'Chicago';
+	src         : url('fonts/Chicago.woff2') format('woff2'), url('fonts/Chicago.woff') format('woff');
+	font-weight : normal;
+	font-style  : normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family : 'Venice Classic';
+	src         : url('fonts/VeniceClassic.woff2') format('woff2'), url('fonts/VeniceClassic.woff') format('woff');
+	font-weight : 500;
+	font-style  : normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family : 'C64 Pro Mono';
+	src         : url('fonts/C64ProMono.woff2') format('woff2'), url('fonts/C64ProMono.woff') format('woff');
+	font-weight : normal;
+	font-style  : normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family : 'C64 Pro';
+	src         : url('fonts/C64Pro.woff2') format('woff2'), url('fonts/C64Pro.woff') format('woff');
+	font-weight : normal;
+	font-style  : normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family : 'Monogram';
+	src         : url('fonts/monogramextended.woff2') format('woff2'), url('fonts/monogramextended.woff') format('woff');
+	font-weight : 500;
+	font-style  : normal;
+	font-display: swap;
+}

@@ -1,0 +1,12 @@
+{
+	// Run on save
+	"emeraldwalk.runonsave": {
+		"commands": [
+			{
+				"match": ".*\\.less$",
+				"cmd": "make less-bundle",
+				"isAsync": true
+			}
+		]
+	},
+}
