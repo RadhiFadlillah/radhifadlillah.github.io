@@ -12,10 +12,9 @@
 
 body {
 	.checkerboard();
-	display          : grid;
-	grid-auto-columns: minmax(1fr, 300px);
-	flex-flow        : column nowrap;
-	padding          : .pixel(8)[];
+	display              : grid;
+	grid-template-columns: 1fr;
+	padding              : .pixel(8)[];
 }
 
 // Window styles
@@ -25,13 +24,13 @@ body {
 	border          : .pixel(1)[] solid @fgColor;
 	display         : flex;
 	flex-flow       : column nowrap;
+	overflow        : hidden;
 }
 
 .window__header {
 	.stripes();
 	display      : flex;
 	flex-flow    : row nowrap;
-	align-items  : center;
 	border-bottom: .pixel(1)[] solid @fgColor;
 	padding      : 0 .pixel(3)[];
 }
@@ -45,6 +44,9 @@ body {
 	background-color: @bgColor;
 	margin          : 0 auto;
 	padding         : 0 .pixel(3)[];
+	overflow        : hidden;
+	white-space     : nowrap;
+	text-overflow   : ellipsis;
 }
 
 .window__header__button {
@@ -58,6 +60,7 @@ body {
 	border          : .pixel(1)[] solid @fgColor;
 	border-top      : 0;
 	border-bottom   : 0;
+	flex-shrink     : 0;
 
 	&::after {
 		content         : "";
