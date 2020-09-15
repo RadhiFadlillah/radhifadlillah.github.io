@@ -104,20 +104,12 @@ body {
 // File manager
 
 .fm__crumbs {
-	display      : flex;
-	flex-flow    : row wrap;
-	flex         : 1 0;
-	border-right : .pixel(1)[] solid @fgColor;
-	margin-top   : .pixel(-2)[];
-	margin-right : .pixel(3)[];
-	margin-left  : .pixel(-1)[];
-	margin-bottom: .pixel(-2)[];
-	padding      : .pixel(1)[] 0;
+	padding: .pixel(1)[] .pixel(3)[];
 }
 
 .fm__crumbs__item {
 	color  : @fgColor;
-	padding: .pixel(1)[] .pixel(1)[];
+	padding: .pixel(1)[];
 
 	&:hover,
 	&:focus {
@@ -146,6 +138,11 @@ body {
 		color           : @fgColor  !important;
 		background-color: @bgColor  !important;
 	}
+}
+
+.fm__summary {
+	padding   : .pixel(2)[] 0;
+	text-align: right;
 }
 
 .fm__content {
@@ -199,8 +196,10 @@ body {
 }
 
 .fm__dir__name {
-	flex        : 1 0;
-	margin-right: .pixel(3)[];
+	flex         : 1 0;
+	margin-right : .pixel(3)[];
+	overflow     : hidden;
+	text-overflow: ellipsis;
 }
 
 .fm__dir__info {
@@ -223,8 +222,10 @@ body {
 }
 
 .fm__file__name {
-	flex        : 1 0;
-	margin-right: .pixel(3)[];
+	flex         : 1 0;
+	margin-right : .pixel(3)[];
+	overflow     : hidden;
+	text-overflow: ellipsis;
 }
 
 .fm__file__info {
