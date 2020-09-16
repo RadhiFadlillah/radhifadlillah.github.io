@@ -16,8 +16,7 @@
 }
 
 .window__header__title {
-	font-family     : "Atari";
-	font-size       : .pixel(5.5)[];
+	.mainFont(.5);
 	color           : @fgColor;
 	line-height     : .pixel(9)[];
 	align-self      : top;
@@ -67,11 +66,10 @@
 }
 
 .window__status-bar {
+	.mainFont();
 	display      : flex;
 	flex-flow    : row nowrap;
 	color        : @fgColor;
-	font-family  : "Atari";
-	font-size    : .pixel(5)[];
 	padding      : .pixel(2)[] .pixel(3)[];
 	border-bottom: .pixel(1)[] solid @fgColor;
 }

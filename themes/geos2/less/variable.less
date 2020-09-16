@@ -1,10 +1,13 @@
+// Colors
 @fgColor : #505050;
 @bgColor : #efe9e7;
 
+// Pixel scale
 .pixel(@scale) {
 	@result: 3px * @scale;
 }
 
+// Patterns
 .checkerboard() {
 	background-color: @bgColor;
 	background-image:
@@ -18,4 +21,24 @@
 	background-color: @bgColor;
 	background-image: linear-gradient(transparent 50%, @fgColor 50%);
 	background-size : .pixel(2)[] .pixel(2)[];
+}
+
+// Main font candidates
+.mainFont(@pixelOffset: 0) {
+	.athensFont(@pixelOffset)
+}
+
+.atariFont(@pixelOffset: 0) {
+	font-family: "Atari";
+	font-size  : .pixel(5+@pixelOffset)[];
+}
+
+.athensFont(@pixelOffset: 0) {
+	font-family: "Athens Classic";
+	font-size  : .pixel(6+@pixelOffset)[];
+}
+
+.chixaFont(@pixelOffset: 0) {
+	font-family: "Chixa";
+	font-size  : .pixel(5+@pixelOffset)[];
 }
