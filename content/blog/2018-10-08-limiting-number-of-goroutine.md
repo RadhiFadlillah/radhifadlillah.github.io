@@ -14,48 +14,48 @@ To work around this, I limit the number of goroutines to max 10 at a time. Fortu
 package main
 
 import (
-"sync"
+	"sync"
 )
 
 func main() {
-// urls is list of URL that will be downloaded
-urls := []string{
-"http://example-site.com/about",
-"http://example-site.com/contact",
-...
-}
+	// urls is list of URL that will be downloaded
+	urls := []string{
+		"http://example-site.com/about",
+        "http://example-site.com/contact",
+        ...
+	}
 
-// waitGroup is used to make sure app doesn't finish prematurely
-// until all goroutines finished
-waitGroup := sync.WaitGroup{}
-waitGroup.Add(len(urls))
+	// waitGroup is used to make sure app doesn't finish prematurely
+	// until all goroutines finished
+	waitGroup := sync.WaitGroup{}
+	waitGroup.Add(len(urls))
 
-// guard is a channel that used to make sure that only N=10
-// goroutines will run at a time
-guard := make(chan struct{}, 10)
+	// guard is a channel that used to make sure that only N=10
+	// goroutines will run at a time
+	guard := make(chan struct{}, 10)
 
-for _, url := range urls {
-// as we loop through URLs, first we put an empty struct to channel guard.
-// If the channel is still empty, the process will continue to the next line.
-// Else, the process will be blocked until there are rooms in the channel to put the empty struct.
-guard <- struct{}{}
+	for _, url := range urls {
+		// as we loop through URLs, first we put an empty struct to channel guard.
+		// If the channel is still empty, the process will continue to the next line.
+		// Else, the process will be blocked until there are rooms in the channel to put the empty struct.
+		guard <- struct{}{}
 
-go func(url string) {
-// when this goroutine finished, make sure to :
-// - mark the waitGroup for this goroutine as finished; and
-// - release the guard, so the next goroutine can be run.
-defer func() {
-waitGroup.Done()
-<-guard
-}()
+		go func(url string) {
+			// when this goroutine finished, make sure to :
+			// - mark the waitGroup for this goroutine as finished; and
+			// - release the guard, so the next goroutine can be run.
+			defer func() {
+				waitGroup.Done()
+				<-guard
+			}()
 
-// download and process the URL
-scrapWebPage(url)
-}(url)
-}
+			// download and process the URL
+			scrapWebPage(url)
+		}(url)
+	}
 
-// wait until all goroutine finished
-waitGroup.Wait()
+	// wait until all goroutine finished
+	waitGroup.Wait()
 }
 ```
 

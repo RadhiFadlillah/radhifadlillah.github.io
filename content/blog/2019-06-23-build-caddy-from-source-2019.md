@@ -9,7 +9,7 @@ Since my [previous](/post/2018-08-19-build-caddy-from-source) tutorial in 2018, 
 
 In the past, to build Caddy with several plugins installed, we need to modify Caddy's source code. This is not exactly easy, especially for beginner. Today, thanks to Go module, we can easily do it without modifying the source code.
 
-For example, here we will build Caddy with [dns.cloudflare](https://github.com/caddyserver/dnsproviders/tree/master/cloudflare) plugin which allows you to obtain certificates using DNS records for domains managed with Cloudflare. Before you start, make sure Go 1.12 or newer already installed on your system.
+For example, here we will build Caddy with [dns.cloudflare](https://github.com/caddyserver/dnsproviders/tree/master/cloudflare) plugin which allows you to obtain certificates using DNS records for domains managed with Cloudflare. Before you start, make sure Go 1.12 or newer already installed on your system. 
 
 ### Building Caddy and Its Plugins
 
@@ -19,15 +19,15 @@ First, create a new folder anywhere and create a Go file with following content:
 package main
 
 import (
-// The main Caddy server
-"github.com/caddyserver/caddy/caddy/caddymain"
-
-// Caddy plugins, use underscore as import name
-_ "github.com/caddyserver/dnsproviders/cloudflare"
+    // The main Caddy server
+	"github.com/caddyserver/caddy/caddy/caddymain"
+	
+	// Caddy plugins, use underscore as import name
+	_ "github.com/caddyserver/dnsproviders/cloudflare"
 )
 
 func main() {
-caddymain.Run()
+	caddymain.Run()
 }
 ```
 

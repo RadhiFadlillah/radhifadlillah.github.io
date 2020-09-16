@@ -14,10 +14,10 @@ First we need to install the required dependencies. There are two type of depend
 ```
 sudo apt-get update
 sudo apt-get install build-essential libgl1-mesa-dev \
-libfontconfig1-dev libfreetype6-dev libx11-dev libxext-dev \
-libxfixes-dev libxi-dev libxrender-dev libxcb1-dev \
-libx11-xcb-dev libxcb-glx0-dev libxkbcommon-dev \
-libxkbcommon-x11-dev '^libxcb.*-dev'
+    libfontconfig1-dev libfreetype6-dev libx11-dev libxext-dev \
+    libxfixes-dev libxi-dev libxrender-dev libxcb1-dev \
+    libx11-xcb-dev libxcb-glx0-dev libxkbcommon-dev \
+    libxkbcommon-x11-dev '^libxcb.*-dev'
 ```
 
 Next download the Qt's [source code](https://www.qt.io/offline-installers). If you want to download the old version, you can download it via its [repositories](https://download.qt.io/official_releases/qt/). After download finished, extract it to wherever you want.
@@ -26,12 +26,12 @@ Next, open terminal inside the directory where you extract the source code. Here
 
 ```
 ./configure -static -prefix "/opt/Qt$QT_VERSION" \
--opensource -confirm-license -release \
--optimize-size -strip -fontconfig \
--qt-zlib -qt-libjpeg -qt-libpng -qt-xcb \
--qt-pcre -qt-harfbuzz -qt-doubleconversion \
--nomake tools -nomake examples -nomake tests \
--no-pch -skip qtwebengine
+    -opensource -confirm-license -release \
+    -optimize-size -strip -fontconfig \
+    -qt-zlib -qt-libjpeg -qt-libpng -qt-xcb \
+    -qt-pcre -qt-harfbuzz -qt-doubleconversion \
+    -nomake tools -nomake examples -nomake tests \
+    -no-pch -skip qtwebengine
 ```
 
 Here's description for the parameters that I used :

@@ -8,7 +8,7 @@ Title = "Qamel - Build Desktop Application Using Go and QML"
 
 > This post is an introduction for Qamel, a QML binding for Go that I created. It's released under MIT license and available [here](https://github.com/RadhiFadlillah/qamel).
 
-When building a modern desktop application, the first thing that come to the mind is [Electron](https://electronjs.org/) or [NW.js](https://nwjs.io/). Both of them are based on [Chromium](https://www.chromium.org/) and using [Node.js](https://nodejs.org/). Thanks to this, creating desktop app in Electron and NW.js feels really familiar, as if building a normal web app. This means we get all benefits of creating web app in desktop, for example :
+When building a modern desktop application, the first thing that come to the mind is [Electron](https://electronjs.org/) or [NW.js](https://nwjs.io/). Both of them are based on [Chromium](https://www.chromium.org/) and using [Node.js](https://nodejs.org/). Thanks to this, creating desktop app in Electron and NW.js feels really familiar, as if building a normal web app. This means we get all benefits of creating web app in desktop, for example : 
 
 - fast GUI prototyping;
 - consistent look across platforms;
@@ -51,23 +51,23 @@ $ qamel -h
 qamel is tools and binding for creating GUI app in Go using Qt + QML
 
 Usage:
-qamel [command]
+  qamel [command]
 
 Available Commands:
-build       Build QML app
-docker      Build QML app using Docker image
-help        Help about any command
-profile     Manage profiles for QML's binding
+  build       Build QML app
+  docker      Build QML app using Docker image
+  help        Help about any command
+  profile     Manage profiles for QML's binding
 
 Flags:
--h, --help   help for qamel
+  -h, --help   help for qamel
 
 Use "qamel [command] --help" for more information about a command.
 ```
 
 > If it's error with message like "*qamel: command not found*", make sure `$GOPATH/bin` is accessible from your `$PATH`, because that's where `qamel` will be installed.
 
-Next, install Qt on your system. If you are on Linux, make sure the required [dependencies](http://doc.qt.io/qt-5/linux.html#requirements-for-development-host) already installed on your system. Download the [official installer](https://www.qt.io/offline-installers) and follow along the steps. In this tutorial, I will install it to `C:\Qt\Qt5.12.0`.
+Next, install Qt on your system. If you are on Linux, make sure the required [dependencies](http://doc.qt.io/qt-5/linux.html#requirements-for-development-host) already installed on your system. Download the [official installer](https://www.qt.io/offline-installers) and follow along the steps. In this tutorial, I will install it to `C:\Qt\Qt5.12.0`. 
 
 When asked to choose Qt's components to install, make sure to choose at least one of Qt5 version. In Windows, I recommend you to install at least these :
 
@@ -78,8 +78,8 @@ Qt
 |   ├── Qt Charts
 |   └── Qt Data Visualization
 └── Tools
-├── Qt Creator 4.8.0
-└── MinGW 7.3.0 64-bit
+    ├── Qt Creator 4.8.0
+    └── MinGW 7.3.0 64-bit
 ```
 
 If you are using Linux, I recommend to install these components :
@@ -91,7 +91,7 @@ Qt
 |   ├── Qt Charts
 |   └── Qt Data Visualization
 └── Tools
-└── Qt Creator 4.8.0
+    └── Qt Creator 4.8.0
 ```
 
 Once Qt installed, we need to set up a profile for `qamel` to use.  Do it by running :
@@ -172,7 +172,7 @@ Let's make a simple hello world app to see the basics of writing QML app on Go. 
 $GOPATH/src/desktop-app/
 ├── main.go
 └── res/
-└── main.qml
+    └── main.qml
 ```
 
 - File `main.go` is the file for our Go's main function. This is the main body and where we will declare our app.
@@ -185,16 +185,16 @@ Next, open `res/main.qml` then write following codes :
 import QtQuick 2.12
 
 Rectangle {
-color: "cyan"
+    color: "cyan"
 
-Text {
-anchors.fill: parent
-text: "Hello World"
-font.pixelSize: 32
-font.weight: Font.Bold
-verticalAlignment: Text.AlignVCenter
-horizontalAlignment: Text.AlignHCenter
-}
+    Text {
+        anchors.fill: parent
+        text: "Hello World"
+        font.pixelSize: 32
+        font.weight: Font.Bold
+        verticalAlignment: Text.AlignVCenter
+        horizontalAlignment: Text.AlignHCenter
+    }
 }
 ```
 
@@ -206,35 +206,35 @@ Next, open `main.go` and write following lines :
 package main
 
 import (
-"go/build"
-"os"
-fp "path/filepath"
+	"go/build"
+	"os"
+	fp "path/filepath"
 
-"github.com/RadhiFadlillah/qamel"
+	"github.com/RadhiFadlillah/qamel"
 )
 
 func main() {
-// Create QT app
-app := qamel.NewApplication(len(os.Args), os.Args)
-app.SetApplicationDisplayName("Desktop App")
+	// Create QT app
+	app := qamel.NewApplication(len(os.Args), os.Args)
+	app.SetApplicationDisplayName("Desktop App")
 
-// Define path to resource directory
-gopath := build.Default.GOPATH
-resDir := fp.Join(gopath, "src", "desktop-app", "res")
+	// Define path to resource directory
+	gopath := build.Default.GOPATH
+	resDir := fp.Join(gopath, "src", "desktop-app", "res")
 
-// Create viewer
-view := qamel.NewViewer()
-view.SetSource(fp.Join(resDir, "main.qml"))
-view.SetResizeMode(qamel.SizeRootObjectToView)
-view.SetHeight(300)
-view.SetWidth(400)
-view.ShowNormal()
+	// Create viewer
+	view := qamel.NewViewer()
+	view.SetSource(fp.Join(resDir, "main.qml"))
+	view.SetResizeMode(qamel.SizeRootObjectToView)
+	view.SetHeight(300)
+	view.SetWidth(400)
+	view.ShowNormal()
 
-// Watch change in resource dir
-go view.WatchResourceDir(resDir)
+	// Watch change in resource dir
+	go view.WatchResourceDir(resDir)
 
-// Exec app
-app.Exec()
+	// Exec app
+	app.Exec()
 }
 ```
 
@@ -309,26 +309,26 @@ Now, the final code for `main.go` should look like this :
 package main
 
 import (
-"os"
+	"os"
 
-"github.com/RadhiFadlillah/qamel"
+	"github.com/RadhiFadlillah/qamel"
 )
 
 func main() {
-// Create QT app
-app := qamel.NewApplication(len(os.Args), os.Args)
-app.SetApplicationDisplayName("Desktop App")
+	// Create QT app
+	app := qamel.NewApplication(len(os.Args), os.Args)
+	app.SetApplicationDisplayName("Desktop App")
 
-// Create viewer
-view := qamel.NewViewer()
-view.SetSource("qrc:/res/main.qml")
-view.SetResizeMode(qamel.SizeRootObjectToView)
-view.SetHeight(300)
-view.SetWidth(400)
-view.ShowNormal()
+	// Create viewer
+	view := qamel.NewViewer()
+	view.SetSource("qrc:/res/main.qml")
+	view.SetResizeMode(qamel.SizeRootObjectToView)
+	view.SetHeight(300)
+	view.SetWidth(400)
+	view.ShowNormal()
 
-// Exec app
-app.Exec()
+	// Exec app
+	app.Exec()
 }
 ```
 
@@ -362,13 +362,13 @@ Build QML app using Docker image.
 Possible values are "linux", "linux-static", "win32", "win32-static", "win64" and "win64-static".
 
 Usage:
-qamel docker [target] [flags]
+  qamel docker [target] [flags]
 
 Flags:
---copy-deps       copy dependencies for app with dynamic linking
--h, --help            help for docker
--o, --output string   location for executable file
--t, --tags strings    space-separated list of build tags to satisfied during the build
+      --copy-deps       copy dependencies for app with dynamic linking
+  -h, --help            help for docker
+  -o, --output string   location for executable file
+  -t, --tags strings    space-separated list of build tags to satisfied during the build
 ```
 
 What Next

@@ -115,8 +115,8 @@ cd $GOPATH/src/github.com/mholt/caddy/caddy
 Next, open the `caddymain/run.go` and add imports link for packages of the plugins that you want to install :
 
 ```go
-_ "github.com/abiosoft/caddy-git"
-_ "github.com/caddyserver/dnsproviders/cloudflare"
+    _ "github.com/abiosoft/caddy-git"
+    _ "github.com/caddyserver/dnsproviders/cloudflare"
 ```
 
 Save and close the file. Next, still in the `caddy` directory, build Caddy by running :

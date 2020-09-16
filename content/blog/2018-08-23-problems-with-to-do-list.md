@@ -6,7 +6,7 @@ Tags = ["summary", "lifehack"]
 Title = "Instead of Writing a To-Do List, Choose One Task that MUST Get Done"
 +++
 
-> This is summary of a great post by [Aytekin Tank](https://medium.com/@aytekintank): [**_"Why high-performers don’t use to-do lists"_**](https://medium.com/swlh/why-high-performers-dont-use-to-do-lists-5d298045444d). I write it here again because :
+> This is summary of a great post by [Aytekin Tank](https://medium.com/@aytekintank): [**_"Why high-performers don’t use to-do lists"_**](https://medium.com/swlh/why-high-performers-dont-use-to-do-lists-5d298045444d). I write it here again because : 
 >
 > 1. I could bookmark the article. However, once bookmarked I doubt I will read and remember it later.
 > 2. Writing a summary of an article helps me memorize and understand the most important part of the article.
@@ -18,15 +18,15 @@ To-do list is used to write down stuff that must be done within a time period. I
 
 - **We as human are terrible at estimating how long tasks take.**
 
-With to-do lists, we optimistically assume that most of the day's tasks will take less time than what they'll actually take. This causes the to-do list to "roll" into tomorrow.
+    With to-do lists, we optimistically assume that most of the day's tasks will take less time than what they'll actually take. This causes the to-do list to "roll" into tomorrow. 
 
 - **To-do lists are never quite done (some almost always "roll" into tomorrow).**
 
-Once we finished a task in the to-do list, we will realize that the task wil give birth to a new set of tasks. These new tasks will end up on the bottom of our to-do list, which make it seems our work is never done. At the end of the day, these half-completed to-do list will hinder us from feeling a sense of completion with our day and our work.
+    Once we finished a task in the to-do list, we will realize that the task wil give birth to a new set of tasks. These new tasks will end up on the bottom of our to-do list, which make it seems our work is never done. At the end of the day, these half-completed to-do list will hinder us from feeling a sense of completion with our day and our work.
 
 - **To-do lists allow us to avoid the important.**
 
-To-do lists cause us to be overly proactive in our thinking. Which, in turn, causes us to put a greater emphasis on tasks that  (in the broader scheme of things)  aren't that important.
+    To-do lists cause us to be overly proactive in our thinking. Which, in turn, causes us to put a greater emphasis on tasks that  (in the broader scheme of things)  aren't that important.
 
 ### The Solution
 

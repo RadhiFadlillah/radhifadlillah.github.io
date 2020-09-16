@@ -21,11 +21,11 @@ package main
 import "github.com/pkg/profile"
 
 func main() {
-// Use this line for profiling CPU
-defer profile.Start().Stop()
-
-// Use this line for profiling memory
-defer profile.Start(profile.MemProfile).Stop()
+    // Use this line for profiling CPU
+    defer profile.Start().Stop()
+    
+    // Use this line for profiling memory
+    defer profile.Start(profile.MemProfile).Stop()
 }
 ```
 
