@@ -127,3 +127,33 @@
 	white-space: nowrap;
 	flex-shrink: 0;
 }
+
+.fm__pagination {
+	.mainFont();
+	display        : flex;
+	flex-flow      : row wrap;
+	color          : @fgColor;
+	padding        : .pixel(3)[] .pixel(3)[] .pixel(1)[];
+	border-top     : .pixel(1)[] solid @fgColor;
+	justify-content: center;
+	align-items    : center;
+}
+
+.fm__pagination__button {
+	border-top   : .pixel(2.5)[] solid transparent;
+	border-left  : .pixel(5)[] solid @fgColor;
+	border-right : .pixel(5)[] solid @fgColor;
+	border-bottom: .pixel(2.5)[] solid transparent;
+}
+
+.fm__pagination__button--prev {
+	border-left: 0;
+}
+
+.fm__pagination__button--next {
+	border-right: 0;
+}
+
+.fm__pagination__number {
+	margin: 0 .pixel(3)[];
+}

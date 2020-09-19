@@ -59,6 +59,23 @@
 			{{end}}
 			{{end}}
 		</div>
+
+		{{if gt $.MaxPage 1}}
+		<div class="fm__pagination">
+			{{if gt $.CurrentPage 1}}
+			<a href="{{paginationLink $.URLPath (sub $.CurrentPage 1)}}"
+				class="fm__pagination__button fm__pagination__button--prev"></a>
+			{{end}}
+
+			<p class="fm__pagination__number">{{$.CurrentPage}} / {{$.MaxPage}}</p>
+
+			{{if lt $.CurrentPage $.MaxPage}}
+			<a href="{{paginationLink $.URLPath (add $.CurrentPage 1)}}"
+				class="fm__pagination__button fm__pagination__button--next"></a>
+			{{end}}
+		</div>
+		{{end}}
+
 		<div class="window__footer"></div>
 	</div>
 	{{if gt (len $.DirTags) 0}}
