@@ -1,8 +1,11 @@
 .fm__crumbs {
-	padding: .pixel(1)[] .pixel(3)[];
+	display  : block;
+	padding  : .pixel(1)[] .pixel(2)[];
+	font-size: 0;
 }
 
 .fm__crumbs__item {
+	.mainFont();
 	color      : @fgColor;
 	padding    : 0 .pixel(1)[];
 	line-height: .pixel(8)[];
@@ -11,10 +14,6 @@
 	&:focus {
 		color           : @bgColor;
 		background-color: @fgColor;
-	}
-
-	&:last-child {
-		pointer-events: none;
 	}
 
 	&:not(:last-child) {
@@ -102,16 +101,16 @@
 }
 
 .fm__file {
-	display     : flex;
-	flex-flow   : row nowrap;
-	color       : @fgColor;
-	padding     : .pixel(1)[] .pixel(3)[];
-	padding-left: .pixel(12)[];
-	line-height : .pixel(8)[];
-	align-items : baseline;
+	display    : flex;
+	flex-flow  : row nowrap;
+	color      : @fgColor;
+	padding    : .pixel(1)[] .pixel(3)[];
+	line-height: .pixel(8)[];
+	align-items: baseline;
 
 	&:hover,
-	&:focus {
+	&:focus,
+	&.fm--active {
 		color           : @bgColor;
 		background-color: @fgColor;
 	}
