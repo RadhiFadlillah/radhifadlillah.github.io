@@ -1,7 +1,7 @@
 +++
 Author = "Radhi Fadlillah"
 CreateTime = 2020-09-13T10:49:06+07:00
-Pagination = 10
+Pagination = 50
 Title = "Radhi Fadlillah"
 Description = "Software developer from Indonesia, mostly work using Go and JS"
 +++

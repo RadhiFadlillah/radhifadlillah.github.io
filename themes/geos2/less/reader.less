@@ -1,0 +1,108 @@
+.reader__content {
+	.mainFont();
+	color      : @fgColor;
+	padding    : .pixel(3)[];
+	line-height: 1.5;
+	overflow-y : auto;
+
+	>* {
+		margin-bottom: .pixel(3)[];
+	}
+
+	>p {
+		text-indent: .pixel(4)[];
+	}
+
+	del {
+		text-decoration: line-through;
+	}
+
+	img {
+		max-width: 100%;
+		height   : auto;
+	}
+
+	ul,
+	ol {
+		list-style-position: outside;
+		padding-left       : .pixel(10)[];
+
+		>li {
+
+			&:not(:last-child),
+			>*:not(:last-child) {
+				margin-bottom: .pixel(2)[];
+			}
+		}
+	}
+
+	a {
+		color: @accentColor;
+
+		>code {
+			padding         : 0 !important;
+			color           : @accentColor  !important;
+			background-color: @bgColor  !important;
+		}
+
+		&:hover,
+		&:focus {
+			outline: .pixel(1)[] solid @accentColor;
+		}
+	}
+
+	blockquote {
+		padding      : .pixel(3)[];
+		border       : .pixel(1)[] solid @fgColor;
+		box-shadow   : .pixel(3)[] .pixel(3)[] 0 @fgColor ;
+		margin-right : .pixel(3)[];
+		margin-bottom: .pixel(6)[];
+
+		>*:not(:last-child) {
+			margin-bottom: .pixel(2)[];
+		}
+	}
+
+	>*:not(pre) code {
+		.monospaceFont();
+		padding         : .pixel(1)[];
+		color           : @bgColor;
+		background-color: @fgColor
+	}
+
+	>pre {
+		.monospaceFont();
+		padding         : .pixel(3)[];
+		color           : @white;
+		background-color: @fgColor;
+		overflow        : auto;
+
+		* {
+			.monospaceFont();
+		}
+
+		code {
+			tab-size   : 4;
+			line-height: 1;
+		}
+	}
+
+	table {
+		color          : @fgColor;
+		border-collapse: collapse;
+		border         : .pixel(1)[] solid @fgColor;
+		box-shadow     : .pixel(3)[] .pixel(3)[] 0 @fgColor ;
+		margin-right   : .pixel(3)[];
+		margin-bottom  : .pixel(6)[];
+
+		th,
+		td {
+			padding: .pixel(1)[] .pixel(3)[];
+			border : .pixel(1)[] solid @fgColor;
+		}
+
+		th {
+			font-weight: bold;
+		}
+	}
+}

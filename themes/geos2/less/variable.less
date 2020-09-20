@@ -1,6 +1,24 @@
 // Colors
-@fgColor : #505050;
-@bgColor : #efe9e7;
+@black     :#000000;
+@white     :#ffffff;
+@red       :#883932;
+@cyan      :#67b6bd;
+@purple    :#8b3f96;
+@green     :#55a049;
+@blue      :#40318d;
+@yellow    :#bfce72;
+@orange    :#8b5429;
+@brown     :#574200;
+@lightRed  :#b86962;
+@darkGrey  :#505050;
+@grey      :#787878;
+@lightGreen: #94e089;
+@lightBlue :#7869c4;
+@lightGrey :#9f9f9f;
+
+@bgColor    : #efe9e7;
+@fgColor    : @darkGrey;
+@accentColor: @lightRed;
 
 // Pixel scale
 .pixel(@scale) {
@@ -23,22 +41,13 @@
 	background-size : .pixel(2)[] .pixel(2)[];
 }
 
-// Main font candidates
-.mainFont(@pixelOffset: 0) {
-	.atariFont(@pixelOffset)
+// Fonts
+.mainFont(@size: 1rem) {
+	font-size  : @size;
+	font-family: "Athene";
 }
 
-.atariFont(@pixelOffset: 0) {
-	font-family: "Atari";
-	font-size  : .pixel(5+@pixelOffset)[];
-}
-
-.athensFont(@pixelOffset: 0) {
-	font-family: "Athens Classic";
-	font-size  : .pixel(6+@pixelOffset)[];
-}
-
-.chixaFont(@pixelOffset: 0) {
-	font-family: "Chixa";
-	font-size  : .pixel(5+@pixelOffset)[];
+.monospaceFont(@size: 1rem) {
+	font-size  : @size;
+	font-family: "Share Tech Mono";
 }

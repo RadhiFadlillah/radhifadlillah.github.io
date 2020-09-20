@@ -1,346 +1,67 @@
-/* Main font contender. Condensed. Looks similar with Geos.
-Good, but some word spacing could be better */
 @font-face {
-	font-family : 'Atari';
-	src         : url('fonts/AtariST8x16SystemFont.woff2') format('woff2'), url('fonts/AtariST8x16SystemFont.woff') format('woff');
+	font-family : 'Athene';
+	src         : url('fonts/Athene.woff2') format('woff2'), url('fonts/Athene.woff') format('woff');
 	font-weight : 500;
 	font-style  : normal;
 	font-display: swap;
 }
 
-/* Cursive. Might be good for title. Optimal 19px */
+/* share-tech-mono-regular - latin */
 @font-face {
-	font-family : 'Venice Classic';
-	src         : url('fonts/VeniceClassic.woff2') format('woff2'), url('fonts/VeniceClassic.woff') format('woff');
-	font-weight : 500;
-	font-style  : normal;
-	font-display: swap;
+	font-family: 'Share Tech Mono';
+	font-style : normal;
+	font-weight: 400;
+	src        : local('Share Tech Mono'), local('ShareTechMono-Regular'),
+		url('fonts/share-tech-mono-v10-latin-regular.woff2') format('woff2'),
+		/* Chrome 26+, Opera 23+, Firefox 39+ */
+		url('fonts/share-tech-mono-v10-latin-regular.woff') format('woff');
+	/* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
 
-/* Skinny, but might be good for code */
+/* teko-regular - latin */
 @font-face {
-	font-family : 'Monogram';
-	src         : url('fonts/monogramextended.woff2') format('woff2'), url('fonts/monogramextended.woff') format('woff');
-	font-weight : 500;
-	font-style  : normal;
-	font-display: swap;
+	font-family: 'Teko';
+	font-style : normal;
+	font-weight: 400;
+	src        : local('Teko Regular'), local('Teko-Regular'),
+		url('fonts/teko-v10-latin-regular.woff2') format('woff2'),
+		/* Chrome 26+, Opera 23+, Firefox 39+ */
+		url('fonts/teko-v10-latin-regular.woff') format('woff');
+	/* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
 
-/* Really crisp and easy to read, but too thin.
-Might be used as article font */
+/* teko-500 - latin */
 @font-face {
-	font-family: 'Terminus';
-	src        : url('fonts/TerminusTTF.woff2') format('woff2'),
-		url('fonts/TerminusTTF.woff') format('woff');
-	font-weight : 500;
-	font-style  : normal;
-	font-display: swap;
+	font-family: 'Teko';
+	font-style : normal;
+	font-weight: 500;
+	src        : local('Teko Medium'), local('Teko-Medium'),
+		url('fonts/teko-v10-latin-500.woff2') format('woff2'),
+		/* Chrome 26+, Opera 23+, Firefox 39+ */
+		url('fonts/teko-v10-latin-500.woff') format('woff');
+	/* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
 
+/* teko-600 - latin */
 @font-face {
-	font-family: 'Terminus';
-	src        : url('fonts/TerminusTTF-Bold.woff2') format('woff2'),
-		url('fonts/TerminusTTF-Bold.woff') format('woff');
-	font-weight : bold;
-	font-style  : normal;
-	font-display: swap;
+	font-family: 'Teko';
+	font-style : normal;
+	font-weight: 600;
+	src        : local('Teko SemiBold'), local('Teko-SemiBold'),
+		url('fonts/teko-v10-latin-600.woff2') format('woff2'),
+		/* Chrome 26+, Opera 23+, Firefox 39+ */
+		url('fonts/teko-v10-latin-600.woff') format('woff');
+	/* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
 
+/* teko-700 - latin */
 @font-face {
-	font-family: 'Terminus';
-	src        : url('fonts/TerminusTTF-BoldItalic.woff2') format('woff2'),
-		url('fonts/TerminusTTF-BoldItalic.woff') format('woff');
-	font-weight : bold;
-	font-style  : italic;
-	font-display: swap;
-}
-
-@font-face {
-	font-family: 'Terminus';
-	src        : url('fonts/TerminusTTF-Italic.woff2') format('woff2'),
-		url('fonts/TerminusTTF-Italic.woff') format('woff');
-	font-weight : 500;
-	font-style  : italic;
-	font-display: swap;
-}
-
-/* It's really nice, give Atari good run. If there is something
-to nitpick, its M is a bit ugly for my taste. Contender for main
-font. Optimal 22px*/
-@font-face {
-	font-family: 'Athens Classic';
-	src        : url('fonts/AthensClassic.woff2') format('woff2'),
-		url('fonts/AthensClassic.woff') format('woff');
-	font-weight : 500;
-	font-style  : normal;
-	font-display: swap;
-}
-
-
-/* Easy to read. Reader's font contender. */
-@font-face {
-	font-family: 'Epilepsy Sans';
-	src        : url('fonts/EpilepsySansBold.woff2') format('woff2'),
-		url('fonts/EpilepsySansBold.woff') format('woff');
-	font-weight : bold;
-	font-style  : normal;
-	font-display: swap;
-}
-
-@font-face {
-	font-family: 'Epilepsy Sans';
-	src        : url('fonts/EpilepsySans.woff2') format('woff2'),
-		url('fonts/EpilepsySans.woff') format('woff');
-	font-weight : 500;
-	font-style  : normal;
-	font-display: swap;
-}
-
-/* Easy to read. Reader's font contender as well. */
-@font-face {
-	font-family: 'McMillen';
-	src        : url('fonts/McMillen.woff2') format('woff2'),
-		url('fonts/McMillen.woff') format('woff');
-	font-weight : 500;
-	font-style  : normal;
-	font-display: swap;
-}
-
-@font-face {
-	font-family: 'McMillen';
-	src        : url('fonts/McMillenBold.woff2') format('woff2'),
-		url('fonts/McMillenBold.woff') format('woff');
-	font-weight : bold;
-	font-style  : normal;
-	font-display: swap;
-}
-
-/*
-////////////////////////////////////////////////////////////
-/ BELOW THIS POINT IS FONT THAT DESERVE HONORABLE MENTIONS /
-////////////////////////////////////////////////////////////
-*/
-
-/* Crisp, but too wide. Considering for headings */
-@font-face {
-	font-family : 'C64 Pro Mono';
-	src         : url('fonts/C64ProMono.woff2') format('woff2'), url('fonts/C64ProMono.woff') format('woff');
-	font-weight : normal;
-	font-style  : normal;
-	font-display: swap;
-}
-
-/* Same as above */
-@font-face {
-	font-family : 'C64 Pro';
-	src         : url('fonts/C64Pro.woff2') format('woff2'), url('fonts/C64Pro.woff') format('woff');
-	font-weight : normal;
-	font-style  : normal;
-	font-display: swap;
-}
-
-
-/* Thicc, might be good for title and heading.
-But it kinda destroys web styles. */
-@font-face {
-	font-family: 'Newsgeek';
-	src        : url('fonts/Newsgeek.woff2') format('woff2'),
-		url('fonts/Newsgeek.woff') format('woff');
-	font-weight : 500;
-	font-style  : normal;
-	font-display: swap;
-}
-
-@font-face {
-	font-family: 'NewsgeekSerif';
-	src        : url('fonts/NewsgeekSerif.woff2') format('woff2'),
-		url('fonts/NewsgeekSerif.woff') format('woff');
-	font-weight : 500;
-	font-style  : normal;
-	font-display: swap;
-}
-
-/*
-/////////////////////////////////////////////////////////////////////
-/ BELOW THIS POINT IS FONT THAT DEEMED UNWORTHY FOR VARIOUS REASONS /
-/////////////////////////////////////////////////////////////////////
-*/
-
-/* Too gamey */
-@font-face {
-	font-family : 'Runescape';
-	src         : url('fonts/RuneScape-UF.woff2') format('woff2'), url('fonts/RuneScape-UF.woff') format('woff');
-	font-weight : normal;
-	font-style  : normal;
-	font-display: swap;
-}
-
-/* Some character failed to render */
-@font-face {
-	font-family : 'Apple II';
-	src         : url('fonts/Apple.woff2') format('woff2'), url('fonts/Apple.woff') format('woff');
-	font-weight : normal;
-	font-style  : normal;
-	font-display: swap;
-}
-
-/* Some character rendered weird */
-@font-face {
-	font-family : 'Chicago';
-	src         : url('fonts/Chicago.woff2') format('woff2'), url('fonts/Chicago.woff') format('woff');
-	font-weight : normal;
-	font-style  : normal;
-	font-display: swap;
-}
-
-/* Only alphabet, so no number and symbols */
-@font-face {
-	font-family : 'Hellovetica';
-	src         : url('fonts/HelloveticaReg.woff2') format('woff2'), url('fonts/HelloveticaReg.woff') format('woff');
-	font-weight : normal;
-	font-style  : normal;
-	font-display: swap;
-}
-
-/* Badly rendered */
-@font-face {
-	font-family : 'ProggyClean';
-	src         : url('fonts/ProggyCleanTT.woff2') format('woff2'), url('fonts/ProggyCleanTT.woff') format('woff');
-	font-weight : normal;
-	font-style  : normal;
-	font-display: swap;
-}
-
-/* Its comma is really weird */
-@font-face {
-	font-family : 'Monaco';
-	src         : url('fonts/Monaco.woff2') format('woff2'), url('fonts/Monaco.woff') format('woff');
-	font-weight : normal;
-	font-style  : normal;
-	font-display: swap;
-}
-
-/* Nice, "C" kinda weird tho.
-Imho it loses against Atari and Athens, so knocked out. */
-@font-face {
-	font-family: 'Chixa';
-	src        : url('fonts/ChixaDemiBold.woff2') format('woff2'),
-		url('fonts/ChixaDemiBold.woff') format('woff');
-	font-weight : 600;
-	font-style  : normal;
-	font-display: swap;
-}
-
-/* Bit hard to read */
-@font-face {
-	font-family: 'Magdalena';
-	src        : url('fonts/MagdalenaBold.woff2') format('woff2'),
-		url('fonts/MagdalenaBold.woff') format('woff');
-	font-weight : bold;
-	font-style  : normal;
-	font-display: swap;
-}
-
-@font-face {
-	font-family: 'Magdalena';
-	src        : url('fonts/Magdalena.woff2') format('woff2'),
-		url('fonts/Magdalena.woff') format('woff');
-	font-weight : 500;
-	font-style  : normal;
-	font-display: swap;
-}
-
-/* Too thin */
-@font-face {
-	font-family: 'Hippauf';
-	src        : url('fonts/Hippauf.woff2') format('woff2'),
-		url('fonts/Hippauf.woff') format('woff');
-	font-weight : 500;
-	font-style  : normal;
-	font-display: swap;
-}
-
-/* Too square */
-@font-face {
-	font-family: 'Monterey';
-	src        : url('fonts/Monterey.woff2') format('woff2'),
-		url('fonts/Monterey.woff') format('woff');
-	font-weight : 500;
-	font-style  : normal;
-	font-display: swap;
-}
-
-@font-face {
-	font-family: 'Monterey';
-	src        : url('fonts/MontereyBold.woff2') format('woff2'),
-		url('fonts/MontereyBold.woff') format('woff');
-	font-weight : bold;
-	font-style  : normal;
-	font-display: swap;
-}
-
-/* Crisp, original GEOS. Unfortunately too width. */
-@font-face {
-	font-family: 'Berkelium II HGR';
-	src        : url('fonts/BerkeliumIIHGR.woff2') format('woff2'),
-		url('fonts/BerkeliumIIHGR.woff') format('woff');
-	font-weight : 500;
-	font-style  : normal;
-	font-display: swap;
-}
-
-/* Crisp, original GEOS. Unfortunately too condensed. */
-@font-face {
-	font-family: 'Berkelium II DHR';
-	src        : url('fonts/BerkeliumIIDHR.woff2') format('woff2'),
-		url('fonts/BerkeliumIIDHR.woff') format('woff');
-	font-weight : 500;
-	font-style  : normal;
-	font-display: swap;
-}
-
-/* Unreadable by web browser. It's too big as well (whopping 2 MB for font) */
-@font-face {
-	font-family: 'Fairfax';
-	src        : url('fonts/Fairfax.woff2') format('woff2'),
-		url('fonts/Fairfax.woff') format('woff');
-	font-weight : 500;
-	font-style  : normal;
-	font-display: swap;
-}
-
-@font-face {
-	font-family: 'Fairfax SM';
-	src        : url('fonts/FairfaxSM.woff2') format('woff2'),
-		url('fonts/FairfaxSM.woff') format('woff');
-	font-weight : 500;
-	font-style  : normal;
-	font-display: swap;
-}
-
-@font-face {
-	font-family: 'Fairfax';
-	src        : url('fonts/FairfaxItalic.woff2') format('woff2'),
-		url('fonts/FairfaxItalic.woff') format('woff');
-	font-weight : 500;
-	font-style  : italic;
-	font-display: swap;
-}
-
-@font-face {
-	font-family: 'Fairfax';
-	src        : url('fonts/FairfaxBold.woff2') format('woff2'),
-		url('fonts/FairfaxBold.woff') format('woff');
-	font-weight : bold;
-	font-style  : normal;
-	font-display: swap;
-}
-
-@font-face {
-	font-family: 'Fairfax SM';
-	src        : url('fonts/FairfaxSMBold.woff2') format('woff2'),
-		url('fonts/FairfaxSMBold.woff') format('woff');
-	font-weight : bold;
-	font-style  : normal;
-	font-display: swap;
+	font-family: 'Teko';
+	font-style : normal;
+	font-weight: 700;
+	src        : local('Teko Bold'), local('Teko-Bold'),
+		url('fonts/teko-v10-latin-700.woff2') format('woff2'),
+		/* Chrome 26+, Opera 23+, Firefox 39+ */
+		url('fonts/teko-v10-latin-700.woff') format('woff');
+	/* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
