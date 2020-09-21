@@ -15,8 +15,8 @@ While simple, I think it covers all basic features like :
 - charting monthly cumulative money; and
 - responsive UI for mobile device.
 
-![Screenshot that shows the basic income and expense tracking](basic-list.png)
+![Screenshot that shows the basic income and expense tracking](/assets/2020-03-30-duit/basic-list.png)
 
-![This is how the monthly chart looks like](monthly-chart.png)
+![This is how the monthly chart looks like](/assets/2020-03-30-duit/monthly-chart.png)
 
-![It's also responsive for in mobile device](mobile.png)
+![It's also responsive for in mobile device](/assets/2020-03-30-duit/mobile.png)

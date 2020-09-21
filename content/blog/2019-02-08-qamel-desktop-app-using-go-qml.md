@@ -272,11 +272,11 @@ Build finished succesfully.
 
 Now, run the app and it should look like this :
 
-![Screenshot for hello world](hello-world.png)
+![Screenshot for hello world](/assets/2019-02-08-qamel/hello-world.png)
 
 While the app still running, try to make some change in the `res/main.qml` and save it. For example, change the `color` to `red`. The app's UI should be updated automatically after you save the change.
 
-![Screencast for live change](screencast.gif)
+![Screencast for live change](/assets/2019-02-08-qamel/screencast.gif)
 
 The screencast above is recorded in Linux because my Windows VM is too slow to handle screen recording. It should be similar though.
 
@@ -376,7 +376,7 @@ What Next
 
 For more detailed documentation about `qamel`, you can check [godoc](https://godoc.org/github.com/RadhiFadlillah/qamel) and [wiki](https://github.com/RadhiFadlillah/qamel/wiki). For a more advanced demo, I've made a simple HackerNews reader built using Qamel, which available [here](https://github.com/RadhiFadlillah/qamel-hn).
 
-![Screenshot for Qamel-HN](qamel-hn.png)
+![Screenshot for Qamel-HN](/assets/2019-02-08-qamel/qamel-hn.png)
 
 Conclusions
 ---
