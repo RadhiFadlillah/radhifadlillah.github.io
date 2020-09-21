@@ -50,10 +50,10 @@
 
 				<div class="reader__sibling">
 					{{if ne $.PrevFile.URLPath ""}}
-					<a href="{{$.PrevFile.URLPath}}" class="reader__sibling__prev">&lt;= {{$.PrevFile.Title}}</a>
+					<a href="{{$.PrevFile.URLPath}}" class="reader__sibling__prev">{{$.PrevFile.Title}}</a>
 					{{end}}
 					{{if ne $.NextFile.URLPath ""}}
-					<a href="{{$.NextFile.URLPath}}" class="reader__sibling__next">{{$.NextFile.Title}} =&gt;</a>
+					<a href="{{$.NextFile.URLPath}}" class="reader__sibling__next">{{$.NextFile.Title}}</a>
 					{{end}}
 				</div>
 			</div>
