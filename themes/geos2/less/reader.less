@@ -5,12 +5,8 @@
 	line-height: 1.5;
 	overflow-y : auto;
 
-	>* {
-		margin-bottom: .pixel(3)[];
-	}
-
-	>p {
-		text-indent: .pixel(4)[];
+	>*:not(:last-child) {
+		margin-bottom: .pixel(5)[];
 	}
 
 	del {
@@ -56,10 +52,10 @@
 		border       : .pixel(1)[] solid @fgColor;
 		box-shadow   : .pixel(3)[] .pixel(3)[] 0 @fgColor ;
 		margin-right : .pixel(3)[];
-		margin-bottom: .pixel(6)[];
+		margin-bottom: .pixel(6)[] !important;
 
 		>*:not(:last-child) {
-			margin-bottom: .pixel(2)[];
+			margin-bottom: .pixel(5)[];
 		}
 	}
 
@@ -76,6 +72,7 @@
 		color           : @white;
 		background-color: @fgColor;
 		overflow        : auto;
+		tab-size        : 4;
 
 		* {
 			.monospaceFont();
@@ -93,7 +90,7 @@
 		border         : .pixel(1)[] solid @fgColor;
 		box-shadow     : .pixel(3)[] .pixel(3)[] 0 @fgColor ;
 		margin-right   : .pixel(3)[];
-		margin-bottom  : .pixel(6)[];
+		margin-bottom  : .pixel(9)[];
 
 		th,
 		td {
@@ -104,5 +101,27 @@
 		th {
 			font-weight: bold;
 		}
+	}
+}
+
+.reader__tags {
+	.mainFont();
+	display   : flex;
+	flex-flow : row wrap;
+	padding   : .pixel(3)[] .pixel(3)[] .pixel(2)[];
+	border-top: .pixel(1)[] solid @fgColor;
+
+	>* {
+		margin-right: .pixel(3)[];
+	}
+}
+
+.reader__tags__item {
+	color: @fgColor;
+
+	&:hover,
+	&:focus {
+		color  : @accentColor;
+		outline: .pixel(1)[] solid @accentColor;
 	}
 }

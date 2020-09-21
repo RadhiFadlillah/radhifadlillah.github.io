@@ -4,7 +4,6 @@
 	display         : flex;
 	flex-flow       : column nowrap;
 	overflow        : hidden;
-	min-height      : .pixel(30)[];
 }
 
 .window__header {
@@ -40,6 +39,7 @@
 	border-top      : 0;
 	border-bottom   : 0;
 	flex-shrink     : 0;
+	margin-left     : .pixel(3)[];
 
 	&::after {
 		content         : "";
@@ -72,6 +72,7 @@
 	color        : @fgColor;
 	padding      : .pixel(2)[] .pixel(3)[];
 	border-bottom: .pixel(1)[] solid @fgColor;
+	line-height  : .pixel(9)[];
 }
 
 .window__footer {
