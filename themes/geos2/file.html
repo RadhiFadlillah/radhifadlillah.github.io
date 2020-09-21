@@ -38,15 +38,25 @@
 			</div>
 			<div class="window__content reader__content">
 				{{$.Content}}
-			</div>
 
-			{{if gt (len $.Tags) 0}}
-			<div class="reader__tags">
-				{{range $tag := $.Tags}}
-				<a href="{{$tag.URLPath}}" class="reader__tags__item">#{{$tag.Name}}</a>
+				{{if gt (len $.Tags) 0}}
+				<div class="reader__tags">
+					<p>Tags:</p>
+					{{range $tag := $.Tags}}
+					<a href="{{$tag.URLPath}}">#{{$tag.Name}}</a>
+					{{end}}
+				</div>
 				{{end}}
+
+				<div class="reader__sibling">
+					{{if ne $.PrevFile.URLPath ""}}
+					<a href="{{$.PrevFile.URLPath}}" class="reader__sibling__prev">&lt;= {{$.PrevFile.Title}}</a>
+					{{end}}
+					{{if ne $.NextFile.URLPath ""}}
+					<a href="{{$.NextFile.URLPath}}" class="reader__sibling__next">{{$.NextFile.Title}} =&gt;</a>
+					{{end}}
+				</div>
 			</div>
-			{{end}}
 			<div class="window__footer"></div>
 		</div>
 	</div>

@@ -106,22 +106,41 @@
 
 .reader__tags {
 	.mainFont();
-	display   : flex;
-	flex-flow : row wrap;
-	padding   : .pixel(3)[] .pixel(3)[] .pixel(2)[];
-	border-top: .pixel(1)[] solid @fgColor;
+	display  : flex;
+	flex-flow: row wrap;
 
 	>* {
-		margin-right: .pixel(3)[];
+		margin-right : .pixel(3)[];
+		margin-bottom: .pixel(2)[];
 	}
 }
 
-.reader__tags__item {
-	color: @fgColor;
+.reader__sibling {
+	display              : grid;
+	grid-template-columns: 1fr 1fr;
+	margin               : .pixel(-3)[];
+	padding              : .pixel(4)[] .pixel(3)[] .pixel(3)[];
+	grid-gap             : .pixel(5)[];
+	align-items          : center;
+	border-top           : .pixel(1)[] solid @fgColor;
 
-	&:hover,
-	&:focus {
-		color  : @accentColor;
-		outline: .pixel(1)[] solid @accentColor;
+	@media screen and (max-width:699px) {
+		grid-template-columns: 1fr;
+	}
+}
+
+.reader__sibling__prev,
+.reader__sibling__next {
+	display  : block;
+	max-width: .pixel(100)[];
+}
+
+.reader__sibling__next {
+	text-align : end;
+	margin-left: auto;
+	grid-column: 2;
+
+	@media screen and (max-width:699px) {
+		grid-column: 1;
 	}
 }
