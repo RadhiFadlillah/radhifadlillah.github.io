@@ -8,17 +8,12 @@
 	<link href="/themes/geos2/css/fonts.css" rel="stylesheet">
 	<link href="/themes/geos2/css/index.css" rel="stylesheet">
 
-	{{if eq .DirTitle .Title}}
-	<title>{{.DirTitle}}</title>
-	{{else}}
-	<title>{{.Title}} - {{.DirTitle}}</title>
-	{{end}}
+	<title>#{{$.ActiveTag}} - {{$.Title}} - Radhi Fadlillah</title>
 
-	{{if ne .Description ""}}
-	<meta name="description" content="{{.Description}}">
-	<meta name="twitter:description" content="{{.Description}}">
-	<meta property="og:description" content="{{.Description}}">
-	{{end}}
+	{{$Description := printf "Files with tag %s in \"%s\" directory" $.ActiveTag $.Title}}
+	<meta name="description" content="{{$Description}}">
+	<meta name="twitter:description" content="{{$Description}}">
+	<meta property="og:description" content="{{$Description}}">
 </head>
 
 <body>
@@ -36,27 +31,13 @@
 			{{end}}
 		</div>
 		<div class="window__content fm__content">
-			{{range $item := $.DirItems}}
-
-			{{$className := ""}}
-			{{if eq $item.URLPath $.URLPath}}
-			{{$className = "fm--active"}}
-			{{end}}
-
-			{{if $item.IsDir}}
-			<a href="{{$item.URLPath}}" class="fm__dir {{$className}}">
-				<span class="fm__dir__icon"></span>
-				<span class="fm__dir__name">{{$item.Title}}</span>
-				<span class="fm__dir__info">{{$item.NChild}} contents</span>
-			</a>
-			{{else}}
-			<a href="{{$item.URLPath}}" class="fm__file {{$className}}">
+			{{range $item := $.Files}}
+			<a href="{{$item.URLPath}}" class="fm__file">
 				<span class="fm__file__name">{{$item.Title}}</span>
 				{{if not $item.UpdateTime.IsZero}}
 				<span class="fm__file__info">{{$item.UpdateTime.Format "2/1/06"}}</span>
 				{{end}}
 			</a>
-			{{end}}
 			{{end}}
 		</div>
 
@@ -84,36 +65,6 @@
 
 		<div class="window__footer"></div>
 	</div>
-	{{if gt (len $.DirTags) 0}}
-	<div class="window" id="tl">
-		<div class="window__header">
-			<p class="window__header__title">Tag List</p>
-			<a class="window__header__button" href="#"></a>
-		</div>
-		<div class="window__content tl__content">
-			{{range $tag := $.DirTags}}
-			<a href="{{$tag.URLPath}}" class="tl__item">
-				<span class="tl__item__icon"></span>
-				<span class="tl__item__name">{{$tag.Name}}</span>
-				<span class="tl__item__info">{{$tag.Count}} files</span>
-			</a>
-			{{end}}
-		</div>
-		<div class="window__footer"></div>
-	</div>
-	{{end}}
-	{{if ne $.Content ""}}
-	<div class="window" id="reader">
-		<div class="window__header">
-			<p class="window__header__title">geoReader</p>
-			<a class="window__header__button" href="#"></a>
-		</div>
-		<div class="window__content reader__content">
-			{{$.Content}}
-		</div>
-		<div class="window__footer"></div>
-	</div>
-	{{end}}
 </body>
 
 </html>

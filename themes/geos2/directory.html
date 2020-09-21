@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link href="/themes/geos2/css/fonts.css" rel="stylesheet">
+	<link href="/themes/geos2/css/index.css" rel="stylesheet">
+
+	<title>{{.Title}} - Radhi Fadlillah</title>
+
+	{{if ne .Description ""}}
+	<meta name="description" content="{{.Description}}">
+	<meta name="twitter:description" content="{{.Description}}">
+	<meta property="og:description" content="{{.Description}}">
+	{{end}}
+</head>
+
+<body>
+	<div class="window" id="fm">
+		<div class="window__header">
+			<p class="window__header__title">File Manager</p>
+			<a class="window__header__button" href="#"></a>
+		</div>
+		<div class="window__status-bar fm__crumbs">
+			{{range $trail := $.PathTrails}}
+			<a href="{{$trail.URLPath}}" class="fm__crumbs__item">{{$trail.Title}}</a>
+			{{end}}
+			{{if gt $.CurrentPage 1}}
+			<a href="" class="fm__crumbs__item">{{$.CurrentPage}}</a>
+			{{end}}
+		</div>
+		<div class="window__content fm__content">
+			{{range $item := $.ChildItems}}
+
+			{{$className := ""}}
+			{{if eq $item.URLPath $.URLPath}}
+			{{$className = "fm--active"}}
+			{{end}}
+
+			{{if $item.IsDir}}
+			<a href="{{$item.URLPath}}" class="fm__dir {{$className}}">
+				<span class="fm__dir__icon"></span>
+				<span class="fm__dir__name">{{$item.Title}}</span>
+				<span class="fm__dir__info">{{$item.NChild}} contents</span>
+			</a>
+			{{else}}
+			<a href="{{$item.URLPath}}" class="fm__file {{$className}}">
+				<span class="fm__file__name">{{$item.Title}}</span>
+				{{if not $item.UpdateTime.IsZero}}
+				<span class="fm__file__info">{{$item.UpdateTime.Format "2/1/06"}}</span>
+				{{end}}
+			</a>
+			{{end}}
+			{{end}}
+		</div>
+
+		{{if gt $.MaxPage 1}}
+		<div class="fm__pagination">
+			{{if gt $.CurrentPage 2}}
+			<a href="{{paginationLink $.URLPath 1}}" class="fm__pagination__button">&lt;&lt;</a>
+			{{end}}
+
+			{{if gt $.CurrentPage 1}}
+			<a href="{{paginationLink $.URLPath (sub $.CurrentPage 1)}}" class="fm__pagination__button">&lt;</a>
+			{{end}}
+
+			<p class="fm__pagination__number">{{$.CurrentPage}} / {{$.MaxPage}}</p>
+
+			{{if lt $.CurrentPage $.MaxPage}}
+			<a href="{{paginationLink $.URLPath (add $.CurrentPage 1)}}" class="fm__pagination__button">&gt;</a>
+			{{end}}
+
+			{{if lt $.CurrentPage (sub $.MaxPage 1)}}
+			<a href="{{paginationLink $.URLPath $.MaxPage}}" class="fm__pagination__button">&gt;&gt;</a>
+			{{end}}
+		</div>
+		{{end}}
+
+		<div class="window__footer"></div>
+	</div>
+	{{if gt (len $.ChildTags) 0}}
+	<div class="window" id="tl">
+		<div class="window__header">
+			<p class="window__header__title">Tag List</p>
+			<a class="window__header__button" href="#"></a>
+		</div>
+		<div class="window__content tl__content">
+			{{range $tag := $.ChildTags}}
+			<a href="{{$tag.URLPath}}" class="tl__item">
+				<span class="tl__item__icon"></span>
+				<span class="tl__item__name">{{$tag.Name}}</span>
+				<span class="tl__item__info">{{$tag.Count}} files</span>
+			</a>
+			{{end}}
+		</div>
+		<div class="window__footer"></div>
+	</div>
+	{{end}}
+	{{if ne $.Content ""}}
+	<div class="window" id="reader">
+		<div class="window__header">
+			<p class="window__header__title">geoReader</p>
+			<a class="window__header__button" href="#"></a>
+		</div>
+		<div class="window__content reader__content">
+			{{$.Content}}
+		</div>
+		<div class="window__footer"></div>
+	</div>
+	{{end}}
+</body>
+
+</html>
