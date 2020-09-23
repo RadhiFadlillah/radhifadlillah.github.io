@@ -12,19 +12,21 @@
 	flex-flow    : row nowrap;
 	border-bottom: .pixel(1)[] solid @fgColor;
 	padding      : 0 .pixel(3)[];
+	height       : .pixel(10)[];
+	align-items  : center;
 }
 
 .window__header__title {
 	.mainFont(.5);
 	color           : @fgColor;
-	line-height     : .pixel(9)[];
 	align-self      : top;
 	background-color: @bgColor;
 	margin          : 0 auto;
-	padding         : 0 .pixel(3)[];
+	padding         : .pixel(1)[] .pixel(3)[];
 	overflow        : hidden;
 	white-space     : nowrap;
 	text-overflow   : ellipsis;
+	position        : relative;
 }
 
 .window__header__button {
