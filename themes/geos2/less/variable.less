@@ -26,17 +26,6 @@
 }
 
 // Patterns
-.checkerboard(@lightness: 0) {
-	@boxColor       : lighten(@fgColor, @lightness);
-	background-color: @bgColor;
-	background-image:
-		linear-gradient(45deg, @boxColor 25%, transparent 25%, transparent 75%, @boxColor 75%, @boxColor),
-		linear-gradient(45deg, @boxColor 25%, transparent 25%, transparent 75%, @boxColor 75%, @boxColor);
-	background-size      : .pixel(2)[] .pixel(2)[];
-	background-position  : 0 0, .pixel(1)[] .pixel(1)[];
-	background-attachment: fixed;
-}
-
 .stripes() {
 	background-color: @bgColor;
 	background-image: linear-gradient(transparent 50%, @fgColor 50%);
