@@ -2,31 +2,31 @@
 Author = "Radhi Fadlillah"
 CreateTime = 2019-02-08T05:43:49+07:00
 Description = "Introduction to Qamel, a QML binding for Go which can be used to create modern desktop application."
-Tags = ["go", "golang", "qml"]
+Tags = ["golang", "qamel"]
 Title = "Qamel - Build Desktop Application Using Go and QML"
 +++
 
-> This post is an introduction for Qamel, a QML binding for Go that I created. It's released under MIT license and available [here](https://github.com/RadhiFadlillah/qamel).
+> This post is an introduction for Qamel, a QML binding for Go that I created. It's released under MIT license and available [here][1].
 
-When building a modern desktop application, the first thing that come to the mind is [Electron](https://electronjs.org/) or [NW.js](https://nwjs.io/). Both of them are based on [Chromium](https://www.chromium.org/) and using [Node.js](https://nodejs.org/). Thanks to this, creating desktop app in Electron and NW.js feels really familiar, as if building a normal web app. This means we get all benefits of creating web app in desktop, for example : 
+When building a modern desktop application, the first thing that come to the mind is [Electron][2] or [NW.js][3]. Both of them are based on [Chromium][4] and using [Node.js][5]. Thanks to this, creating desktop app in Electron and NW.js feels really familiar, as if building a normal web app. This means we get all benefits of creating web app in desktop, for example : 
 
 - fast GUI prototyping;
 - consistent look across platforms;
 - easy styling thanks to CSS and JS;
 - huge libraries to use and choose.
 
-In other hand, since both of them are based on Chromium, they are quite heavy to use. It uses lot of memories, even when it’s only running and not used. It might be fine for some apps or games (e.g. [VS Code](https://code.visualstudio.com/), [CrossCode](https://store.steampowered.com/app/368340/CrossCode/)), however it might be overkill for the simpler apps.
+In other hand, since both of them are based on Chromium, they are quite heavy to use. It uses lot of memories, even when it’s only running and not used. It might be fine for some apps or games (e.g. [VS Code][6], [CrossCode][7]), however it might be overkill for the simpler apps.
 
-After looking around for a while, I learn about [QML](http://doc.qt.io/qt-5/qmlapplications.html). QML (Qt Modeling Language) is a user interface specification and programming language, which allows developer to create a performant and flexible GUI. I believe it's a good alternative for Electron and NW.js, because :
+After looking around for a while, I learn about [QML][8]. QML (Qt Modeling Language) is a user interface specification and programming language, which allows developer to create a performant and flexible GUI. I believe it's a good alternative for Electron and NW.js, because :
 
 - its syntax is similar with JSON, which make it feels familiar to web developer;
 - it supports JavaScript up to ES7 for dynamic property and expressions. It means we can keep using some JavaScript library for our QML app;
 - styling is quite easy with QML and it looks consistent across platforms;
 - there are supports for component separation, which make the code more manageable.
 
-As its name implies, QML is part of [Qt](https://www.qt.io/) framework which uses C++ language. Unfortunately, I'm more comfortable using Go language instead of C++, so I need a binding for QML in Go. There are several bindings that already exist, however [one](https://github.com/go-qml/qml) of them is not maintained anymore while [the](https://github.com/therecipe/qt) others [are](https://github.com/kitech/qt.go) released under LGPL license, which doesn't work for my job.
+As its name implies, QML is part of [Qt][9] framework which uses C++ language. Unfortunately, I'm more comfortable using Go language instead of C++, so I need a binding for QML in Go. There are several bindings that already exist, however [one][10] of them is not maintained anymore while [the][11] others [are][12] released under LGPL license, which doesn't work for my job.
 
-With that said, I decided to create my own QML binding named [`qamel`](https://github.com/RadhiFadlillah/qamel) and released it under MIT license. It's still work in progress, but it's stable enough for my job, so I decided to share it here. However, since I only have access to Linux and Windows machine, I'm not sure if it will works in Mac OS. If you don't mind, go ahead and try it.
+With that said, I decided to create my own QML binding named [`qamel`][1] and released it under MIT license. It's still work in progress, but it's stable enough for my job, so I decided to share it here. However, since I only have access to Linux and Windows machine, I'm not sure if it will works in Mac OS. If you don't mind, go ahead and try it.
 
 > `qamel` is still work in progress and hasn't been tested on Mac OS.
 
@@ -67,7 +67,7 @@ Use "qamel [command] --help" for more information about a command.
 
 > If it's error with message like "*qamel: command not found*", make sure `$GOPATH/bin` is accessible from your `$PATH`, because that's where `qamel` will be installed.
 
-Next, install Qt on your system. If you are on Linux, make sure the required [dependencies](http://doc.qt.io/qt-5/linux.html#requirements-for-development-host) already installed on your system. Download the [official installer](https://www.qt.io/offline-installers) and follow along the steps. In this tutorial, I will install it to `C:\Qt\Qt5.12.0`. 
+Next, install Qt on your system. If you are on Linux, make sure the required [dependencies][13] already installed on your system. Download the [official installer][14] and follow along the steps. In this tutorial, I will install it to `C:\Qt\Qt5.12.0`. 
 
 When asked to choose Qt's components to install, make sure to choose at least one of Qt5 version. In Windows, I recommend you to install at least these :
 
@@ -272,11 +272,11 @@ Build finished succesfully.
 
 Now, run the app and it should look like this :
 
-![Screenshot for hello world](/assets/2019-02-08-qamel/hello-world.png)
+![Screenshot for hello world][asset-1]
 
 While the app still running, try to make some change in the `res/main.qml` and save it. For example, change the `color` to `red`. The app's UI should be updated automatically after you save the change.
 
-![Screencast for live change](/assets/2019-02-08-qamel/screencast.gif)
+![Screencast for live change][asset-2]
 
 The screencast above is recorded in Linux because my Windows VM is too slow to handle screen recording. It should be similar though.
 
@@ -285,7 +285,7 @@ Deploying the Application
 
 Say you've finished creating a QML application and want to deploy it to public. Before releasing it, you have to modify some codes in `main.go` file, to make sure it's ready for deployment.
 
-First, set the source for your `QamelViewer` to use [`qrc`](https://doc.qt.io/qt-5/resources.html) path. This is done to make sure your app uses QML file that embedded on your executable binary. This way, no matter where you put it, your app will keep on displaying the correct QML view. To do it replace this line :
+First, set the source for your `QamelViewer` to use [`qrc`][15] path. This is done to make sure your app uses QML file that embedded on your executable binary. This way, no matter where you put it, your app will keep on displaying the correct QML view. To do it replace this line :
 
 ```go
 view.SetSource(fp.Join(resDir, "main.qml"))
@@ -341,7 +341,7 @@ Sometimes we need to deploy our application statically or to other platform. Unf
 
 The official installer also only supports dynamic linking, so if you want to build a static app, you need to build Qt manually. And, since Qt is a huge library, it take a really long time to build it. In my case, it took almost three hours to build static Qt in Linux.
 
-To avoid this issue, `qamel` supports cross compiling application using [Docker](https://www.docker.com/) image. All you need to do is to install Docker to your system, then build your app using `qamel docker`.
+To avoid this issue, `qamel` supports cross compiling application using [Docker][16] image. All you need to do is to install Docker to your system, then build your app using `qamel docker`.
 
 For example, if you are in Linux and want to build your app for Windows 64-bit, you need to open your project's directory from terminal, then run :
 
@@ -355,7 +355,7 @@ Or, if you want to build it statically, you can run :
 qamel docker win64-static -o output/win64/desktop-app-static.exe
 ```
 
-There are several Docker [targets](https://hub.docker.com/r/radhifadlillah/qamel/tags) available, which can be seen by running `qamel docker -h` :
+There are several Docker [targets][17] available, which can be seen by running `qamel docker -h` :
 
 ```
 Build QML app using Docker image.
@@ -374,9 +374,9 @@ Flags:
 What Next
 ---
 
-For more detailed documentation about `qamel`, you can check [godoc](https://godoc.org/github.com/RadhiFadlillah/qamel) and [wiki](https://github.com/RadhiFadlillah/qamel/wiki). For a more advanced demo, I've made a simple HackerNews reader built using Qamel, which available [here](https://github.com/RadhiFadlillah/qamel-hn).
+For more detailed documentation about `qamel`, you can check [godoc][18] and [wiki][19]. For a more advanced demo, I've made a simple HackerNews reader built using Qamel, which available [here][20].
 
-![Screenshot for Qamel-HN](/assets/2019-02-08-qamel/qamel-hn.png)
+![Screenshot for Qamel-HN][asset-3]
 
 Conclusions
 ---
@@ -386,3 +386,28 @@ Right now Electron and NW.js almost become the standard for building a desktop a
 Unfortunately, in my job I asked to built a desktop app for retail, and the PC that used by company is quite old and has low specs (it uses Celeron processor and 2 GB RAM, which is quite small for modern standard). Sure Electron still works there, but not as snappy as I and the boss hoped. So, I decided to make this binding.
 
 If you are constrained with low spec device like me, or you only need to built a simple app, I hope `qamel` can be an alternative for you.
+
+[1]: https://github.com/RadhiFadlillah/qamel
+[2]: https://electronjs.org/
+[3]: https://nwjs.io/
+[4]: https://www.chromium.org/
+[5]: https://nodejs.org/
+[6]: https://code.visualstudio.com/
+[7]: https://store.steampowered.com/app/368340/CrossCode/
+[8]: http://doc.qt.io/qt-5/qmlapplications.html
+[9]: https://www.qt.io/
+[10]: https://github.com/go-qml/qml
+[11]: https://github.com/therecipe/qt
+[12]: https://github.com/kitech/qt.go
+[13]: http://doc.qt.io/qt-5/linux.html#requirements-for-development-host
+[14]: https://www.qt.io/offline-installers
+[15]: https://doc.qt.io/qt-5/resources.html
+[16]: https://www.docker.com/
+[17]: https://hub.docker.com/r/radhifadlillah/qamel/tags
+[18]: https://godoc.org/github.com/RadhiFadlillah/qamel
+[19]: https://github.com/RadhiFadlillah/qamel/wiki
+[20]: https://github.com/RadhiFadlillah/qamel-hn
+
+[asset-1]: /assets/2019-02-08-qamel/hello-world.png
+[asset-2]: /assets/2019-02-08-qamel/screencast.gif
+[asset-3]: /assets/2019-02-08-qamel/qamel-hn.png

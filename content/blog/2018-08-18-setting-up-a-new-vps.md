@@ -1,11 +1,11 @@
 +++
 Author = "Radhi Fadlillah"
 CreateTime = 2018-08-18T14:51:18+07:00
-Tags = ["tutorial", "vps", "linux", "ubuntu", "sysadmin"]
+Tags = ["tutorial", "linux", "sysadmin"]
 Title = "Step by Step: Setting Up a New VPS"
 +++
 
-I've bought a new VPS from [Vultr](https://www.vultr.com/) for my own data server. This post is documentation of the steps that I took on setting up my new VPS. The OS that used in VPS is Ubuntu 18.04 64-bit, while OS in my local machine is Manjaro 64-bit.
+I've bought a new VPS from [Vultr][1] for my own data server. This post is documentation of the steps that I took on setting up my new VPS. The OS that used in VPS is Ubuntu 18.04 64-bit, while OS in my local machine is Manjaro 64-bit.
 
 ### Table of Contents
 
@@ -234,9 +234,9 @@ sudo ufw reset
 
 ### Install MariaDB
 
-[MariaDB](https://mariadb.org/) is one of the most popular database management system. It's easy, popular, and used by many application. That's why I'm including it in this tutorial. 
+[MariaDB][2] is one of the most popular database management system. It's easy, popular, and used by many application. That's why I'm including it in this tutorial. 
 
-Ubuntu includes MariaDB 10.1 in its main repositories. However, the lates stable version of MariaDB is 10.3, so I will use that one. To do it, we need to add MariaDB repositories to our system. To do this, open download page of [MariaDB](https://downloads.mariadb.org/mariadb/repositories/), then choose OS, version and your preferred mirror location. For example, here we choose :
+Ubuntu includes MariaDB 10.1 in its main repositories. However, the lates stable version of MariaDB is 10.3, so I will use that one. To do it, we need to add MariaDB repositories to our system. To do this, open download page of [MariaDB][3], then choose OS, version and your preferred mirror location. For example, here we choose :
 
 - OS: Ubuntu 18.04 LTS
 - Version: 10.3
@@ -334,3 +334,7 @@ Now we can use MariaDB by running :
 ```bash
 sudo mysql -p
 ```
+
+[1]: https://www.vultr.com/
+[2]: https://mariadb.org/
+[3]: https://downloads.mariadb.org/mariadb/repositories/

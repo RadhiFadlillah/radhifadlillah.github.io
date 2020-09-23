@@ -1,7 +1,7 @@
 +++
 Author = "Radhi Fadlillah"
 CreateTime = 2018-09-28T22:26:24+07:00
-Tags = ["linux", "systemd", "tutorial", "vps", "sysadmin"]
+Tags = ["tutorial", "linux", "sysadmin"]
 Title = "Creating a Basic Linux Service Using Systemd"
 +++
 

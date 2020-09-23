@@ -1,7 +1,7 @@
 +++
 Author = "Radhi Fadlillah"
 CreateTime = 2019-06-23T22:20:39+07:00
-Tags = ["tutorial", "vps", "linux", "caddy", "sysadmin", "webserver"]
+Tags = ["tutorial", "linux", "sysadmin", "caddy"]
 Title = "Build Caddy from Source in 2019"
 +++
 

@@ -6,7 +6,7 @@ Title = "Welcome"
 Description = "Software developer from Indonesia, mostly work using Go and JS"
 +++
 
-My name is **Radhi Fadlillah**, a developer from Indonesia. Right now I'm working as full-stack software developer in one of local retail around my area. The main purpose of this site is to save and share any new knowledge that I found, especially about software development. I'm not really active on social media, so the only way to contact me is via [Github][1] and [email][2]
+My name is **Radhi Fadlillah**, a developer from Indonesia. Right now I'm working as full-stack software developer in one of local retail around my area. The main purpose of this site is to save and share any new knowledge that I found, especially about software development. I'm not really active on social media, so the only way to contact me is via [Github][1] and [email][2].
 
 ## Skills
 
@@ -19,7 +19,7 @@ I have (at least _I think_ I have) sufficient skills in :
 I also have experience on :
 
 1. Native Android development using Java and [Kotlin][8]. Granted it's been quite long since I work on them so my knowledge might be obsolete, especially since (I hear) Android API is changed quite fast.
-2. Front-end development using [Vue.js][9]. The last time I using it is when Vue 2 just released. Might try it again later after Vue 3 released.
+2. Front-end development using [Vue.js][9]. The last time I using it is when Vue 2 just released. Might try it again later, especially since Vue 3 already released.
 
 ## Weakness
 

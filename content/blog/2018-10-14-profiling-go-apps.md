@@ -1,7 +1,7 @@
 +++
 Author = "Radhi Fadlillah"
 CreateTime = 2018-10-14T21:34:32+07:00
-Tags = ["go", "golang"]
+Tags = ["golang"]
 Title = "Profiling Go Apps"
 +++
 

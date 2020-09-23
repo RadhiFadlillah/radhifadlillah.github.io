@@ -1,19 +1,19 @@
 +++
 Author = "Radhi Fadlillah"
 CreateTime = 2018-08-19T17:13:27+07:00
-Tags = ["tutorial", "vps", "linux", "caddy", "sysadmin", "webserver"]
+Tags = ["tutorial", "linux", "sysadmin", "caddy"]
 Title = "Step by Step: Build Caddy From the Source"
 UpdateTime = 2018-08-22T06:54:45+07:00
 +++
 
-After finished [setting up](/post/2018-08-18-setting-up-a-new-vps) my VPS, next I want to install [Caddy](https://caddyserver.com) as my web server. Even though Caddy is still quite new, I prefer using it rather than the existing web server like Apache or Nginx. The reasons are :
+After finished [setting up][1] my VPS, next I want to install [Caddy][2] as my web server. Even though Caddy is still quite new, I prefer using it rather than the existing web server like Apache or Nginx. The reasons are :
 
 - It's the only web server that uses HTTPS by default.
 - It's easy to configure. For example, to enable HTTPs we only need to write 3-line configuration file.
 - Because it's written in Go, it's only use single binary without any dependencies, which make it really easy to install.
-- It's production ready and has been [used](https://caddyserver.com/stats) by many people.
+- It's production ready and has been [used][3] by many people.
 
-While Caddy already provides a [precompiled](https://caddyserver.com/download) binary, it's only free for personal use. In other hand, I still don't have the privilege to pay the monthly payment for the commercial license. Fortunately, that limitation only implemented for the precompiled binary. That means we still can use Caddy for free even for commercial use, as long as we built it from the source.
+While Caddy already provides a [precompiled][4] binary, it's only free for personal use. In other hand, I still don't have the privilege to pay the monthly payment for the commercial license. Fortunately, that limitation only implemented for the precompiled binary. That means we still can use Caddy for free even for commercial use, as long as we built it from the source.
 
 ### Table of Contents
 
@@ -24,7 +24,7 @@ While Caddy already provides a [precompiled](https://caddyserver.com/download) b
 
 ### Install Go
 
-First, [download](https://golang.org/dl/) the latest Go version to your VPS. When this post is written, the latest version is 1.10.3 :
+First, [download][5] the latest Go version to your VPS. When this post is written, the latest version is 1.10.3 :
 
 ```bash
 wget https://dl.google.com/go/go1.10.3.linux-amd64.tar.gz
@@ -94,8 +94,8 @@ go get -u -v github.com/caddyserver/builds
 
 Next download the plugin that you want to use. In my case, I will use these plugins :
 
-- [git](https://github.com/abiosoft/caddy-git), the git plugin that make it possible to deploy a site with a simple git push.
-- [dns.cloudflare](https://github.com/caddyserver/dnsproviders/tree/master/cloudflare), which allows you to obtain certificates using DNS records for domains managed with Cloudflare.
+- [git][6], the git plugin that make it possible to deploy a site with a simple git push.
+- [dns.cloudflare][7], which allows you to obtain certificates using DNS records for domains managed with Cloudflare.
 
 To download these plugins, run :
 
@@ -147,7 +147,7 @@ Now we could run Caddy in background as the web server. There are several ways t
 nohup caddy -conf "/path/to/Caddyfile" >> ~/Caddy.log 2>&1 &
 ```
 
-The command above will run `caddy` in background and put the log file in `$HOME/Caddy.log`. To make Caddy run when the server start, you can use the [cron](https://en.wikipedia.org/wiki/Cron) job. To do this, first open the configuration file by running :
+The command above will run `caddy` in background and put the log file in `$HOME/Caddy.log`. To make Caddy run when the server start, you can use the [cron][8] job. To do this, first open the configuration file by running :
 
 ```bash
 crontab -e
@@ -163,4 +163,14 @@ Save and close the configuration file. The `@reboot` syntax means the command in
 
 ### Finished
 
-At this point, Caddy has been installed on your system and will run automatically when system starts. You should check the [documentation](https://caddyserver.com/docs) to learn how to create Caddyfile and activate the HTTPs for your site.
+At this point, Caddy has been installed on your system and will run automatically when system starts. You should check the [documentation][9] to learn how to create Caddyfile and activate the HTTPs for your site.
+
+[1]: ./2018-08-18-setting-up-a-new-vps
+[2]: https://caddyserver.com
+[3]: https://caddyserver.com/stats
+[4]: https://caddyserver.com/download
+[5]: https://golang.org/dl/
+[6]: https://github.com/abiosoft/caddy-git
+[7]: https://github.com/caddyserver/dnsproviders/tree/master/cloudflare
+[8]: https://en.wikipedia.org/wiki/Cron
+[9]: https://caddyserver.com/docs

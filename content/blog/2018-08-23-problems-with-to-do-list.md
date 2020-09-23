@@ -6,11 +6,11 @@ Tags = ["summary", "lifehack"]
 Title = "Instead of Writing a To-Do List, Choose One Task that MUST Get Done"
 +++
 
-> This is summary of a great post by [Aytekin Tank](https://medium.com/@aytekintank): [**_"Why high-performers don’t use to-do lists"_**](https://medium.com/swlh/why-high-performers-dont-use-to-do-lists-5d298045444d). I write it here again because : 
+> This is summary of a great post by [Aytekin Tank][1]: [**_"Why high-performers don’t use to-do lists"_**][2]. I write it here again because : 
 >
 > 1. I could bookmark the article. However, once bookmarked I doubt I will read and remember it later.
 > 2. Writing a summary of an article helps me memorize and understand the most important part of the article.
-> 3. [Medium](https://medium.com) is quite heavy to access, so I put it here for faster access and for my archive.
+> 3. [Medium][3] is quite heavy to access, so I put it here for faster access and for my archive.
 
 ### Problems With To-Do List
 
@@ -46,3 +46,7 @@ Suppose we have a to-do list that belongs to Jim, a sales professional that work
 8. Clean the house.
 
 While cleaning the house, doing the laundry, etc. might be nice, they aren't going to create the most impact for the day. However, if you’re a sales professional like Jim (where you get paid to make sales) you better make sure you're working on your 50 cold calls for the day.
+
+[1]: https://medium.com/@aytekintank
+[2]: https://medium.com/swlh/why-high-performers-dont-use-to-do-lists-5d298045444d
+[3]: https://medium.com

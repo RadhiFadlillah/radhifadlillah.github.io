@@ -1,19 +1,19 @@
 +++
 Author = "Radhi Fadlillah"
 CreateTime = 2019-03-28T22:29:10+07:00
-Tags = ["go", "golang"]
+Tags = ["golang"]
 Title = "Readability for Go"
 +++
 
-> This post is an introduction for `go-readability`, a library for fetching the readable content from a web page. It's released under MIT license and available [here](https://github.com/go-shiori/go-readability).
+> This post is an introduction for `go-readability`, a library for fetching the readable content from a web page. It's released under MIT license and available [here][1].
 
-I've been working on a simple bookmark manager called [Shiori](https://github.com/RadhiFadlillah/shiori) on and off for the last few months. It's main feature is the ability to save the main content of a web page as text which can be easily searched later. To do so, it depends on my own package called [`go-readability`](https://github.com/go-shiori/go-readability).
+I've been working on a simple bookmark manager called [Shiori][2] on and off for the last few months. It's main feature is the ability to save the main content of a web page as text which can be easily searched later. To do so, it depends on my own package called [`go-readability`][1].
 
-The problem is, `go-readability` was based on old project by [`ying32`](https://github.com/ying32/readability) which hasn't been updated for almost a year. The parse result from it was good, but still not comparable to result from reader mode in Firefox. So, I decided to rewrite everything to make sure it follows the code in [Readability.js](https://github.com/mozilla/readability) that used by Firefox.
+The problem is, `go-readability` was based on old project by [`ying32`][3] which hasn't been updated for almost a year. The parse result from it was good, but still not comparable to result from reader mode in Firefox. So, I decided to rewrite everything to make sure it follows the code in [Readability.js][4] that used by Firefox.
 
 After almost a month, I finished the rewrite. The rewrite was done carefully line by line to make sure it looks and works as similar as possible with Readability.js. This way, hopefully all web page that can be parsed by Readability.js are parse-able by `go-readability` as well. And, if there are new improvements in Readability.js, it should be easy enough to implement it.
 
-As usual, `go-readability` is published in [Github](https://github.com/go-shiori/go-readability) under MIT license. To install this package, assuming you already installed Go, you can just run :
+As usual, `go-readability` is published in [Github][1] under MIT license. To install this package, assuming you already installed Go, you can just run :
 
 ```
 go get -u -v github.com/go-shiori/go-readability
@@ -83,3 +83,8 @@ Then you can use it like this :
 ```
 go-readability <url>
 ```
+
+[1]: https://github.com/go-shiori/go-readability
+[2]: https://github.com/go-shiori/shiori
+[3]: https://github.com/ying32/readability
+[4]: https://github.com/mozilla/readability

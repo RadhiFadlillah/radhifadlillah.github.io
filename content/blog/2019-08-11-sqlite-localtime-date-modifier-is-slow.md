@@ -24,7 +24,7 @@ WHERE DATE(input_time, "localtime") >= "2019-01-01"
 AND DATE(input_time, "localtime") <= "2019-08-10";
 ```
 
-Since this query is really slow, I started looking for another alternative. I found that SQLite has `NNN hours` [modifier](https://sqlite.org/lang_datefunc.html) which simply add `NNN` hours int the date time column. So, to replace `localtime` modifier I only need to find current timezone offset (in my case its +7 from UTC) then put it into the query. The new query now look like this :
+Since this query is really slow, I started looking for another alternative. I found that SQLite has `NNN hours` [modifier][1] which simply add `NNN` hours int the date time column. So, to replace `localtime` modifier I only need to find current timezone offset (in my case its +7 from UTC) then put it into the query. The new query now look like this :
 
 ```sql
 SELECT COUNT(*) FROM purchase
@@ -91,3 +91,5 @@ Hours is 5.50x faster than Localtime
 ```
 
 With that said, when working with date and time in SQLite it might be better to use `NNN hours` than the `localtime` modifier.
+
+[1]: https://sqlite.org/lang_datefunc.html

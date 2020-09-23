@@ -2,7 +2,7 @@
 Author = "Radhi Fadlillah"
 CreateTime = 2018-10-08T18:58:12+07:00
 Description = "While scraping some data from website, I found out that some websites will deny your request if there are too many concurrent requests. To fix this, we need to limit number of goroutine that run at a time."
-Tags = ["go", "golang"]
+Tags = ["golang"]
 Title = "Limiting Number of Goroutine"
 +++
 
@@ -59,4 +59,6 @@ func main() {
 }
 ```
 
-As you can see, the code itself is really simple. For `guard`, I use channel of empty struct instead of other types like boolean or integer. This is because empty structs occupies zero bytes of storage, which means we can put as many guard as we want without worrying about memory usage. For more details about empty structs, do check out the [article](https://dave.cheney.net/2014/03/25/the-empty-struct) by Dave Cheney which thoroughly explains about empty structs.
+As you can see, the code itself is really simple. For `guard`, I use channel of empty struct instead of other types like boolean or integer. This is because empty structs occupies zero bytes of storage, which means we can put as many guard as we want without worrying about memory usage. For more details about empty structs, do check out the [article][1] by Dave Cheney which thoroughly explains about empty structs.
+
+[1]: https://dave.cheney.net/2014/03/25/the-empty-struct

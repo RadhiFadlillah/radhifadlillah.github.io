@@ -1,7 +1,6 @@
 +++
 Author = "Radhi Fadlillah"
 CreateTime = 2018-09-29T16:36:33+07:00
-Tags = ["linux", "go", "golang", "fathom", "analytic"]
 Title = "Use Fathom for Analytic"
 UpdateTime = 2019-04-25T15:30:10+07:00
 +++
