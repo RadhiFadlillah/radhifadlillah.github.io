@@ -10,8 +10,12 @@
 }
 
 body {
-	.checkerboard(30%);
-	overflow: auto;
+	overflow             : auto;
+	background-color     : @bgColor;
+	background-image     : url(../res/checkerboard-1.svg);
+	background-size      : .pixel(2)[] .pixel(2)[];
+	background-position  : 0 0, .pixel(1)[] .pixel(1)[];
+	background-attachment: fixed;
 }
 
 // Component styles
@@ -55,7 +59,7 @@ body {
 // Mobile device
 @media screen and (max-width:699px) {
 	body {
-		.checkerboard(0%);
+		background-image: url(../res/checkerboard-2.svg);
 	}
 
 	.dir-page {
