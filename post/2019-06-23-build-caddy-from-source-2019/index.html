@@ -1,0 +1,93 @@
+<!doctype html><html>
+<head>
+<title>Build Caddy from Source in 2019 - Radhi Fadlillah</title>
+<meta name=twitter:title content="Build Caddy from Source in 2019 - Radhi Fadlillah">
+<meta property=og:title content="Build Caddy from Source in 2019 - Radhi Fadlillah">
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta http-equiv=x-ua-compatible content="ie=edge">
+<meta name=description content="Since my previous tutorial in 2018, there are many changes and improvement in Caddy Server. One of the improvement is the building process now far easier than before.">
+<meta name=twitter:description content="Since my previous tutorial in 2018, there are many changes and improvement in Caddy Server. One of the improvement is the building process now far easier than before.">
+<meta property=og:description content="Since my previous tutorial in 2018, there are many changes and improvement in Caddy Server. One of the improvement is the building process now far easier than before.">
+<link rel=stylesheet href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700">
+<link rel=stylesheet href="https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700">
+<link rel=stylesheet href=/css/stylesheet.css>
+<link rel=stylesheet href=/css/dracula.css>
+<link rel=apple-touch-icon-precomposed sizes=144x144 href=/res/apple-touch-icon-144x144.png>
+<link rel=apple-touch-icon-precomposed sizes=152x152 href=/res/apple-touch-icon-152x152.png>
+<link rel=icon type=image/png href=/res/favicon-32x32.png sizes=32x32>
+<link rel=icon type=image/png href=/res/favicon-16x16.png sizes=16x16>
+<link rel="shortcut icon" href=/res/favicon.ico>
+</head>
+<body>
+<div id=header>
+<div class=content>
+<a id=text-logo href=/>Radhi Fadlillah</a>
+<div class=spacer></div>
+<a href=/page/about class=header-link>About</a>
+</div>
+</div>
+<div id=body>
+<div class=content id=content-post>
+<div id=post-metadata>
+<a id=post-category href=/category/tutorial>
+tutorial
+</a>
+<p id=post-title>Build Caddy from Source in 2019</p>
+<div id=post-time>
+<p id=post-author>Radhi Fadlillah</p>
+<p id=post-created>2019-06-23 22:20</p>
+</div>
+</div>
+<div id=post-html class=content-html><html><head></head><body><p>Since my <a href=/post/2018-08-19-build-caddy-from-source>previous</a> tutorial in 2018, there are many changes and improvement in Caddy Server. One of the improvement is the building process now far easier than before.</p>
+<p>In the past, to build Caddy with several plugins installed, we need to modify Caddy’s source code. This is not exactly easy, especially for beginner. Today, thanks to Go module, we can easily do it without modifying the source code.</p>
+<p>For example, here we will build Caddy with <a href=https://github.com/caddyserver/dnsproviders/tree/master/cloudflare>dns.cloudflare</a> plugin which allows you to obtain certificates using DNS records for domains managed with Cloudflare. Before you start, make sure Go 1.12 or newer already installed on your system.</p>
+<h3 id=building-caddy-and-its-plugins>Building Caddy and Its Plugins</h3>
+<p>First, create a new folder anywhere and create a Go file with following content:</p>
+<pre><code class=language-go><pre class=chroma><span class=kn>package</span> <span class=nx>main</span>
+
+<span class=kn>import</span> <span class=p>(</span>
+    <span class=c1>// The main Caddy server
+</span><span class=c1></span>	<span class=s>&#34;github.com/caddyserver/caddy/caddy/caddymain&#34;</span>
+	
+	<span class=c1>// Caddy plugins, use underscore as import name
+</span><span class=c1></span>	<span class=nx>_</span> <span class=s>&#34;github.com/caddyserver/dnsproviders/cloudflare&#34;</span>
+<span class=p>)</span>
+
+<span class=kd>func</span> <span class=nf>main</span><span class=p>()</span> <span class=p>{</span>
+	<span class=nx>caddymain</span><span class=p>.</span><span class=nf>Run</span><span class=p>()</span>
+<span class=p>}</span></pre></code></pre>
+<p>Next, initiate the folder as Go module named <code>caddy</code>:</p>
+<pre><code><pre class=chroma>go mod init caddy</pre></code></pre>
+<p>After that, add and update Caddy as module dependency:</p>
+<pre><code><pre class=chroma>go get -u github.com/caddyserver/caddy</pre></code></pre>
+<p>Now we just need to install it by running <code>go install</code> which will put <code>caddy</code> in <code>$GOPATH/bin</code>.</p>
+<h3 id=run-caddy>Run Caddy</h3>
+<p>As web server, Caddy will need the access to port 80 (HTTP) and 443 (HTTPs). To do so, we need to let Caddy to listen to port &lt; 1024 by running :</p>
+<pre><code class=language-bash><pre class=chroma>sudo setcap cap_net_bind_service=+ep $GOPATH/bin/caddy</pre></code></pre>
+<p>Next we need to increase the maximum number of open files in our server. To do this, we need to increase the limit of file descriptor by running :</p>
+<pre><code class=language-bash><pre class=chroma>ulimit -n 8192</pre></code></pre>
+<p>Now we could run Caddy in background as the web server. There are several ways to do this. We can use <code>nohup</code> and <code>cron</code> to run Caddy in background when the server start. To do this, first open the <code>cron</code> configuration file by running :</p>
+<pre><code class=language-bash><pre class=chroma>crontab -e</pre></code></pre>
+<p>Next add these lines to the end of file :</p>
+<pre><code class=language-bash><pre class=chroma>@reboot . $HOME/.profile &amp;&amp; nohup caddy -conf &#34;/path/to/Caddyfile&#34; &gt;&gt; ~/Caddy.log 2&gt;&amp;1 &amp;</pre></code></pre>
+<p>We can also create Caddy as system <a href=/post/2018-09-28-create-a-service-systemd/>service</a> which might be more preferrable for most people.</p>
+</body></html></div>
+<div id=post-tags>
+<a href=/tag/caddy># caddy</a>
+<a href=/tag/linux># linux</a>
+<a href=/tag/sysadmin># sysadmin</a>
+<a href=/tag/tutorial># tutorial</a>
+<a href=/tag/vps># vps</a>
+<a href=/tag/webserver># webserver</a>
+</div>
+</div>
+</div>
+<div id=footer>
+<div class=content>
+<p>© 2019 Radhi Fadlillah. Made with <a href=https://github.com/go-spook/spook>Spook</a>
+using the <a href=https://github.com/go-spook/basic-theme>Basic</a> theme.</p>
+</div>
+</div>
+</body>
+</html>

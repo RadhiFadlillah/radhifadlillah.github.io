@@ -1,0 +1,151 @@
+<!doctype html><html>
+<head>
+<title>SQLite Localtime Date Modifier is Slow - Radhi Fadlillah</title>
+<meta name=twitter:title content="SQLite Localtime Date Modifier is Slow - Radhi Fadlillah">
+<meta property=og:title content="SQLite Localtime Date Modifier is Slow - Radhi Fadlillah">
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta http-equiv=x-ua-compatible content="ie=edge">
+<meta name=description content="Today I found a weird bug in my company’s dashboard app where it took a long time to load data from SQLite database. The number of data is not too many (only around 400k&gt; rows), yet it took several seconds to load. This is really weird, especially considering SQLite is famous for its reading speed. Turn out, this issue is happened because I was using localtime date modifier in my SELECT query.">
+<meta name=twitter:description content="Today I found a weird bug in my company’s dashboard app where it took a long time to load data from SQLite database. The number of data is not too many (only around 400k&gt; rows), yet it took several seconds to load. This is really weird, especially considering SQLite is famous for its reading speed. Turn out, this issue is happened because I was using localtime date modifier in my SELECT query.">
+<meta property=og:description content="Today I found a weird bug in my company’s dashboard app where it took a long time to load data from SQLite database. The number of data is not too many (only around 400k&gt; rows), yet it took several seconds to load. This is really weird, especially considering SQLite is famous for its reading speed. Turn out, this issue is happened because I was using localtime date modifier in my SELECT query.">
+<link rel=stylesheet href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700">
+<link rel=stylesheet href="https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700">
+<link rel=stylesheet href=/css/stylesheet.css>
+<link rel=stylesheet href=/css/dracula.css>
+<link rel=apple-touch-icon-precomposed sizes=144x144 href=/res/apple-touch-icon-144x144.png>
+<link rel=apple-touch-icon-precomposed sizes=152x152 href=/res/apple-touch-icon-152x152.png>
+<link rel=icon type=image/png href=/res/favicon-32x32.png sizes=32x32>
+<link rel=icon type=image/png href=/res/favicon-16x16.png sizes=16x16>
+<link rel="shortcut icon" href=/res/favicon.ico>
+</head>
+<body>
+<div id=header>
+<div class=content>
+<a id=text-logo href=/>Radhi Fadlillah</a>
+<div class=spacer></div>
+<a href=/page/about class=header-link>About</a>
+</div>
+</div>
+<div id=body>
+<div class=content id=content-post>
+<div id=post-metadata>
+<a id=post-category href=/category/programming>
+programming
+</a>
+<p id=post-title>SQLite Localtime Date Modifier is Slow</p>
+<div id=post-time>
+<p id=post-author>Radhi Fadlillah</p>
+<p id=post-created>2019-08-11 10:57</p>
+</div>
+</div>
+<div id=post-html class=content-html><html><head></head><body><p>Today I found a weird bug in my company’s dashboard app where it took a long time to load data from SQLite database. The number of data is not too many (only around 400k&gt; rows), yet it took several seconds to load. This is really weird, especially considering SQLite is famous for its reading speed. Turn out, this issue is happened because I was using <code>localtime</code> date modifier in my <code>SELECT</code> query.</p>
+<p>Our dashboard app has a table called <code>purchase</code> that used to contains the purchase history from our consumer and (kind of) structured like this :</p>
+<table>
+<thead>
+<tr>
+<th align=center>Column Name</th>
+<th align=center>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align=center>id</td>
+<td align=center>INTEGER</td>
+<td>The purchase ID</td>
+</tr>
+<tr>
+<td align=center>qty</td>
+<td align=center>INTEGER</td>
+<td>Count of purchased products</td>
+</tr>
+<tr>
+<td align=center>total</td>
+<td align=center>INTEGER</td>
+<td>Total price of the purchased products</td>
+</tr>
+<tr>
+<td align=center>input_time</td>
+<td align=center>TEXT</td>
+<td>Time of transaction in UTC time</td>
+</tr>
+</tbody>
+</table>
+<p>Since the purchase history is saved in UTC, when user want to see the purchased items between two periods, the app must convert <code>input_time</code> into local time, filter it, then send the result to user. This is how we query it back then :</p>
+<pre><code class=language-sql><pre class=chroma>SELECT COUNT(*) FROM purchase
+WHERE DATE(input_time, &#34;localtime&#34;) &gt;= &#34;2019-01-01&#34;
+AND DATE(input_time, &#34;localtime&#34;) &lt;= &#34;2019-08-10&#34;;</pre></code></pre>
+<p>Since this query is really slow, I started looking for another alternative. I found that SQLite has <code>NNN hours</code> <a href=https://sqlite.org/lang_datefunc.html>modifier</a> which simply add <code>NNN</code> hours int the date time column. So, to replace <code>localtime</code> modifier I only need to find current timezone offset (in my case its +7 from UTC) then put it into the query. The new query now look like this :</p>
+<pre><code class=language-sql><pre class=chroma>SELECT COUNT(*) FROM purchase
+WHERE DATE(input_time, &#34;+7 hours&#34;) &gt;= &#34;2019-01-01&#34;
+AND DATE(input_time, &#34;+7 hours&#34;) &lt;= &#34;2019-08-10&#34;;</pre></code></pre>
+<p>Turns out this new query is far faster than the previous query that uses <code>localtime</code> modifier. I tried to do some benchmark by populating the <code>purchase</code> table with several thousand data, then query it using both modifier. From the result I found that <code>NNN hours</code> modifier is around 5x faster than <code>localtime</code> modifier :</p>
+<pre><code><pre class=chroma>N Days    : 10
+Rows      : 2649
+Localtime : 3.522 s
+Hours     : 0.641 s
+Hours is 5.49x faster than Localtime
+
+N Days    : 20
+Rows      : 5059
+Localtime : 3.533 s
+Hours     : 0.634 s
+Hours is 5.57x faster than Localtime
+
+N Days    : 40
+Rows      : 9831
+Localtime : 3.503 s
+Hours     : 0.616 s
+Hours is 5.69x faster than Localtime
+
+N Days    : 80
+Rows      : 19481
+Localtime : 3.532 s
+Hours     : 0.633 s
+Hours is 5.58x faster than Localtime
+
+N Days    : 160
+Rows      : 38674
+Localtime : 3.501 s
+Hours     : 0.636 s
+Hours is 5.50x faster than Localtime
+
+N Days    : 320
+Rows      : 77206
+Localtime : 3.590 s
+Hours     : 0.658 s
+Hours is 5.46x faster than Localtime
+
+N Days    : 640
+Rows      : 154173
+Localtime : 3.598 s
+Hours     : 0.658 s
+Hours is 5.47x faster than Localtime
+
+N Days    : 1280
+Rows      : 308009
+Localtime : 3.568 s
+Hours     : 0.658 s
+Hours is 5.42x faster than Localtime
+
+N Days    : 2560
+Rows      : 615760
+Localtime : 3.657 s
+Hours     : 0.665 s
+Hours is 5.50x faster than Localtime</pre></code></pre>
+<p>With that said, when working with date and time in SQLite it might be better to use <code>NNN hours</code> than the <code>localtime</code> modifier.</p>
+</body></html></div>
+<div id=post-tags>
+<a href=/tag/sqlite># sqlite</a>
+</div>
+</div>
+</div>
+<div id=footer>
+<div class=content>
+<p>© 2019 Radhi Fadlillah. Made with <a href=https://github.com/go-spook/spook>Spook</a>
+using the <a href=https://github.com/go-spook/basic-theme>Basic</a> theme.</p>
+</div>
+</div>
+</body>
+</html>
