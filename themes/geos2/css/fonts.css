@@ -1,0 +1,52 @@
+@font-face {
+	font-family : 'Athene';
+	src         : url('fonts/Athene.woff2') format('woff2'), url('fonts/Athene.woff') format('woff');
+	font-weight : 500;
+	font-style  : normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Share Tech Mono';
+	font-style : normal;
+	font-weight: 400;
+	src        : local('Share Tech Mono'), local('ShareTechMono-Regular'),
+		url('fonts/share-tech-mono-v10-latin-regular.woff2') format('woff2'),
+		url('fonts/share-tech-mono-v10-latin-regular.woff') format('woff');
+}
+
+@font-face {
+	font-family: 'Chakra Petch';
+	font-style : normal;
+	font-weight: 500;
+	src        : local('Chakra Petch Medium'), local('ChakraPetch-Medium'),
+		url('fonts/chakra-petch-v4-latin-ext_latin-500.woff2') format('woff2'),
+		url('fonts/chakra-petch-v4-latin-ext_latin-500.woff') format('woff');
+}
+
+@font-face {
+	font-family: 'Chakra Petch';
+	font-style : italic;
+	font-weight: 500;
+	src        : local('Chakra Petch Medium Italic'), local('ChakraPetch-MediumItalic'),
+		url('fonts/chakra-petch-v4-latin-ext_latin-500italic.woff2') format('woff2'),
+		url('fonts/chakra-petch-v4-latin-ext_latin-500italic.woff') format('woff');
+}
+
+@font-face {
+	font-family: 'Chakra Petch';
+	font-style : normal;
+	font-weight: 700;
+	src        : local('Chakra Petch Bold'), local('ChakraPetch-Bold'),
+		url('fonts/chakra-petch-v4-latin-ext_latin-700.woff2') format('woff2'),
+		url('fonts/chakra-petch-v4-latin-ext_latin-700.woff') format('woff');
+}
+
+@font-face {
+	font-family: 'Chakra Petch';
+	font-style : italic;
+	font-weight: 700;
+	src        : local('Chakra Petch Bold Italic'), local('ChakraPetch-BoldItalic'),
+		url('fonts/chakra-petch-v4-latin-ext_latin-700italic.woff2') format('woff2'),
+		url('fonts/chakra-petch-v4-latin-ext_latin-700italic.woff') format('woff');
+}

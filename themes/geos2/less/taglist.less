@@ -1,0 +1,74 @@
+.tl__content {
+	.mainFont();
+	display  : flex;
+	flex-flow: column nowrap;
+	padding  : .pixel(1)[] 0;
+	overflow : auto;
+}
+
+.tl__item {
+	display    : flex;
+	flex-flow  : row nowrap;
+	color      : @fgColor;
+	padding    : .pixel(1)[] .pixel(3)[];
+	line-height: .pixel(8)[];
+	align-items: baseline;
+
+	&:hover,
+	&:focus {
+		color           : @bgColor;
+		background-color: @fgColor;
+
+		.tl__item__icon::before,
+		.tl__item__icon::after {
+			border-color: @bgColor;
+		}
+	}
+}
+
+.tl__item__icon {
+	display     : block;
+	flex-shrink : 0;
+	height      : .pixel(5)[];
+	width       : .pixel(6)[];
+	margin-right: .pixel(3)[];
+	position    : relative;
+
+	&::before {
+		content      : "";
+		box-sizing   : border-box;
+		display      : block;
+		position     : absolute;
+		left         : .pixel(1)[];
+		height       : .pixel(5)[];
+		width        : .pixel(4)[];
+		border       : .pixel(1)[] solid @fgColor;
+		border-top   : 0;
+		border-bottom: 0;
+	}
+
+	&::after {
+		content     : "";
+		box-sizing  : border-box;
+		display     : block;
+		position    : absolute;
+		top         : .pixel(1)[];
+		height      : .pixel(3)[];
+		width       : .pixel(6)[];
+		border      : .pixel(1)[] solid @fgColor;
+		border-left : 0;
+		border-right: 0;
+	}
+}
+
+.tl__item__name {
+	flex         : 1 0;
+	margin-right : .pixel(3)[];
+	overflow     : hidden;
+	text-overflow: ellipsis;
+}
+
+.tl__item__info {
+	white-space: nowrap;
+	flex-shrink: 0;
+}

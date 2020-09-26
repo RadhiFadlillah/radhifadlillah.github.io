@@ -1,0 +1,132 @@
+.fm__content {
+	.mainFont();
+	display  : flex;
+	flex-flow: column nowrap;
+	padding  : .pixel(1)[] 0;
+	overflow : auto;
+}
+
+.fm__dir {
+	display    : flex;
+	flex-flow  : row nowrap;
+	color      : @fgColor;
+	padding    : .pixel(1)[] .pixel(3)[];
+	line-height: .pixel(8)[];
+	align-items: baseline;
+
+	&:hover,
+	&:focus {
+		color           : @bgColor;
+		background-color: @fgColor;
+
+		.fm__dir__icon,
+		.fm__dir__icon::before {
+			background-color: @fgColor;
+			border-color    : @bgColor;
+		}
+	}
+}
+
+.fm__dir__icon {
+	display         : block;
+	height          : .pixel(5)[];
+	width           : .pixel(6)[];
+	position        : relative;
+	background-color: @bgColor;
+	border          : .pixel(1)[] solid @fgColor;
+	margin-right    : .pixel(3)[];
+	flex-shrink     : 0;
+
+	&::before {
+		content         : "";
+		box-sizing      : border-box;
+		display         : block;
+		height          : .pixel(2)[];
+		width           : .pixel(3)[];
+		margin          : .pixel(-1)[];
+		border          : .pixel(1)[] solid @fgColor;
+		border-top      : 0;
+		border-left     : 0;
+		background-color: @bgColor;
+	}
+}
+
+.fm__dir__name {
+	flex         : 1 0;
+	margin-right : .pixel(3)[];
+	overflow     : hidden;
+	text-overflow: ellipsis;
+}
+
+.fm__dir__info {
+	white-space: nowrap;
+	flex-shrink: 0;
+}
+
+.fm__file {
+	display    : flex;
+	flex-flow  : row nowrap;
+	color      : @fgColor;
+	padding    : .pixel(1)[] .pixel(3)[];
+	line-height: .pixel(8)[];
+	align-items: baseline;
+
+	&:hover,
+	&:focus,
+	&.fm--active {
+		color           : @bgColor;
+		background-color: @fgColor;
+	}
+}
+
+.fm__file__name {
+	flex         : 1 0;
+	margin-right : .pixel(3)[];
+	overflow     : hidden;
+	text-overflow: ellipsis;
+	padding-left : .pixel(6)[];
+	text-indent  : .pixel(-6)[];
+}
+
+.fm__file__info {
+	white-space: nowrap;
+	flex-shrink: 0;
+}
+
+.fm__empty {
+	color      : @fgColor;
+	line-height: 1;
+	padding    : .pixel(2)[] .pixel(3)[];
+}
+
+.fm__pagination {
+	.mainFont();
+	display        : flex;
+	flex-flow      : row wrap;
+	color          : @fgColor;
+	padding        : .pixel(2)[] .pixel(2)[] .pixel(0)[];
+	border-top     : .pixel(1)[] solid @fgColor;
+	line-height    : .pixel(8)[];
+	justify-content: center;
+	align-items    : center;
+}
+
+.fm__pagination__button {
+	color     : @fgColor;
+	width     : .pixel(6)[];
+	text-align: center;
+
+	&:hover,
+	&:focus {
+		color           : @bgColor;
+		background-color: @fgColor;
+	}
+}
+
+.fm__pagination__button--hidden {
+	visibility: hidden;
+}
+
+.fm__pagination__number {
+	margin: 0 .pixel(3)[];
+}
