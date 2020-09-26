@@ -132,7 +132,7 @@ I also decided to use [GoatCounter][9] analytics, an open source web analytics p
 [7]: https://fonts.google.com/specimen/Chakra+Petch
 [8]: https://fonts.google.com/specimen/Share+Tech+Mono
 [9]: https://www.goatcounter.com/
-[10]: https://radhifadlillah.goatcounter.com/settings
+[10]: https://radhifadlillah.goatcounter.com
 [asset-1]: /assets/2020-09-26-new-design/old-website.png
 [asset-2]: /assets/2020-09-26-new-design/geosc64.png
 [asset-3]: /assets/2020-09-26-new-design/new-website.png
