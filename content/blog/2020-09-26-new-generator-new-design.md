@@ -61,7 +61,7 @@ After around two years, I found several pain points from Spook :
 - In Spook each post has its own directory whether it has assets or not. Thanks to this, when my site has around twenty posts, the site structure becomes quite long and redundant.
 - In Spook you can only have one active theme, and you are limited with only three templates.
 
-With that said, I believe Spook is not suitable anymore for my needs so it's time to use a better static site generator. I was planning to use Hugo, however I'm a bit sad that my time and code in Spook will be wasted. So I decided to improve Spook to fulfill my requirements. Hence how `boom` created.
+With that said, I believe Spook is not suitable anymore for my needs so it's time to use a better static site generator. I was planning to use Hugo, however I'm a bit sad that my time and code in Spook will be wasted. So I decided to improve Spook to fulfill my requirements. That's how `boom` created.
 
 In Boom your site **MUST** be structured like this :
 
