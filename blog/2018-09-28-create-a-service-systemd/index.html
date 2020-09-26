@@ -1,0 +1,24 @@
+<!doctype html><html lang=en><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><link rel=apple-touch-icon-precomposed sizes=144x144 href=/themes/geos2/res/apple-touch-icon-144x144.png><link rel=apple-touch-icon-precomposed sizes=152x152 href=/themes/geos2/res/apple-touch-icon-152x152.png><link rel=icon type=image/png href=/themes/geos2/res/favicon-32x32.png sizes=32x32><link rel=icon type=image/png href=/themes/geos2/res/favicon-16x16.png sizes=16x16><link href=/themes/geos2/css/fonts.css rel=stylesheet><link href=/themes/geos2/css/index.css rel=stylesheet><title>Creating a Basic Linux Service Using Systemd - Radhi Fadlillah</title><div class=file-page><div class="window reader"><div class=window__header><p class=window__header__title>Creating a Basic Linux Service Using Systemd (28/9/18)</div><div class="window__status-bar url-trail file-page__url-trail"><a href=/ class=url-trail__item>&lt;root></a>
+<a href=/blog class=url-trail__item>blog</a>
+<a href=/blog/2018-09-28-create-a-service-systemd class=url-trail__item>&lt;current-file></a></div><div class="window__content reader__content"><p>When I started deploying web app on my server, I ran it using <code>nohup</code> instead of running it as a service. I did it because I thought making a service is hard. Apparently, I was wrong.<p>Since Ubuntu server uses Systemd, there are several steps to create and start a service. First of all, create a <code>service</code> file in <code>/etc/systemd/system</code>. For example here I want to run Caddy as a service, so I create file named <code>caddy.service</code> with following content :<pre><code>[Unit]
+Description=Starts the Caddy server
+Requires=network.target
+After=network.target
+
+[Service]
+Type=simple
+User=radhi
+Restart=always
+RestartSec=3
+WorkingDirectory=/home/radhi/caddy
+ExecStart=/home/radhi/go/bin/caddy
+
+[Install]
+WantedBy=multi-user.target
+</code></pre><p>Once finished, save it, then reload Systemd configuration by running :<pre><code>sudo systemctl daemon-reload
+</code></pre><p>After it finished, we can enable and start the service by running :<pre><code>sudo systemctl enable caddy
+sudo systemctl start caddy
+</code></pre><div class=reader__tags><p>Tags:</p><a href=/blog/tag-linux>#linux</a>
+<a href=/blog/tag-sysadmin>#sysadmin</a>
+<a href=/blog/tag-tutorial>#tutorial</a></div><div class=reader__sibling><a href=/blog/2018-09-09-state-of-gui-dev-with-go-2018 class=reader__sibling__prev>State of GUI App Development with Go in 2018</a>
+<a href=/blog/2018-09-29-use-fathom-for-analytic class=reader__sibling__next>Use Fathom for Analytic</a></div></div><div class=window__footer></div></div></div>

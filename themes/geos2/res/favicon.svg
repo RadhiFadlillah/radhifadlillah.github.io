@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="85mm"
+   height="85mm"
+   viewBox="0 0 85 85"
+   version="1.1"
+   id="svg8"
+   inkscape:export-filename="/home/radhi/Pictures/Avatar/19.png"
+   inkscape:export-xdpi="300"
+   inkscape:export-ydpi="300"
+   inkscape:version="1.0 (4035a4fb49, 2020-05-01)"
+   sodipodi:docname="rf2.svg">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.4"
+     inkscape:cx="252.55869"
+     inkscape:cy="47.974363"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     inkscape:document-rotation="0"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:window-width="1920"
+     inkscape:window-height="1021"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-62.158939,-112.80037)">
+    <rect
+       ry="0"
+       rx="0"
+       style="fill:#efe9e7;stroke-width:7.99998;stroke-linecap:round;stroke-dashoffset:100;paint-order:markers stroke fill"
+       id="rect842"
+       width="85"
+       height="85"
+       x="62.158939"
+       y="112.80037" />
+    <path
+       d="m 102.71782,161.75268 v 12.6859 h -7.436557 v -10.9908 l -3.280836,-3.6636 h -11.92037 v 14.6544 h -7.436562 v -38.27642 h 24.004783 l 5.850822,5.90551 v 11.59229 l -3.718278,3.77296 z m -22.637763,-8.09272 h 13.178024 l 1.913821,-1.91383 v -7.43656 l -1.913821,-1.91382 H 80.080057 Z"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:54.6806px;line-height:1.65;font-family:'Chakra Petch';-inkscape-font-specification:'Chakra Petch, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#333333;fill-opacity:1;stroke-width:0.264583"
+       id="path960" />
+    <path
+       d="m 109.55286,136.16216 h 27.12158 v 6.28827 h -19.68502 v 10.60804 h 17.06035 v 6.28827 h -17.06035 v 15.09184 h -7.43656 z"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:54.6806px;line-height:1.65;font-family:'Chakra Petch';-inkscape-font-specification:'Chakra Petch, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#333333;fill-opacity:1;stroke-width:0.264583"
+       id="path962" />
+  </g>
+</svg>
