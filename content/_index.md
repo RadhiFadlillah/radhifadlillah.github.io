@@ -25,10 +25,11 @@ I also have experience on :
 
 There are too many, but here are a few :
 
-1. Till this day I still don't understand O notation.
+1. Till this day I still don't understand big O notation.
 2. I don't really understand how Docker and its family works, though at least I can write a simple Dockerfile.
 3. I never use JavaScript bundler like Babel, Webpack, Rollup, Parcel, etc. Thanks to this, I never use JS frameworks that requires them (React for example). The only bundler that I've use is [esbuild][10] mostly because it's simple (almost zero configuration) and it's really fast.
-4. While I'm fine on reading and writing English, the same can't be said for my speaking.
+4. I don't have credit card, so I never use AWS, GAE or any other services that requires credit card. With that said, I have zero experience with stuffs like Lambda, serverless, etc.
+5. While I'm fine on reading and writing English, the same can't be said for my speaking.
 
 [1]: https://github.com/RadhiFadlillah
 [2]: m.radhi.f@gmail.com
