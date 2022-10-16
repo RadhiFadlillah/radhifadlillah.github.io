@@ -1,55 +1,55 @@
 .window {
 	background-color: @bgColor;
-	border          : .pixel(1)[] solid @fgColor;
-	display         : flex;
-	flex-flow       : column nowrap;
-	overflow        : hidden;
+	border: .pixel(1) [] solid @fgColor;
+	display: flex;
+	flex-flow: column nowrap;
+	overflow: hidden;
 }
 
 .window__header {
 	.stripes();
-	display      : flex;
-	flex-flow    : row nowrap;
-	border-bottom: .pixel(1)[] solid @fgColor;
-	padding      : 0 .pixel(3)[];
-	height       : .pixel(10)[];
-	align-items  : center;
+	display: flex;
+	flex-flow: row nowrap;
+	border-bottom: .pixel(1) [] solid @fgColor;
+	padding: 0 .pixel(3) [];
+	height: .pixel(10) [];
+	align-items: center;
 }
 
 .window__header__title {
-	.mainFont(.5);
-	font-weight     : 700;
-	color           : @fgColor;
-	align-self      : top;
+	.mainFont(0.5);
+	font-weight: 700;
+	color: @fgColor;
+	align-self: top;
 	background-color: @bgColor;
-	margin          : 0 auto;
-	padding         : .pixel(1)[] .pixel(3)[];
-	overflow        : hidden;
-	white-space     : nowrap;
-	text-overflow   : ellipsis;
-	position        : relative;
+	margin: 0 auto;
+	padding: .pixel(1) [] .pixel(3) [];
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	position: relative;
 }
 
 .window__header__button {
-	display         : flex;
-	flex-flow       : column nowrap;
-	align-items     : center;
-	justify-content : center;
-	height          : .pixel(9)[];
-	width           : .pixel(14)[];
+	display: flex;
+	flex-flow: column nowrap;
+	align-items: center;
+	justify-content: center;
+	height: .pixel(9) [];
+	width: .pixel(14) [];
 	background-color: @bgColor;
-	border          : .pixel(1)[] solid @fgColor;
-	border-top      : 0;
-	border-bottom   : 0;
-	flex-shrink     : 0;
-	margin-left     : .pixel(3)[];
+	border: .pixel(1) [] solid @fgColor;
+	border-top: 0;
+	border-bottom: 0;
+	flex-shrink: 0;
+	margin-left: .pixel(3) [];
 
 	&::after {
-		content         : "";
-		box-sizing      : border-box;
-		display         : block;
-		width           : .pixel(4)[];
-		height          : .pixel(2)[];
+		content: '';
+		box-sizing: border-box;
+		display: block;
+		width: .pixel(4) [];
+		height: .pixel(2) [];
 		background-color: @fgColor;
 	}
 
@@ -65,21 +65,21 @@
 
 .window__content {
 	display: block;
-	flex   : 1 0;
+	flex: 1 0;
 }
 
 .window__status-bar {
 	.mainFont();
-	display      : flex;
-	flex-flow    : row nowrap;
-	color        : @fgColor;
-	padding      : .pixel(2)[] .pixel(3)[];
-	border-bottom: .pixel(1)[] solid @fgColor;
-	line-height  : .pixel(9)[];
+	display: flex;
+	flex-flow: row nowrap;
+	color: @fgColor;
+	padding: .pixel(2) [] .pixel(3) [];
+	border-bottom: .pixel(1) [] solid @fgColor;
+	line-height: .pixel(9) [];
 }
 
 .window__footer {
 	.stripes();
 	display: block;
-	height : .pixel(3)[];
+	height: .pixel(3) [];
 }

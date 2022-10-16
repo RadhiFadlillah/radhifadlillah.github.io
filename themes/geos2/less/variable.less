@@ -1,23 +1,23 @@
 // Colors
-@black     :#000000;
-@white     :#ffffff;
-@red       :#880000;
-@cyan      :#AAFFEE;
-@purple    :#CC44CC;
-@green     :#00CC55;
-@blue      :#0000AA;
-@yellow    :#EEEE77;
-@orange    :#DD8855;
-@brown     :#664400;
-@lightRed  :#FF7777;
-@darkGrey  :#333333;
-@grey      :#777777;
-@lightGreen: #AAFF66;
-@lightBlue :#0088FF;
-@lightGrey :#BBBBBB;
+@black: #000000;
+@white: #ffffff;
+@red: #880000;
+@cyan: #aaffee;
+@purple: #cc44cc;
+@green: #00cc55;
+@blue: #0000aa;
+@yellow: #eeee77;
+@orange: #dd8855;
+@brown: #664400;
+@lightRed: #ff7777;
+@darkGrey: #333333;
+@grey: #999999;
+@lightGreen: #aaff66;
+@lightBlue: #0088ff;
+@lightGrey: #bbbbbb;
 
-@bgColor    : #efe9e7;
-@fgColor    : @darkGrey;
+@bgColor: #efe9e7;
+@fgColor: @darkGrey;
 @accentColor: @red;
 
 // Pixel scale
@@ -29,19 +29,19 @@
 .stripes() {
 	background-color: @bgColor;
 	background-image: linear-gradient(transparent 50%, @fgColor 50%);
-	background-size : .pixel(2)[] .pixel(2)[];
+	background-size: .pixel(2) [] .pixel(2) [];
 }
 
 // Fonts
 // TODO: decide between Athene and Chakra Petch
 .mainFont(@size: 1rem) {
-	font-size  : @size;
-	font-family: "Chakra Petch", sans-serif;
+	font-size: @size;
+	font-family: 'Chakra Petch', sans-serif;
 	font-weight: 500;
 }
 
-.monospaceFont(@size: 1rem) {
-	font-size  : @size;
-	font-family: "Share Tech Mono", monospace;
+.monospaceFont(@size: 0.9rem) {
+	font-size: @size;
+	font-family: 'JetBrainsMono', monospace;
 	font-weight: normal;
 }

@@ -1,24 +1,24 @@
 .url-trail {
-	display    : block;
-	padding    : .pixel(1)[] .pixel(2)[];
-	font-size  : 0;
+	display: block;
+	padding: .pixel(1) [] .pixel(2) [];
+	font-size: 0;
 	line-height: 1;
 }
 
 .url-trail__item {
 	.mainFont();
-	color      : @fgColor;
-	padding    : 0 .pixel(1)[];
-	line-height: .pixel(8)[];
+	color: @fgColor;
+	padding: 0 .pixel(1) [];
+	line-height: .pixel(8) [];
 
 	&:hover,
 	&:focus {
-		color           : @bgColor;
+		color: @bgColor;
 		background-color: @fgColor;
 	}
 
 	&:first-child {
-		margin-left: .pixel(-1)[];
+		margin-left: .pixel(-1) [];
 	}
 
 	&:last-child {
@@ -26,20 +26,20 @@
 	}
 
 	&:not(:last-child) {
-		position    : relative;
-		margin-right: .pixel(3)[];
+		position: relative;
+		margin-right: .pixel(3) [];
 	}
 
 	&:not(:last-child)::after {
 		.mainFont();
-		content         : "/";
-		position        : absolute;
-		left            : 100%;
-		top             : 50%;
-		margin-top      : .pixel(-2)[];
-		width           : .pixel(3)[];
-		line-height     : .pixel(4)[];
-		color           : @fgColor  !important;
-		background-color: @bgColor  !important;
+		content: '/';
+		position: absolute;
+		left: 100%;
+		top: 50%;
+		margin-top: .pixel(-2) [];
+		width: .pixel(3) [];
+		line-height: .pixel(4) [];
+		color: @fgColor !important;
+		background-color: @bgColor !important;
 	}
 }
