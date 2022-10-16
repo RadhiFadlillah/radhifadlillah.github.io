@@ -1,55 +1,56 @@
-<!doctype html><html lang=en><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><link rel=apple-touch-icon-precomposed sizes=144x144 href=/themes/geos2/res/apple-touch-icon-144x144.png><link rel=apple-touch-icon-precomposed sizes=152x152 href=/themes/geos2/res/apple-touch-icon-152x152.png><link rel=icon type=image/png href=/themes/geos2/res/favicon-32x32.png sizes=32x32><link rel=icon type=image/png href=/themes/geos2/res/favicon-16x16.png sizes=16x16><script data-goatcounter=https://radhifadlillah.goatcounter.com/count async src=//gc.zgo.at/count.js></script><link href=/themes/geos2/css/fonts.css rel=stylesheet><link href=/themes/geos2/css/index.css rel=stylesheet><title>Readability for Go - Radhi Fadlillah</title><div class=file-page><div class="window reader"><div class=window__header><p class=window__header__title>Readability for Go (28/3/19)</div><div class="window__status-bar url-trail file-page__url-trail"><a href=/ class=url-trail__item>&lt;root></a>
+<!doctype html><html lang=en><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><link rel=apple-touch-icon-precomposed sizes=144x144 href=/themes/geos2/res/apple-touch-icon-144x144.png><link rel=apple-touch-icon-precomposed sizes=152x152 href=/themes/geos2/res/apple-touch-icon-152x152.png><link rel=icon type=image/png href=/themes/geos2/res/favicon-32x32.png sizes=32x32><link rel=icon type=image/png href=/themes/geos2/res/favicon-16x16.png sizes=16x16><script data-goatcounter=https://radhifadlillah.goatcounter.com/count async src=//gc.zgo.at/count.js></script>
+<link href=/themes/geos2/css/fonts.css rel=stylesheet><link href=/themes/geos2/css/index.css rel=stylesheet><title>Readability for Go - Radhi Fadlillah</title><div class=file-page><div class="window reader"><div class=window__header><p class=window__header__title>Readability for Go (28/3/19)</div><div class="window__status-bar url-trail file-page__url-trail"><a href=/ class=url-trail__item>&lt;root></a>
 <a href=/blog class=url-trail__item>blog</a>
 <a href=/blog/2019-03-28-readability-for-go class=url-trail__item>&lt;current-file></a></div><div class="window__content reader__content"><blockquote><p>This post is an introduction for <code>go-readability</code>, a library for fetching the readable content from a web page. It's released under MIT license and available <a href=https://github.com/go-shiori/go-readability>here</a>.</blockquote><p>I've been working on a simple bookmark manager called <a href=https://github.com/go-shiori/shiori>Shiori</a> on and off for the last few months. It's main feature is the ability to save the main content of a web page as text which can be easily searched later. To do so, it depends on my own package called <a href=https://github.com/go-shiori/go-readability><code>go-readability</code></a>.<p>The problem is, <code>go-readability</code> was based on old project by <a href=https://github.com/ying32/readability><code>ying32</code></a> which hasn't been updated for almost a year. The parse result from it was good, but still not comparable to result from reader mode in Firefox. So, I decided to rewrite everything to make sure it follows the code in <a href=https://github.com/mozilla/readability>Readability.js</a> that used by Firefox.<p>After almost a month, I finished the rewrite. The rewrite was done carefully line by line to make sure it looks and works as similar as possible with Readability.js. This way, hopefully all web page that can be parsed by Readability.js are parse-able by <code>go-readability</code> as well. And, if there are new improvements in Readability.js, it should be easy enough to implement it.<p>As usual, <code>go-readability</code> is published in <a href=https://github.com/go-shiori/go-readability>Github</a> under MIT license. To install this package, assuming you already installed Go, you can just run :<pre><code>go get -u -v github.com/go-shiori/go-readability
-</code></pre><p>Then you can use it in your code like this :<pre class=chroma><span class=kn>package</span> <span class=nx>main</span>
-
-<span class=kn>import</span> <span class=p>(</span>
-	<span class=s>&#34;fmt&#34;</span>
-	<span class=s>&#34;log&#34;</span>
-	<span class=s>&#34;os&#34;</span>
-	<span class=s>&#34;time&#34;</span>
-
-	<span class=nx>readability</span> <span class=s>&#34;github.com/go-shiori/go-readability&#34;</span>
-<span class=p>)</span>
-
-<span class=kd>var</span> <span class=p>(</span>
-	<span class=nx>urls</span> <span class=p>=</span> <span class=p>[]</span><span class=kt>string</span><span class=p>{</span>
-		<span class=c1>// this one is article, so it&#39;s parse-able
-</span><span class=c1></span>		<span class=s>&#34;https://www.nytimes.com/2019/02/20/climate/climate-national-security-threat.html&#34;</span><span class=p>,</span>
-		<span class=c1>// while this one is not an article, so readability will fail to parse.
-</span><span class=c1></span>		<span class=s>&#34;https://www.nytimes.com/&#34;</span><span class=p>,</span>
-	<span class=p>}</span>
-<span class=p>)</span>
-
-<span class=kd>func</span> <span class=nf>main</span><span class=p>()</span> <span class=p>{</span>
-	<span class=k>for</span> <span class=nx>i</span><span class=p>,</span> <span class=nx>url</span> <span class=o>:=</span> <span class=k>range</span> <span class=nx>urls</span> <span class=p>{</span>
-		<span class=nx>article</span><span class=p>,</span> <span class=nx>err</span> <span class=o>:=</span> <span class=nx>readability</span><span class=p>.</span><span class=nf>FromURL</span><span class=p>(</span><span class=nx>url</span><span class=p>,</span> <span class=mi>30</span><span class=o>*</span><span class=nx>time</span><span class=p>.</span><span class=nx>Second</span><span class=p>)</span>
-		<span class=k>if</span> <span class=nx>err</span> <span class=o>!=</span> <span class=kc>nil</span> <span class=p>{</span>
-			<span class=nx>log</span><span class=p>.</span><span class=nf>Fatalf</span><span class=p>(</span><span class=s>&#34;failed to parse %s, %v\n&#34;</span><span class=p>,</span> <span class=nx>url</span><span class=p>,</span> <span class=nx>err</span><span class=p>)</span>
-		<span class=p>}</span>
-
-		<span class=nx>dstTxtFile</span><span class=p>,</span> <span class=nx>_</span> <span class=o>:=</span> <span class=nx>os</span><span class=p>.</span><span class=nf>Create</span><span class=p>(</span><span class=nx>fmt</span><span class=p>.</span><span class=nf>Sprintf</span><span class=p>(</span><span class=s>&#34;text-%02d.txt&#34;</span><span class=p>,</span> <span class=nx>i</span><span class=o>+</span><span class=mi>1</span><span class=p>))</span>
-		<span class=k>defer</span> <span class=nx>dstTxtFile</span><span class=p>.</span><span class=nf>Close</span><span class=p>()</span>
-		<span class=nx>dstTxtFile</span><span class=p>.</span><span class=nf>WriteString</span><span class=p>(</span><span class=nx>article</span><span class=p>.</span><span class=nx>TextContent</span><span class=p>)</span>
-
-		<span class=nx>dstHTMLFile</span><span class=p>,</span> <span class=nx>_</span> <span class=o>:=</span> <span class=nx>os</span><span class=p>.</span><span class=nf>Create</span><span class=p>(</span><span class=nx>fmt</span><span class=p>.</span><span class=nf>Sprintf</span><span class=p>(</span><span class=s>&#34;html-%02d.html&#34;</span><span class=p>,</span> <span class=nx>i</span><span class=o>+</span><span class=mi>1</span><span class=p>))</span>
-		<span class=k>defer</span> <span class=nx>dstHTMLFile</span><span class=p>.</span><span class=nf>Close</span><span class=p>()</span>
-		<span class=nx>dstHTMLFile</span><span class=p>.</span><span class=nf>WriteString</span><span class=p>(</span><span class=nx>article</span><span class=p>.</span><span class=nx>Content</span><span class=p>)</span>
-
-		<span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;URL     : %s\n&#34;</span><span class=p>,</span> <span class=nx>url</span><span class=p>)</span>
-		<span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;Title   : %s\n&#34;</span><span class=p>,</span> <span class=nx>article</span><span class=p>.</span><span class=nx>Title</span><span class=p>)</span>
-		<span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;Author  : %s\n&#34;</span><span class=p>,</span> <span class=nx>article</span><span class=p>.</span><span class=nx>Byline</span><span class=p>)</span>
-		<span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;Length  : %d\n&#34;</span><span class=p>,</span> <span class=nx>article</span><span class=p>.</span><span class=nx>Length</span><span class=p>)</span>
-		<span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;Excerpt : %s\n&#34;</span><span class=p>,</span> <span class=nx>article</span><span class=p>.</span><span class=nx>Excerpt</span><span class=p>)</span>
-		<span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;SiteName: %s\n&#34;</span><span class=p>,</span> <span class=nx>article</span><span class=p>.</span><span class=nx>SiteName</span><span class=p>)</span>
-		<span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;Image   : %s\n&#34;</span><span class=p>,</span> <span class=nx>article</span><span class=p>.</span><span class=nx>Image</span><span class=p>)</span>
-		<span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;Favicon : %s\n&#34;</span><span class=p>,</span> <span class=nx>article</span><span class=p>.</span><span class=nx>Favicon</span><span class=p>)</span>
-		<span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;Text content saved to \&#34;text-%02d.txt\&#34;\n&#34;</span><span class=p>,</span> <span class=nx>i</span><span class=o>+</span><span class=mi>1</span><span class=p>)</span>
-		<span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;HTML content saved to \&#34;html-%02d.html\&#34;\n&#34;</span><span class=p>,</span> <span class=nx>i</span><span class=o>+</span><span class=mi>1</span><span class=p>)</span>
-		<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>()</span>
-	<span class=p>}</span>
-<span class=p>}</span>
-</pre><p>If you want to use the CLI app, you can install it by running :<pre><code>go get -u -v github.com/go-shiori/go-readability/cmd/...
+</code></pre><p>Then you can use it in your code like this :<pre tabindex=0 class=chroma><code><span class=line><span class=cl><span class=kn>package</span> <span class=nx>main</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=p>(</span>
+</span></span><span class=line><span class=cl>	<span class=s>&#34;fmt&#34;</span>
+</span></span><span class=line><span class=cl>	<span class=s>&#34;log&#34;</span>
+</span></span><span class=line><span class=cl>	<span class=s>&#34;os&#34;</span>
+</span></span><span class=line><span class=cl>	<span class=s>&#34;time&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>	<span class=nx>readability</span> <span class=s>&#34;github.com/go-shiori/go-readability&#34;</span>
+</span></span><span class=line><span class=cl><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kd>var</span> <span class=p>(</span>
+</span></span><span class=line><span class=cl>	<span class=nx>urls</span> <span class=p>=</span> <span class=p>[]</span><span class=kt>string</span><span class=p>{</span>
+</span></span><span class=line><span class=cl>		<span class=c1>// this one is article, so it&#39;s parse-able
+</span></span></span><span class=line><span class=cl><span class=c1></span>		<span class=s>&#34;https://www.nytimes.com/2019/02/20/climate/climate-national-security-threat.html&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>		<span class=c1>// while this one is not an article, so readability will fail to parse.
+</span></span></span><span class=line><span class=cl><span class=c1></span>		<span class=s>&#34;https://www.nytimes.com/&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>	<span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kd>func</span> <span class=nf>main</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>	<span class=k>for</span> <span class=nx>i</span><span class=p>,</span> <span class=nx>url</span> <span class=o>:=</span> <span class=k>range</span> <span class=nx>urls</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>		<span class=nx>article</span><span class=p>,</span> <span class=nx>err</span> <span class=o>:=</span> <span class=nx>readability</span><span class=p>.</span><span class=nf>FromURL</span><span class=p>(</span><span class=nx>url</span><span class=p>,</span> <span class=mi>30</span><span class=o>*</span><span class=nx>time</span><span class=p>.</span><span class=nx>Second</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>		<span class=k>if</span> <span class=nx>err</span> <span class=o>!=</span> <span class=kc>nil</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>			<span class=nx>log</span><span class=p>.</span><span class=nf>Fatalf</span><span class=p>(</span><span class=s>&#34;failed to parse %s, %v\n&#34;</span><span class=p>,</span> <span class=nx>url</span><span class=p>,</span> <span class=nx>err</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>		<span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>		<span class=nx>dstTxtFile</span><span class=p>,</span> <span class=nx>_</span> <span class=o>:=</span> <span class=nx>os</span><span class=p>.</span><span class=nf>Create</span><span class=p>(</span><span class=nx>fmt</span><span class=p>.</span><span class=nf>Sprintf</span><span class=p>(</span><span class=s>&#34;text-%02d.txt&#34;</span><span class=p>,</span> <span class=nx>i</span><span class=o>+</span><span class=mi>1</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>		<span class=k>defer</span> <span class=nx>dstTxtFile</span><span class=p>.</span><span class=nf>Close</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>		<span class=nx>dstTxtFile</span><span class=p>.</span><span class=nf>WriteString</span><span class=p>(</span><span class=nx>article</span><span class=p>.</span><span class=nx>TextContent</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>		<span class=nx>dstHTMLFile</span><span class=p>,</span> <span class=nx>_</span> <span class=o>:=</span> <span class=nx>os</span><span class=p>.</span><span class=nf>Create</span><span class=p>(</span><span class=nx>fmt</span><span class=p>.</span><span class=nf>Sprintf</span><span class=p>(</span><span class=s>&#34;html-%02d.html&#34;</span><span class=p>,</span> <span class=nx>i</span><span class=o>+</span><span class=mi>1</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>		<span class=k>defer</span> <span class=nx>dstHTMLFile</span><span class=p>.</span><span class=nf>Close</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>		<span class=nx>dstHTMLFile</span><span class=p>.</span><span class=nf>WriteString</span><span class=p>(</span><span class=nx>article</span><span class=p>.</span><span class=nx>Content</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>		<span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;URL     : %s\n&#34;</span><span class=p>,</span> <span class=nx>url</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>		<span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;Title   : %s\n&#34;</span><span class=p>,</span> <span class=nx>article</span><span class=p>.</span><span class=nx>Title</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>		<span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;Author  : %s\n&#34;</span><span class=p>,</span> <span class=nx>article</span><span class=p>.</span><span class=nx>Byline</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>		<span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;Length  : %d\n&#34;</span><span class=p>,</span> <span class=nx>article</span><span class=p>.</span><span class=nx>Length</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>		<span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;Excerpt : %s\n&#34;</span><span class=p>,</span> <span class=nx>article</span><span class=p>.</span><span class=nx>Excerpt</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>		<span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;SiteName: %s\n&#34;</span><span class=p>,</span> <span class=nx>article</span><span class=p>.</span><span class=nx>SiteName</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>		<span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;Image   : %s\n&#34;</span><span class=p>,</span> <span class=nx>article</span><span class=p>.</span><span class=nx>Image</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>		<span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;Favicon : %s\n&#34;</span><span class=p>,</span> <span class=nx>article</span><span class=p>.</span><span class=nx>Favicon</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>		<span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;Text content saved to \&#34;text-%02d.txt\&#34;\n&#34;</span><span class=p>,</span> <span class=nx>i</span><span class=o>+</span><span class=mi>1</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>		<span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;HTML content saved to \&#34;html-%02d.html\&#34;\n&#34;</span><span class=p>,</span> <span class=nx>i</span><span class=o>+</span><span class=mi>1</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>		<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>	<span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre><p>If you want to use the CLI app, you can install it by running :<pre><code>go get -u -v github.com/go-shiori/go-readability/cmd/...
 </code></pre><p>Then you can use it like this :<pre><code>go-readability &lt;url&gt;
 </code></pre><div class=reader__tags><p>Tags:</p><a href=/blog/tag-golang>#golang</a></div><div class=reader__sibling><a href=/blog/2019-02-08-qamel-desktop-app-using-go-qml class=reader__sibling__prev>Qamel - Build Desktop Application Using Go and QML</a>
 <a href=/blog/2019-04-05-fix-usb-printer-not-detected class=reader__sibling__next>Fix USB Printer not Detected in Arch Linux</a></div></div><div class=window__footer></div></div></div>
