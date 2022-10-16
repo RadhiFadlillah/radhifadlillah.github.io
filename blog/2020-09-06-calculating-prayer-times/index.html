@@ -1,0 +1,287 @@
+<!doctype html><html lang=en><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><link rel=apple-touch-icon-precomposed sizes=144x144 href=/themes/geos2/res/apple-touch-icon-144x144.png><link rel=apple-touch-icon-precomposed sizes=152x152 href=/themes/geos2/res/apple-touch-icon-152x152.png><link rel=icon type=image/png href=/themes/geos2/res/favicon-32x32.png sizes=32x32><link rel=icon type=image/png href=/themes/geos2/res/favicon-16x16.png sizes=16x16><script data-goatcounter=https://radhifadlillah.goatcounter.com/count async src=//gc.zgo.at/count.js></script><link href=/themes/geos2/css/fonts.css rel=stylesheet><link href=/themes/geos2/css/index.css rel=stylesheet><title>Step by Step: Calculating Prayer Times - Radhi Fadlillah</title><div class=file-page><div class="window reader"><div class=window__header><p class=window__header__title>Step by Step: Calculating Prayer Times (6/9/20)</div><div class="window__status-bar url-trail file-page__url-trail"><a href=/ class=url-trail__item>&lt;root></a>
+<a href=/blog class=url-trail__item>blog</a>
+<a href=/blog/2020-09-06-calculating-prayer-times class=url-trail__item>&lt;current-file></a></div><div class="window__content reader__content"><blockquote><p>This post is summary of book <a href=https://simpan.ugm.ac.id/s/GcxKuyZWn8Rshnn>"Mekanika Benda Langit"</a> by <a href=https://rintoanugraha.staff.ugm.ac.id/>Rinto Anugraha</a> supplemented with information from several sources. I write this summary because Anugraha's book is quite long and only available in Indonesian language, so I decided to translate the part of calculating prayer times to English.</blockquote><p>Muslims have five obligatory prayers a day. Each prayer is given a certain prescribed time during which it must be performed. There are six points of time per day that we need to calculate to determine the time period for each prayer :<table><thead><tr><th>Time<th>Definition<tbody><tr><td>Fajr<td>When the sky begins to lighten (dawn).<tr><td>Sunrise<td>The time at which the first part of the Sun appears above the horizon.<tr><td>Zuhr<td>The time when the Sun begins to decline after reaching its highest point in the sky.<tr><td>Asr<td>The time when the length of any object's shadow reaches a factor (usually 1 or 2) of the length of the object itself plus the length of that object's shadow at noon.<tr><td>Maghrib<td>Same as sunset, i.e. the time at which the Sun disappears below the horizon.<tr><td>Isha<td>The time at which darkness falls and there is no scattered light in the sky.</table><h2 id=requirements>Requirements</h2><p>Before calculating the prayer times, there are several parameters that must be known beforehand :<ol><li><a href=#latitude-of-target-location>Latitude of target location</a><li><a href=#longitude-of-target-location>Longitude of target location</a><li><a href=#elevation-of-target-location>Elevation of target location</a><li><a href=#time-zone-of-target-location>Time zone of target location</a><li><a href=#factor-of-shadow-length-at-asr>Factor of shadow length at Asr</a><li><a href=#sun-altitude-at-fajr-and-isha>Sun altitude at Fajr and Isha</a><li>Day, month and year of the date that we want to calculate</ol><h3 id=latitude-of-target-location>Latitude of target location</h3><p>Latitude is geographic coordinate that specifies the north-south position of a point on the Earth's surface. It's ranged between -90° to 90°, positive for area above equator and negative for area below it. For our purpose, the value of latitude should be in decimal degrees. For example Jakarta is located in 6°12'S which equal to -6.2 degrees.<h3 id=longitude-of-target-location>Longitude of target location</h3><p>Longitude is geographic coordinate that specifies the north-south position of a point on the Earth's surface. It's ranged between -180° to 180°, positive for Eastern Hemisphere and negative for Western Hemisphere. Like latitude, the value of longitude should also be in decimal degrees.<h3 id=elevation-of-target-location>Elevation of target location</h3><p>Elevation above sea level is used to calculate sunrise and sunset. Places with higher elevation will see sunrise earlier and sunset later compared to people in lower elevation. For our purpose the unit for elevation should be in meter.<h3 id=time-zone-of-target-location>Time zone of target location</h3><p>Time zone is a region of the globe that observes a uniform standard time for legal, commercial and social purposes. Most of the time zones on land are offset from Coordinated Universal Time (UTC) by a whole number of hours (UTC−12:00 to UTC+14:00), but a few zones are offset by 30 or 45 minutes.<p>The value of time zone is positive for Eastern Hemisphere and negative for Western Hemisphere. For our purpose, the time zone should be in decimal degrees representing hours differences with UTC.<h3 id=factor-of-shadow-length-at-asr>Factor of shadow length at Asr</h3><p>This parameter is used to calculate Asr time. There are <a href=http://www.prayerminder.com/faq.php#Fiqh>two schools</a> of thought for determining the start of Asr prayer time. <strong>Shafii</strong> says Asr is at the time when the length of any object's shadow equals <strong>the length</strong> of the object itself plus the length of that object's shadow at noon (factor = 1).<p>Meanwhile <strong>Hanafi</strong> says Asr begins when the length of any object's shadow is <strong>twice the length</strong> of the object plus the length of that object's shadow at noon (factor = 2).<h3 id=sun-altitude-at-fajr-and-isha>Sun altitude at Fajr and Isha</h3><p>Fajr is started when sky begins to lighten after previously sunlight is completely invisible. In astronomy, this time is called <a href=https://www.timeanddate.com/astronomy/astronomical-twilight.html><em>astronomical dawn</em></a> which happened when Sun altitude is between 12 and 18 degrees below the horizon. Meanwhile Isha is started when sky is completely dark after all sunlight is vanished and not visible anymore, which in astronomy called as <em>astronomical dusk</em>.<p>For simplicity, Sun altitude for both time usually called <em>Fajr angle</em> and <em>Isha angle</em>. Following the astronomy standard, value for both angle usually specified at 18 degrees. However some countries and organization has specified their own angle convention. There are also countries that doesn't use Isha angle and instead use fixed Maghrib duration.<p>Here are some of the <a href=http://www.islamicfinder.us/index.php/api/index>conventions</a> that commonly used around the world :<ul><li><strong>MWL</strong> is calculation method from Muslim World League with Fajr at 18° and Isha at 17°. Usually used in Europe, Far East and parts of US.<li><strong>ISNA</strong> is method from Islamic Society of North America with both Fajr and Isha at 15°. Used in North America i.e US and Canada.<li><strong>Umm al-Qura</strong> is method from Umm al-Qura University in Makkah which used in Saudi Arabia. Fajr at 18.5° and Isha fixed at 90 minutes after Maghrib.<li><strong>Gulf</strong> is method that often used by countries in Gulf region like UAE and Kuwait. Fajr at 19.5° and Isha fixed at 90 minutes after Maghrib.<li><strong>Algerian</strong> is method from Algerian Ministry of Religious Affairs and Wakfs. Fajr at 18° and Isha at 17°.<li><strong>Karachi</strong> is method from University of Islamic Sciences, Karachi, with both Fajr and Isha at 18°. Used in Pakistan, Afganistan, Bangladesh and India.<li><strong>Diyanet</strong> is method from Turkey's Diyanet İşleri Başkanlığı. It has the same value as MWL with Fajr at 18° and Isha at 17°.<li><strong>Egypt</strong> is method from Egyptian General Authority of Survey with Fajr at 19.5° and Isha at 17.5°. Used in Africa, Syria and Lebanon.<li><strong>EgyptBis</strong> is another version of calculation method from Egyptian General Authority of Survey. Fajr at 20° and Isha at 18°.<li><strong>Kemenag</strong> is method from Kementerian Agama Republik Indonesia. Fajr at 20° and Isha at 18°.<li><strong>MUIS</strong> is method from Majlis Ugama Islam Singapura. Fajr at 20° and Isha at 18°.<li><strong>JAKIM</strong> is method from Jabatan Kemajuan Islam Malaysia. Fajr at 20° and Isha at 18°.<li><strong>UOIF</strong> is method from Union Des Organisations Islamiques De France. Fajr and Isha both at 12°.<li><strong>France15</strong> is method for France region with Fajr and Isha both at 15°.<li><strong>France18</strong> is method for France region with Fajr and Isha both at 18°.<li><strong>Tunisia</strong> is method from Tunisian Ministry of Religious Affairs. Fajr and Isha both at 18°.<li><strong>Tehran</strong> is method from Institute of Geophysics at University of Tehran. Fajr at 17.7° and Isha at 14°.<li><strong>Jafari</strong> is method from Shia Ithna Ashari that used in some Shia communities worldwide. Fajr at 16° and Isha at 14°.</ul><h2 id=calculation-process>Calculation Process</h2><p>Now we have all parameters ready, it's time to calculate the prayer times :<ol><li><a href=#convert-date-to-julian-days>Convert date to Julian Days</a><li><a href=#calculate-sun-declination>Calculate Sun declination</a><li><a href=#calculate-equation-of-time>Calculate equation of time</a><li><a href=#calculate-transit-time>Calculate transit time</a><li><a href=#calculate-sun-altitude-for-each-prayer-times>Calculate Sun altitude for each prayer times</a><li><a href=#calculate-prayer-times>Calculate prayer times</a></ol><h3 id=convert-date-to-julian-days>Convert date to Julian Days</h3><p><a href=https://docs.kde.org/trunk5/en/extragear-edu/kstars/ai-julianday.html>Julian Days</a> are a way of reckoning the current date by a simple count of the number of days that have passed since some remote, arbitrary date. This number of days is called the Julian Day, abbreviated as JD. The starting point, JD=0, is at noon Universal time, January 1, 4713 BC (or -4712 January 1, since there was no year '0').<p>Julian Days are very useful because they make it easy to determine the number of days between two events by simply subtracting their Julian Day numbers. Such calculation is difficult for the standard (Gregorian) calendar, because days are grouped into months, which contain a variable number of days, and there is the added complication of Leap Years. Not to mention there are "blank days" between 5 October 1582 and 14 October 1582 which happened because transition from Julian calendar to Gregorian calendar.<p>Assuming <code>X</code> is the date time that we want to convert and <code>Z</code> is the target time zone, here are steps to calculate its Julian Days :<pre class=chroma><span class=c1>// Separate datetime&#39;s component
+</span><span class=c1></span><span class=nx>Y</span> <span class=o>=</span> <span class=nx>year</span> <span class=k>of</span> <span class=nx>X</span>
+<span class=nx>M</span> <span class=o>=</span> <span class=nx>month</span> <span class=k>of</span> <span class=nx>X</span>	<span class=c1>// 1 for Jan, 2 for Feb and so on
+</span><span class=c1></span><span class=nx>D</span> <span class=o>=</span> <span class=nx>day</span> <span class=k>of</span> <span class=nx>X</span>
+<span class=nx>H</span> <span class=o>=</span> <span class=nx>hour</span> <span class=k>of</span> <span class=nx>X</span>
+<span class=nx>m</span> <span class=o>=</span> <span class=nx>minute</span> <span class=k>of</span> <span class=nx>X</span>
+<span class=nx>s</span> <span class=o>=</span> <span class=nx>second</span> <span class=k>of</span> <span class=nx>X</span>
+
+<span class=c1>// Assume January and February as 13th and 14th month of last year.
+</span><span class=c1></span><span class=k>if</span> <span class=p>(</span><span class=nx>M</span> <span class=o>&lt;=</span> <span class=mi>2</span><span class=p>)</span> <span class=p>{</span>
+	<span class=nx>M</span> <span class=o>=</span> <span class=nx>M</span> <span class=o>+</span> <span class=mi>12</span>
+	<span class=nx>Y</span> <span class=o>=</span> <span class=nx>Y</span> <span class=o>-</span> <span class=mi>1</span>
+<span class=p>}</span>
+
+<span class=c1>// Prepare special constant `B` for date in Gregorian calendar.
+</span><span class=c1></span><span class=nx>B</span> <span class=o>=</span> <span class=mi>0</span>
+<span class=k>if</span> <span class=p>(</span><span class=nx>X</span> <span class=nx>after</span> <span class=s2>&#34;1582/10/14&#34;</span><span class=p>)</span> <span class=p>{</span>
+	<span class=kd>let</span> <span class=nx>A</span> <span class=o>=</span> <span class=nx>INT</span><span class=p>(</span><span class=nx>Y</span> <span class=o>/</span> <span class=mi>100</span><span class=p>)</span>
+	<span class=nx>B</span> <span class=o>=</span> <span class=mi>2</span> <span class=o>+</span> <span class=nx>INT</span><span class=p>(</span><span class=nx>A</span> <span class=o>/</span> <span class=mi>4</span><span class=p>)</span> <span class=o>-</span> <span class=nx>A</span>
+<span class=p>}</span>
+
+<span class=c1>// Finally calculate JD
+</span><span class=c1></span><span class=nx>JD</span> <span class=o>=</span> <span class=mf>1720994.5</span> <span class=o>+</span> <span class=nx>INT</span><span class=p>(</span><span class=mf>365.25</span><span class=o>*</span><span class=nx>Y</span><span class=p>)</span> <span class=o>+</span> <span class=nx>INT</span><span class=p>(</span><span class=mf>30.6001</span><span class=p>(</span><span class=nx>M</span> <span class=o>+</span> <span class=mi>1</span><span class=p>))</span> <span class=o>+</span> <span class=nx>B</span> <span class=o>+</span> <span class=nx>D</span> <span class=o>+</span>
+	 <span class=p>((</span><span class=nx>H</span><span class=o>*</span><span class=mi>3600</span> <span class=o>+</span> <span class=nx>m</span><span class=o>*</span><span class=mi>60</span> <span class=o>+</span> <span class=nx>s</span><span class=p>)</span> <span class=o>/</span> <span class=mi>86400</span><span class=p>)</span> <span class=o>-</span> <span class=p>(</span><span class=nx>Z</span> <span class=o>/</span> <span class=mi>24</span><span class=p>)</span>
+</pre><p>For example, say we want to convert 12 June 2009 at 12:00 in Jakarta to Julian Days :<pre class=chroma><span class=nx>Y</span> <span class=o>=</span> <span class=mi>2009</span>
+<span class=nx>M</span> <span class=o>=</span> <span class=mi>6</span>
+<span class=nx>D</span> <span class=o>=</span> <span class=mi>12</span>
+<span class=nx>H</span> <span class=o>=</span> <span class=mi>12</span>
+<span class=nx>m</span> <span class=o>=</span> <span class=mi>0</span>
+<span class=nx>s</span> <span class=o>=</span> <span class=mi>0</span>
+<span class=nx>Z</span> <span class=o>=</span> <span class=mi>7</span>	<span class=c1>// Jakarta is UTC +7
+</span><span class=c1></span>
+<span class=nx>A</span> <span class=o>=</span> <span class=nx>INT</span><span class=p>(</span><span class=mi>2009</span> <span class=o>/</span> <span class=mi>100</span><span class=p>)</span>
+  <span class=o>=</span> <span class=nx>INT</span><span class=p>(</span><span class=mf>20.09</span><span class=p>)</span>
+  <span class=o>=</span> <span class=mi>20</span>
+
+<span class=nx>B</span> <span class=o>=</span> <span class=mi>2</span> <span class=o>+</span> <span class=nx>INT</span><span class=p>(</span><span class=nx>A</span> <span class=o>/</span> <span class=mi>4</span><span class=p>)</span> <span class=o>-</span> <span class=nx>A</span>
+  <span class=o>=</span> <span class=mi>2</span> <span class=o>+</span> <span class=nx>INT</span><span class=p>(</span><span class=mi>20</span> <span class=o>/</span> <span class=mi>4</span><span class=p>)</span> <span class=o>-</span> <span class=mi>20</span>
+  <span class=o>=</span> <span class=mi>2</span> <span class=o>+</span> <span class=mi>5</span> <span class=o>-</span> <span class=mi>20</span>
+  <span class=o>=</span> <span class=o>-</span><span class=mi>13</span>
+
+<span class=nx>JD</span> <span class=o>=</span> <span class=mf>1720994.5</span> <span class=o>+</span> <span class=nx>INT</span><span class=p>(</span><span class=mf>365.25</span><span class=o>*</span><span class=nx>Y</span><span class=p>)</span> <span class=o>+</span> <span class=nx>INT</span><span class=p>(</span><span class=mf>30.6001</span><span class=p>(</span><span class=nx>M</span> <span class=o>+</span> <span class=mi>1</span><span class=p>))</span> <span class=o>+</span> <span class=nx>B</span> <span class=o>+</span> <span class=nx>D</span> <span class=o>+</span>
+	 <span class=p>((</span><span class=nx>H</span><span class=o>*</span><span class=mi>3600</span> <span class=o>+</span> <span class=nx>m</span><span class=o>*</span><span class=mi>60</span> <span class=o>+</span> <span class=nx>s</span><span class=p>)</span> <span class=o>/</span> <span class=mi>86400</span><span class=p>)</span> <span class=o>-</span> <span class=p>(</span><span class=nx>Z</span> <span class=o>/</span> <span class=mi>24</span><span class=p>)</span>
+   <span class=o>=</span> <span class=mf>1720994.5</span> <span class=o>+</span> <span class=nx>INT</span><span class=p>(</span><span class=mf>365.25</span> <span class=o>*</span> <span class=mi>2009</span><span class=p>)</span> <span class=o>+</span> <span class=nx>INT</span><span class=p>(</span><span class=mf>30.6001</span><span class=p>(</span><span class=mi>6</span> <span class=o>+</span> <span class=mi>1</span><span class=p>))</span> <span class=o>+</span> <span class=p>(</span><span class=o>-</span><span class=mi>13</span><span class=p>)</span> <span class=o>+</span> <span class=mi>12</span> <span class=o>+</span>
+	 <span class=p>((</span><span class=mi>12</span><span class=o>*</span><span class=mi>3600</span> <span class=o>+</span> <span class=mi>0</span><span class=o>*</span><span class=mi>60</span> <span class=o>+</span> <span class=mi>0</span><span class=p>)</span> <span class=o>/</span> <span class=mi>86400</span><span class=p>)</span> <span class=o>-</span> <span class=p>(</span><span class=mi>7</span> <span class=o>/</span> <span class=mi>24</span><span class=p>)</span>
+   <span class=o>=</span> <span class=mf>1720994.5</span> <span class=o>+</span> <span class=mi>733787</span> <span class=o>+</span> <span class=mi>214</span> <span class=o>+</span> <span class=p>(</span><span class=o>-</span><span class=mi>13</span><span class=p>)</span> <span class=o>+</span> <span class=mi>12</span> <span class=o>+</span> <span class=mf>0.5</span> <span class=o>-</span> <span class=mf>0.292</span>
+   <span class=o>=</span> <span class=mf>2454994.708</span>
+</pre><h3 id=calculate-sun-declination>Calculate Sun declination</h3><p>The declination of the Sun is the angle between the rays of the Sun and the plane of the earth equator. The declination of the Sun changes continuously throughout the year as consequence of the Earth's tilt, i.e. the difference in its rotational and revolutionary axes.<p>Here is formula for calculating sun declination :<pre class=chroma><span class=nx>T</span> <span class=o>=</span> <span class=mi>2</span> <span class=o>*</span> <span class=nx>PI</span> <span class=o>*</span> <span class=p>(</span><span class=nx>JD</span> <span class=o>-</span> <span class=mi>2451545</span><span class=p>)</span> <span class=o>/</span> <span class=mf>365.25</span>
+<span class=nx>DELTA</span> <span class=o>=</span> <span class=mf>0.37877</span> <span class=o>+</span> <span class=mf>23.264</span> <span class=o>*</span> <span class=nx>SIN</span><span class=p>(</span><span class=mf>57.297</span><span class=o>*</span><span class=nx>T</span> <span class=o>-</span> <span class=mf>79.547</span><span class=p>)</span> <span class=o>+</span> 
+		<span class=mf>0.3812</span> <span class=o>*</span> <span class=nx>SIN</span><span class=p>(</span><span class=mi>2</span><span class=o>*</span><span class=mf>57.297</span><span class=o>*</span><span class=nx>T</span> <span class=o>-</span> <span class=mf>82.682</span><span class=p>)</span> <span class=o>+</span> 
+		<span class=mf>0.17132</span> <span class=o>*</span> <span class=nx>SIN</span><span class=p>(</span><span class=mi>3</span><span class=o>*</span><span class=mf>57.297</span><span class=o>*</span><span class=nx>T</span> <span class=o>-</span> <span class=mf>59.722</span><span class=p>)</span>
+</pre><p>Some notes for formula above :<ul><li><code>PI</code> is a mathematical constant that defined as the ratio of a circle's circumference to its diameter. It is approximately equal to 3.14159.<li><code>SIN</code> here is using degrees unit instead of radians.</ul><h3 id=calculate-equation-of-time>Calculate equation of time</h3><p>Equation of time is the difference between time as read from a sundial and a clock. It results from an apparent irregular movement of the Sun caused by a combination of the obliquity of the Earth's rotation axis and the eccentricity of its orbit. The sundial can be ahead (fast) by as much as 16 min 33 s (around November 3) or fall behind by as much as 14 min 6 s (around February 12).<p>Here is formula for equation of time :<pre><code>U = (JD - 2451545) / 36525
+L0 = 280.46607 + 36000.7698*U
+ET1000 = -(1789 + 237*U) * SIN(L0) -
+	     (7146 - 62*U) * COS(L0) + 
+	     (9934 - 14*U) * SIN(2*L0) - 
+	     (29 + 5*U) * COS(2*L0) +
+	     (74 + 10*U) * SIN(3*L0) +
+	     (320 - 4*U) * COS(3*L0) -
+	     212*SIN(4*L0)
+ET = ET1000 / 1000
+</code></pre><p>Some notes for formula above :<ul><li><code>U</code> and <code>L0</code> is in degrees.<li><code>SIN</code> and <code>COS</code> here is using degrees unit instead of radians.<li><code>ET</code> is in minutes.</ul><h3 id=calculate-transit-time>Calculate transit time</h3><p>The sun transit time, is the daily moment when the Sun culminates on the observer's meridian, reaching its highest position in the sky. This solar time is most often used as local noon and therefore will vary with longitude. Here is formula for calculating it :<pre><code>TT = 12 + Z - (LONG / 15) - (ET / 60)
+</code></pre><p>Some notes for formula above :<ul><li><code>Z</code> is current time zone<li><code>LONG</code> is longitude in decimal degrees.<li><code>ET</code> is equation of time in minutes.<li>The calculation result is in hours.</ul><h3 id=calculate-sun-altitude-for-each-prayer-times>Calculate Sun altitude for each prayer times</h3><p>Some prayer times require us to calculate its Sun altitude beforehand. With <code>SA</code> as Sun altitude, here are how to calculate them :<pre><code>SA_FAJR    = -(FAJR_ANGLE)
+SA_SUNRISE = -0.8333 - (0.0347*SQRT(H))
+SA_ASR     = ACOT(SF + TAN(ABS(DELTA - LAT)))
+SA_MAGHRIB = SA_SUNRISE
+SA_ISHA    = -(ISHA_ANGLE)
+</code></pre><p>Some notes for formulas above :<ul><li><code>SF</code> is factor of shadow length that we <a href=#factor-of-shadow-length-at-asr>prepared</a> before.<li><code>FAJR_ANGLE</code> and <code>ISHA_ANGLE</code> is convention of Sun altitude at Fajr and Isha time that we <a href=#sun-altitude-at-fajr-and-isha>prepared</a> before.<li><code>DELTA</code> is value of Sun declination that we calculated before.<li><code>LAT</code> is latitude in decimal degrees.<li><code>H</code> is elevation above sea level in meter.<li><code>SQRT</code> is function for calculating square root.<li><code>ACOT</code> is acronym of <em>arcus cotangent</em> which is inverse of <em>cotangent</em> function. Here it's using degrees unit instead of radians.<li><code>TAN</code> here is using degrees unit instead of radians as well.<li><code>ABS</code> is function that returns absolute value of a number (number without regard to its sign).<li><code>-0.08333</code> is correction for Sun altitude that looks higher at sunrise and sunset which happened because of the athmospheric refraction.<li>All Sun altitude value is in degrees.</ul><h3 id=calculate-prayer-times>Calculate prayer times</h3><p>At this point, now we are ready to calculate prayer times. With <code>HA_*</code> as hour angle, <code>TT</code> as transit time and <code>SA_*</code> as Sun altitude that we calculated before, here are formulas to calculate prayer times :<pre><code>FAJR    = TT - HA_FAJR / 15
+SUNRISE = TT - HA_SUNRISE / 15
+ZUHR    = TT + DESCEND_CORRECTION
+ASR     = TT + HA_ASR / 15
+MAGHRIB = TT + HA_MAGHRIB / 15
+ISHA    = TT + HA_ISHA / 15
+</code></pre><p>For Zuhr, the prayer time is simply transit time added with some correction time. This is because there is <a href=https://sunnah.com/muslim/6/357>hadith</a> that forbade us to pray at the exactly middle of the day when sun is right above our head. Instead, we should wait until the sun has descended a bit to the west.<p>From this hadith, there are two different opinion on when azan should be announced :<ul><li>The azan should be announced after the sun has descended a bit (noon + 1-2 minute).<li>The azan is announced right on noon when the sun is in the middle of the sky, since the prayer will be done later anyway (after iqamah).</ul><p>For other prayer times, they all depends on <a href=https://en.wikipedia.org/wiki/Hour_angle>hour angle</a>. With <code>SA</code> as Sun altitude, here is formula for calculating hour angle :<pre><code>COS(HA) = (SIN(SA) - SIN(LAT) * SIN(DELTA)) / (COS(LAT) * COS(DELTA))
+HA = ACOS(COS(HA))
+</code></pre><p>Some notes for formula above :<ul><li><code>COS</code>, <code>SIN</code> and <code>ACOS</code> here is trigonometry functions that using degrees unit instead of radians.<li><code>DELTA</code> is value of Sun declination that we calculated before.<li><code>LAT</code> is latitude in decimal degrees.</ul><h2 id=example>Example</h2><p>For example, here we will calculate prayer times in Jakarta at 6 September 2020 :<ul><li>Its latitude is 6°12'S so <code>LAT = -6.2</code><li>Its longitude is 106°49'E so <code>LONG = 106.816667</code><li>Its elevation is 8 meter above sea level so <code>H = 8</code><li>Its time zone is UTC+7 so <code>Z = 7</code><li>Indonesia uses Shafii for calculating Asr time so <code>SF = 1</code><li>Indonesia uses Kemenag convention, so <code>FAJR_ANGLE = 20</code> and <code>ISHA_ANGLE = 18</code></ul><p>First calculate Julian Days at noon local time :<pre><code>Y = 2020
+M = 9
+D = 6
+H = 12
+m = 0
+s = 0
+Z = 7
+
+A = INT(2020 / 100)
+  = INT(20.2)
+  = 20
+
+B = 2 + INT(A / 4) - A
+  = 2 + INT(20 / 4) - 20
+  = 2 + 5 - 20
+  = -13
+
+JD = 1720994.5 + INT(365.25*Y) + INT(30.6001(M + 1)) + B + D +
+	 ((H*3600 + m*60 + s) / 86400) - (Z / 24)
+   = 1720994.5 + INT(365.25 * 2020) + INT(30.6001(9 + 1)) + (-13) + 6 +
+	 ((12*3600 + 0*60 + 0) / 86400) - (7 / 24)
+   = 1720994.5 + 737805 + 306 + (-13) + 6 + 0.5 - 0.292
+   = 2459098.708
+</code></pre><p>Next calculate Sun declination :<pre><code>T = 2 * PI * (JD - 2451545) / 365.25
+  = 2 * 3.14159 * (2459098.708 - 2451545) / 365.25
+  = 47461.3091 / 365.25
+  = 129.942
+
+DELTA = 0.37877 + 23.264 * SIN(57.297*T - 79.547) + 
+		0.3812 * SIN(2*57.297*T - 82.682) + 
+		0.17132 * SIN(3*57.297*T - 59.722)
+      = 0.37877 + 23.264 * SIN(57.297*129.942 - 79.547) + 
+		0.3812 * SIN(2*57.297*129.942 - 82.682) + 
+		0.17132 * SIN(3*57.297*129.942 - 59.722)
+      = 0.37877 + 23.264 * 0.24624 + 
+		0.3812 * 0.742 + 
+		0.17132 * (-0.69272)
+      = 0.37877 + 23.264 * 0.24624 + 
+		0.3812 * 0.742 + 
+		0.17132 * (-0.69272)
+	  = 0.37877 + 5.72845 + 0.28285 - 0.1187
+	  = 6.2714
+</code></pre><p>Next calculate equation of time :<pre><code>U = (JD - 2451545) / 36525
+  = (2459098.708 - 2451545) / 36525
+  = 0.20681
+
+L0 = 280.46607 + 36000.7698*U
+   = 280.46607 + 36000.7698*0.20681
+   = 280.46607 + 7445.2927
+   = 7725.7587
+
+ET1000 = -(1789 + 237*U) * SIN(L0) -
+	     (7146 - 62*U) * COS(L0) + 
+	     (9934 - 14*U) * SIN(2*L0) - 
+	     (29 + 5*U) * COS(2*L0) +
+	     (74 + 10*U) * SIN(3*L0) +
+	     (320 - 4*U) * COS(3*L0) -
+	     212*SIN(4*L0)
+	   = -(1789 + 237 * 0.20681) * SIN(7725.7587) -
+	     (7146 - 62 * 0.20681) * COS(7725.7587) + 
+	     (9934 - 14 * 0.20681) * SIN(2 * 7725.7587) - 
+	     (29 + 5 * 0.20681) * COS(2 * 7725.7587) +
+	     (74 + 10 * 0.20681) * SIN(3 * 7725.7587) +
+	     (320 - 4 * 0.20681) * COS(3 * 7725.7587) -
+	     212 * SIN(4 * 7725.7587)
+	   = (-1838.01397 * 0.246) -
+	     (7133.1778 * -0.9693) + 
+	     (9931.10467 * -0.4769) - 
+	     (30.034 * 0.87896) +
+	     (76.0681 * 0.67846) +
+	     (319.1728 * -0.73463) -
+	     (212 * -0.83834)
+	   = (-452.1613) - (-6913.9643) + (-4736.05011) - 
+		 (26.3988) + (51.6095) + (-234.4749) - (-177.7277)
+	   = (-452.1613) - (-6913.9643) + (-4736.05011) - 
+		 1694.2163
+
+ET = ET1000 / 1000
+   = 1694.2163 / 1000
+   = 1.6942
+</code></pre><p>Next calculate Sun's transit time :<pre><code>TT = 12 + Z - (LONG / 15) - (ET / 60)
+   = 12 + 7 - (106.8167 / 15) - (1.6942 / 60)
+   = 11.850652
+</code></pre><p>Next calculate Sun altitude for each time :<pre><code>SA_FAJR = -(FAJR_ANGLE) = -20
+
+SA_SUNRISE = SA_MAGHRIB
+		   = -0.8333 - (0.0347 * SQRT(H))
+		   = -0.8333 - (0.0347 * SQRT(8))
+		   = -0.8333 - (0.0347 * SQRT(8))
+		   = -0.8333 - (0.0347 * 2.8284)
+		   = -0.8333 - (0.098145)
+		   = -0.8333 - (0.098145)
+		   = -0.93145
+
+SA_ASR = ACOT(SF + TAN(ABS(DELTA - LAT)))
+       = ACOT(1 + TAN(ABS(6.2714 - (-6.2))))
+       = ACOT(1 + TAN(12.4714))
+       = ACOT(1 + 0.2212)
+       = ACOT(1.2212)
+	   = 39.3129
+
+SA_ISHA = -(ISHA_ANGLE) = -18
+</code></pre><p>Then, we need to calculate hour angle from those Sun altitude :<pre><code>COS(HA_FAJR) = (SIN(SA_FAJR) - SIN(LAT) * SIN(DELTA)) / (COS(LAT) * COS(DELTA))
+             = (SIN(-20) - SIN(-6.2) * SIN(6.2714)) / (COS(-6.2) * COS(6.2714))
+			 = (-0.342 - (-0.108 * 0.1092)) / (0.9942 * 0.994)
+			 = -0.330206 / 0.988235
+			 = -0.334138
+
+COS(HA_SUNRISE) = COS(HA_MAGHRIB)
+                = (SIN(SA_SUNRISE) - SIN(LAT) * SIN(DELTA)) / (COS(LAT) * COS(DELTA))
+                = (SIN(-0.93145) - SIN(-6.2) * SIN(6.2714)) / (COS(-6.2) * COS(6.2714))
+				= (-0.0163 - (-0.108 * 0.1092)) / (0.9942 * 0.994)
+				= -0.004506 / 0.988235
+				= -0.00456
+
+COS(HA_ASR) = (SIN(SA_ASR) - SIN(LAT) * SIN(DELTA)) / (COS(LAT) * COS(DELTA))
+			= (SIN(39.3129) - SIN(-6.2) * SIN(6.2714)) / (COS(-6.2) * COS(6.2714))
+			= (0.6336 - (-0.108 * 0.1092)) / (0.9942 * 0.994)
+			= 0.645394 / 0.988235
+			= 0.653077
+
+COS(HA_ISHA) = (SIN(SA_ISHA) - SIN(LAT) * SIN(DELTA)) / (COS(LAT) * COS(DELTA))
+             = (SIN(-18) - SIN(-6.2) * SIN(6.2714)) / (COS(-6.2) * COS(6.2714))
+			 = (-0.309 - (-0.108 * 0.1092)) / (0.9942 * 0.994)
+			 = -0.297206 / 0.988235
+			 = -0.300745
+
+HA_FAJR = ACOS(COS(HA_FAJR))
+		= ACOS(-0.334138)
+		= 109.5201
+
+HA_SUNRISE = HA_MAGHRIB
+		   = ACOS(COS(HA_SUNRISE))
+		   = ACOS(-0.00456)
+		   = 90.2613
+
+HA_ASR = ACOS(COS(HA_ASR))
+	   = ACOS(0.653077)
+	   = 49.226
+
+HA_ISHA = ACOS(COS(HA_ISHA))
+		= ACOS(-0.300745)
+		= 107.5023
+</code></pre><p>Now we just need to calculate the prayer times. Here we will add 2 minutes for as Sun descend correction for Zuhr time :<pre><code>FAJR = TT - HA_FAJR / 15
+     = 11.850652 - (109.5201 / 15)
+     = 4.5493 = 04:32:57
+
+SUNRISE = TT - HA_SUNRISE / 15
+        = 11.850652 - (90.2613 / 15)
+        = 5.8332 = 05:49:59
+
+ZUHR = TT + DESCEND_CORRECTION
+	 = 11.850652 + (2 / 60)
+     = 11,8839 = 11:53:02
+
+ASR = TT + HA_ASR / 15
+    = 11.850652 + (49.226 / 15)
+    = 15.1324 = 15:07:56
+
+MAGHRIB = TT + HA_MAGHRIB / 15
+        = 11.850652 + (90.2613 / 15)
+        = 17.8681 = 17:52:05
+
+ISHA = TT + HA_ISHA / 15
+     = 11.850652 + (107.5023 / 15)
+     = 19.0175 = 19:01:03
+</code></pre><h2 id=improvements>Improvements</h2><p>The calculation methods above is using Meeus algorithm which is the simplification of VSOP87 algorithm. If we calculate the prayer times with same parameters using software <a href="http://www.icoproject.org/accut.html?l=en">Accurate Times</a> by Mohammad Odeh (which uses VSOP87), we will get following results :<pre><code>FAJR    = 04:33:04 (+7s compared to our calculation)
+SUNRISE = 05:50:08 (+9s)
+ZUHR    = 11:53:01 (-1s)
+ASR     = 15:08:01 (+5s)
+MAGHRIB = 17:51:59 (-6s)
+ISHA    = 19:00:58 (-5s)
+</code></pre><p>The results of our calculations differ by about 9 seconds compared to the results of the Accurate Times calculation. So, this is already quite accurate and could be used to calculate the prayer times. However, we could improve our calculation methods to decrease the differences.<p>The results of our calculations use the same value for the Sun declination and equation of time for all prayer times, i.e using the value at 12.00 local time. In real world, the Sun's declination value and the equation of time always change at any time, even though the change is quite small in the span of one day.<p>In the case above, the Sun's declination at Fajr and Isha is 6.387024 (or 06:23:13) degrees and 6.162344 (or 06:09:44) degrees, respectively. The difference is about 14 arc minutes. With that said, the above formula can still be refined or corrected even better if for each prayer time the value of the Sun declination and the equation of time used is in accordance with the value at the time of prayer.<p>For example, for the Isha prayer time, the Sun declination and the equation of time are used at the time of the Isha prayer as well, not at 12.00 local time. For the initial calculation, determine the estimated hour angle obtained from Sun declination and the equation of time at 12:00 local time. From this estimated hour angle, the estimate of Isha time is found.<p>This estimate of Isha time is then converted to Julian Day which can then be used to calculate Sun declination and equation of time. This is done several times until a convergent (fixed) number is obtained. By using this method, we will get following results :<pre><code>FAJR    = 4.5517  = 04:33:06 (+2s compared to Accurate Times)
+SUNRISE = 5.8356  = 05:50:08 (+0s)
+ZUHR    = 11.8842 = 11:53:03 (+2s)
+ASR     = 15.1311 = 15:07:52 (-9s)
+MAGHRIB = 17.8672 = 17:52:02 (+3s)
+ISHA    = 19.0167 = 19:01:00 (+2s)
+</code></pre><p>After our additional process, the differences decreased for some and increased for the other, but overall it become more accurate. If you think the minor increase in accuracy is worth the hassle, go for it.<h2 id=locations-at-higher-latitudes>Locations at higher latitudes</h2><p>In locations at higher latitude (more than 48.5 degree in north and south), twilight may persist throughout the night during some months of the year. In these abnormal periods, the determination of Fajr and Isha is not possible using the usual formulas mentioned in the previous section.<p>For example, in <a href=https://goo.gl/maps/gWirQYDmRmUnxNTU7>Lunteren</a> (52°07'39.7"N 5°40'07.0"E) at 1 June 2020, if we are using our formulas we will get sunrise and Maghrib (sunset) time like this :<pre><code>Sunrise = 5.35    = 05:21:00
+Maghrib = 21.8367 = 21:50:12
+</code></pre><p>However, when we try to calculate Fajr and Isha time our formulas will be failed because the value of <code>COS(HA)</code> will be more than 1 or less than -1. To overcome this problem, several solutions have been proposed, three of which are described below :<ol><li><a href=#middle-of-the-night>Middle of the night</a><li><a href=#one-seventh-of-the-night>One-seventh of the night</a><li><a href=#angle-based-method>Angle-based method</a></ol><h3 id=middle-of-the-night>Middle of the night</h3><p>In this method, the period from sunset to sunrise is divided into two halves. The first half is considered to be the "night" and the other half as "day break". Fajr and Isha in this method are assumed to be at mid-night during the abnormal periods.<p>In Lunteren case, the duration of night is :<pre><code>NIGHT_DURATION = NEXT_SUNRISE - MAGHRIB
+               = (24 + SUNRISE) - MAGHRIB
+			   = (24 + 5.35) - 21.8367
+			   = 7.5133 = 07:30:47
+</code></pre><p>Using this method, Fajr and Isha time in Lunteren is calculated like this :<pre><code>FAJR = SUNRISE - (NIGHT_DURATION / 2)
+	 = 5.35 - (7.5133 / 2)
+	 = 1.59335 = 01:35:36
+
+ISHA = MAGHRIB + (NIGHT_DURATION / 2)
+	 = 21.8367 + (7.5133 / 2)
+	 = 25.59335
+	 = 24 + 1.59335 = 01:35:36 next day
+</code></pre><h3 id=one-seventh-of-the-night>One-seventh of the night</h3><p>In this method, the period between sunset and sunrise is divided into seven parts. Isha begins after the first one-seventh part and Fajr is at the beginning of the seventh part.<p>Still in Lunteren, using this method Fajr and Isha will be calculated like this :<pre><code>FAJR = SUNRISE - (NIGHT_DURATION / 7)
+	 = 5.35 - (7.5133 / 7)
+	 = 4.2767 = 04:16:36
+
+ISHA = MAGHRIB + (NIGHT_DURATION / 7)
+	 = 21.8367 + (7.5133 / 7)
+	 = 22.91 = 22:54:36
+</code></pre><h3 id=angle-based-method>Angle-based method</h3><p>This is an intermediate solution used by some recent prayer time calculators. Let <code>a</code> be the twilight angle for Isha, and let <code>t = a/60</code>. The period between sunset and sunrise is divided into <code>t</code> parts. Isha begins after the first part. For example, if the twilight angle for Isha is 15, then Isha begins at the end of the first quarter (15/60) of the night. Time for Fajr is calculated similarly.<p>In Lunteren case, the conventions that used is MWL where Fajr angle is 18 and Isha angle is 17 :<pre><code>FAJR = SUNRISE - (NIGHT_DURATION * FAJR_ANGLE / 60)
+	 = 5.35 - (7.5133 * 18 / 60)
+	 = 3.096 = 03:05:45
+
+ISHA = MAGHRIB + (NIGHT_DURATION * ISHA_ANGLE / 60)
+	 = 21.8367 + (7.5133 * 17 / 60)
+	 = 23.9655 = 23:57:55
+</code></pre><h2 id=conclusions>Conclusions</h2><p>While the calculation process is quite long, it's actually really simple. If you familiar with Go language or using it, you can use <a href=https://github.com/RadhiFadlillah/go-prayer><code>go-prayer</code></a> to do the calculations for you.<div class=reader__tags><p>Tags:</p><a href=/blog/tag-islam>#islam</a>
+<a href=/blog/tag-summary>#summary</a>
+<a href=/blog/tag-tutorial>#tutorial</a></div><div class=reader__sibling><a href=/blog/2020-08-07-shiori-has-new-maintainer class=reader__sibling__prev>Shiori Has New Maintainer</a>
+<a href=/blog/2020-09-10-build-go-statically class=reader__sibling__next>Build Go Programs Statically</a></div></div><div class=window__footer></div></div></div>

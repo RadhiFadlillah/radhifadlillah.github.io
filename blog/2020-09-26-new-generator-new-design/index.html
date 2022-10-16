@@ -1,0 +1,51 @@
+<!doctype html><html lang=en><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><link rel=apple-touch-icon-precomposed sizes=144x144 href=/themes/geos2/res/apple-touch-icon-144x144.png><link rel=apple-touch-icon-precomposed sizes=152x152 href=/themes/geos2/res/apple-touch-icon-152x152.png><link rel=icon type=image/png href=/themes/geos2/res/favicon-32x32.png sizes=32x32><link rel=icon type=image/png href=/themes/geos2/res/favicon-16x16.png sizes=16x16><script data-goatcounter=https://radhifadlillah.goatcounter.com/count async src=//gc.zgo.at/count.js></script><link href=/themes/geos2/css/fonts.css rel=stylesheet><link href=/themes/geos2/css/index.css rel=stylesheet><title>New Site Generator, New Site Design - Radhi Fadlillah</title><div class=file-page><div class="window reader"><div class=window__header><p class=window__header__title>New Site Generator, New Site Design (26/9/20)</div><div class="window__status-bar url-trail file-page__url-trail"><a href=/ class=url-trail__item>&lt;root></a>
+<a href=/blog class=url-trail__item>blog</a>
+<a href=/blog/2020-09-26-new-generator-new-design class=url-trail__item>&lt;current-file></a></div><div class="window__content reader__content"><p>For the last few weeks I've been working on a new static site generator called <a href=https://github.com/RadhiFadlillah/boom><code>boom</code></a>. I created it to improve my previous static site generator named <a href=https://github.com/RadhiFadlillah/spook><code>spook</code></a>.<h2 id=about-spook>About Spook</h2><p>Several years ago I just got a job and started to receive my own salary. So, like many other programmers, one of the first thing that I bought is a domain for my own name. The next obvious step after buying domain is using it, so I decided to build my own site. At first I planned to use <a href=https://gohugo.io/>Hugo</a> because it's famous for its speed and it's built using my favorite language.<p>Unfortunately, after looking at the documentation I feel a bit intimidated because the documentation was long and confusing (do note that this is back in 2018, nowadays their documentation is really nice). Not to mentions there are many features that I believe I won't need.<p>So, I decided to create my own static site generator. I thought it will be easy, after all I just want to build a simple blog with one or two static pages and maybe several blog posts. After several weeks, <code>spook</code> is created.<p>In Spook your site content <strong>MUST</strong> be structured like this :<pre><code>.
+├── page/
+│   ├── page-1/
+│   │   └── _index.md
+│   └── page-2/
+│       ├── _index.md
+│       ├── asset-01.png
+│       └── asset-02.jpg
+├── post/
+│   ├── post-1/
+│   │   └── _index.md
+│   └── post-2/
+│       ├── _index.md
+│       └── asset.png
+├── theme/
+│   └── theme-1/
+│       ├── list.html
+│       ├── page.html
+│       └── post.html
+└── config.toml
+</code></pre><ul><li><code>page</code> directory contains static pages. Each page must be in its own directory that contains <code>_index.md</code> file.<li><code>post</code> directory contains blog posts. Each post must be in its own directory that contains <code>_index.md</code> file.<li><code>theme</code> directory contains themes for site. You can have several themes, each of them has its own dictionary and must have <code>list.html</code>, <code>page.html</code> and <code>post.html</code>.<li><code>config.toml</code> is entire site configuration. Here you specify the site's title, the active theme, etc.</ul><p>As you can see, the site structure is really simple and flat. There are only three templates available :<ul><li><code>list.html</code> is template for rendering list of post.<li><code>page.html</code> is template for rendering static page.<li><code>post.html</code> is template for rendering blog post.</ul><p>With that said, you won't be able to build any fancy site using this but it works and suitable for my use case back then.<h2 id=boom-the-new-generator>Boom, the new generator</h2><p>After around two years, I found several pain points from Spook :<ul><li>Spook is more of static blog generator than static site generator. There are only <code>page</code> and <code>post</code>, and you can't create additional directories. In my case, I want to put portfolio to my website in separate place from the ordinary pages and posts. This is impossible to do in Spook.<li>In Spook each post has its own directory whether it has assets or not. Thanks to this, when my site has around twenty posts, the site structure becomes quite long and redundant.<li>In Spook you can only have one active theme, and you are limited with only three templates.</ul><p>With that said, I believe Spook is not suitable anymore for my needs so it's time to use a better static site generator. I was planning to use Hugo, however I'm a bit sad that my time and code in Spook will be wasted. So I decided to improve Spook to fulfill my requirements. That's how <code>boom</code> created.<p>In Boom your site <strong>MUST</strong> be structured like this :<pre><code>.
+├── assets
+├── content/
+│   └── _index.md
+└── themes/
+    ├── theme-1
+    ├── theme-2
+    └── theme-N
+</code></pre><p>However, you have total freedom on structuring your assets and content. For example, you can build your site like this :<pre><code>.
+├── assets/
+│   ├── image-1.jpg		// https://example.com/assets/image-1.jpg
+│   ├── image-2.jpg		// https://example.com/assets/image-2.png
+│   └── portfolio/
+│       └── app-1/
+│           ├── screenshot-1.png	// https://example.com/assets/portfolio/app-1/screenshot-1.png
+│           └── screenshot-2.png	// https://example.com/assets/portfolio/app-1/screenshot-2.png
+├── content/
+│   ├── _index.md		// https://example.com
+│   ├── directory-1/
+│   │   ├── _index.md	// https://example.com/directory-1
+│   │   ├── file-1.md	// https://example.com/directory-1/file-1
+│   │   └── file-2.md	// https://example.com/directory-1/file-2
+│   └── directory-2/
+│       ├── _index.md	// https://example.com/directory-2
+│       └── file-3.md	// https://example.com/directory-2/file-3
+└── themes/
+    ├── theme-1
+    └── theme-2
+</code></pre><p>If in Spook we only allowed three templates, in Boom you can have as many templates as you want. Boom also allows you to set custom theme and template for each markdown file. With that said, I think now Boom fulfills my requirements while still simple enough to use.<h2 id=new-site-design>New site design</h2><p>If you've ever visit this site before, you might remember that it looks like this :<p><img src=/assets/2020-09-26-new-design/old-website.png alt="Screenshot of the old website"><p>I think it's fine. It's readable, mobile-friendly and serve its purpose. If there are any fault, it's too generic and too bright for my eyes. However, since I migrating my site to a new generator, might as well create a new design for it.<p>Incidentally, while I working on this site, I was fascinated with user interface of the old operating system. One of my favorite is GEOS, a full blown operating system and graphical user interface for the Commodore 64 computer. You could check its screenshots in <a href=http://toastytech.com/guis/c64g.html>Toasty Tech</a>, <a href=https://guidebookgallery.org/screenshots/geosc64>Guidebook Gallery</a> and <a href=https://www.osnews.com/story/15223/geos-the-graphical-environment-operating-system/>OS News</a>, but here is the main screen :<p><img src=/assets/2020-09-26-new-design/geosc64.png alt="GEOS screenshot"><p>The hardest part of emulating that design is the font. Pixel bitmap font is not used because it tends to be poor when scaled or transformed. Meanwhile most of outline font is too modern. In the end I decided to use two fonts, <a href=https://fonts.google.com/specimen/Chakra+Petch>Chakra Petch</a> for sans-serif and <a href=https://fonts.google.com/specimen/Share+Tech+Mono>Share Tech Mono</a> for monospace. Both are vector based so it scales nicely, while still looks a bit retro thanks to its square-ish design.<p>The end result is as you can see in this post. In case you came from future and the theme is changed again, here is how it looks like :<p><img src=/assets/2020-09-26-new-design/new-website.png alt="Screenshot of the new website"><p>I also decided to use <a href=https://www.goatcounter.com/>GoatCounter</a> analytics, an open source web analytics platform. I choose it because it's free, doesn't track users, lightweight and fast. I've set it to public so you can check this site statistics <a href=https://radhifadlillah.goatcounter.com>here</a>.<div class=reader__tags><p>Tags:</p><a href=/blog/tag-golang>#golang</a></div><div class=reader__sibling><a href=/blog/2020-09-10-build-go-statically class=reader__sibling__prev>Build Go Programs Statically</a></div></div><div class=window__footer></div></div></div>
